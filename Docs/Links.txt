@@ -1,3 +1,26 @@
 * Edit md files
 https://docs.github.com/fr/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax
+* Ahmed's links:
+- https://www.facebook.com/watch/?v=5091686937533226 : Real time customer heatmap
+- https://deepai.org/publication/towards-in-store-multi-person-tracking-using-head-detection-and-track-heatmaps : reaserch paper about in-store multi-person tracking using head detection and track heatmaps
+- https://www.researchgate.net/publication/353482160_Customer_Behavior_Analysis_in_Smart_Shopping_Centers_Using_Deep_Learning : reaserch paper about Customer Behavior Analysis in Smart Shopping Centers Using Deep Learning
+- https://www.youtube.com/watch?v=jeQ7C4JLpug&t=267s&ab_channel=TEDxTalks : Ted talk about how stores track your shopping behavior 
+- https://link.springer.com/article/10.1007/s10462-022-10142-3 : reaserch paper : When AI meets store layout design
+- https://www.youtube.com/watch?v=MBRBbWhKRWE&ab_channel=infsoftgmbh :  video about tracking customer trajectory with bluetooth beacons
+- https://www.youtube.com/watch?v=NG4lFmSO7VQ&ab_channel=NationalScienceFoundationNews : video about using heatmaps for customers' trajectory analysis
+- https://www.youtube.com/watch?v=4jPl7lauQN8&ab_channel=DirkCallaerts : video about Tracking Supermarket shopping carts in order to create a heatmap 
+- https://www.youtube.com/watch?v=zEtGGsmEwAk&ab_channel=ABC4Utah : video about tracking customer behivor through turning their phones into beacons
+- https://www.youtube.com/watch?v=oLedMqa_uGo&ab_channel=CNBCInternational : video about tracking customers through signals like gps, wifi...
+- https://www.youtube.com/watch?v=WYKUJgMRQ7A&ab_channel=Vox : how ikea tack its customers with heatmap
+- https://github.com/LumenResearch/heatmappy : github project for drawing image and video heatmaps in python
+- https://towardsdatascience.com/build-a-motion-heatmap-videousing-opencv-with-python-fd806e8a2340 : video baout Building a Motion Heatmap Video Using OpenCV With Python
+- https://www.youtube.com/watch?v=Vo05vr8fc1U&ab_channel=SieuweElferink : video about  Large Crowd Analytics and Tracking with AI (python)
+- https://learnopencv.com/understanding-multiple-object-tracking-using-deepsort/#:~:text=DeepSORT%20is%20a%20computer%20vision,Simple%20Online%20Realtime%20Tracking)%20algorithm. : blog about Understanding Multiple Object Tracking using DeepSORT
+- https://www.linkedin.com/pulse/top-5-object-tracking-methods-2022-ritesh-kanjee : linkedin's post about Top 5 Object Tracking Methods in 2022
+- https://www.youtube.com/watch?v=C1Ayh5L_5z4&ab_channel=SKYENGINEAI%E2%80%93SyntheticDataCloud : video about tracking custumer's mouvement and creating a real time heatmap
+- https://arxiv.org/pdf/2003.11753.pdf : link to a reaserch paper about Real-time 3D Deep Multi-Camera Tracking
+- https://pdf.sciencedirectassets.com/280203/1-s2.0-S1877050919X00125/1-s2.0-S1877050919311287/main.pdf?X-Amz-Security-Token=IQoJb3JpZ2luX2VjEPP%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLWVhc3QtMSJGMEQCIFkmC2pZukqLHfEt%2F5tqpVdt8hw75QYA3qyfBl2MwvtzAiBNgNZt2UQcTVFsmE04dTIv9CaV3XqRZUS%2B3VXfo9bAsCrMBAh8EAUaDDA1OTAwMzU0Njg2NSIMoDE%2FUnzptSrXZbGKKqkEXrmaBoaGYDRXB7u0sPB6AkI3%2F%2FVNZ7OWyVNloct6L%2BTE8%2FCYkgN3i%2FfenUGIV3Zxb%2F%2BEa4vz8h1%2BXh3nDk1OqETgDg8YQ8NekXOY6dL76aTj1J1OWnZYId65a%2FSs%2BQiQXEEXjAsn1R89lFjUKouTcYXqu88mSU228x5HgHZLWoC1AQYwfF7yI9qU6XxvaIdQYeWftUYoP0tHq9WFKnIKiAMN732rIi%2Fz3CPI9aOcu%2FLlJzHlM8Fpold605pR8a3ecNzK20Eiu%2FUyeN5M%2Fw3Z3zNnRcKggBwfrL5gJqjaIL%2BbZodBL8hSMNHeGorVJp%2FnWw3LJZcanuZEgNXVGgf6CJs9sDDvZguN66D4KB40A%2BkpohTKhsSvdTX%2FnuDyPjOwhCOIX7xhKcdfeaBZOiAZT4mxlsmAWkO6F58aNeUVTFQZVY7aop3EgWDQBcKtF6Bfj7GNxUVFEC%2Fs%2BtGbgYSvJwI8Nb5Kdh0H7EtS9RQZz9aJG%2FENtwLV%2BX%2B%2Bwt1EwSLM7IFkyqteEmXBPBnXm3hbJb1fDY8sC6rH06xXRojL9PGtZdDV5MQ7HA0lSFSZOFdqYuRbC6UrPXcLdaaI7v%2F0T%2BpnmHVmUDLTqNkdTpXPkpo4pCa9iBrAtMAAux%2BxEse9eFI51EgFR%2BX6ieAFIQFectmmoqvPQOo04wGy68bq8tlJdh2oYWdMriKg6xhroiP774FU8g2Ws7zsGCEjUUvZZvu7BIONlR1C1TDq3o%2BfBjqqAUfpIJEEqr5kS4uldMm%2F9%2BlSrRW5W2hcyJQApekbhlDMCJ8f%2BtQg2EoPdDrTzxqJ4MnLInw1GsSKuPhL%2BoaaF46OdjTSQxpcC6RhKLvjQhv66VN7pIq1v1IXRNPhPI2whnOG7Itw3o05zaDVvwXqZNwGtCSdHL4M1h5PMNTKQOHHlOwLY6zlTE%2BVDOLRc4MyQO1Uoks6aqhb3wYHPO3pk4hmze2L6RYwGjZV&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20230208T203111Z&X-Amz-SignedHeaders=host&X-Amz-Expires=300&X-Amz-Credential=ASIAQ3PHCVTYWRGKXFJY%2F20230208%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=1dc6c9c313b99e2bdeed456cc442a92296955c69d0cb4ecbd8cb02abb14a635d&hash=43faf094c0b59160a52b5284de3a9d5371fd736e2b01d22c2e12ce573574efe4&host=68042c943591013ac2b2430a89b270f6af2c76d8dfd086a07176afe7c76c2c61&pii=S1877050919311287&tid=spdf-321896dd-42cc-485f-86f0-79b5de620cd1&sid=81b3386c480fe749b42a2c8572e41ae00bffgxrqb&type=client&tsoh=d3d3LnNjaWVuY2VkaXJlY3QuY29t&ua=1a0b585f58595d555d&rr=7967209f6a7838c4&cc=tn : reaserch paper about People Detection and Finding Attractive Areas by the use of
+Movement Detection Analysis and Deep Learning Approach
+- https://www.smh.com.au/opinion/stores-are-using-big-data-to-track-their-customers-20161005-grvek5.html : blog about how Stores are using big data to track their customers
+
 
