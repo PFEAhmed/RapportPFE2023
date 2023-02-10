@@ -1,3 +1,20 @@
 * Edit md files
 https://docs.github.com/fr/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax
 
+ALOUI
+Beyond People Counters: Queue Management & In-Store Customer Tracking
+State of the art
+https://behavioranalyticsretail.com/technologies-tracking-people/
+People Counting
+https://behavioranalyticsretail.com/people-counting/
+People Counting, Tracking & Profiling
+
+https://sterlingwoods.com/blog/customer-tracking-across-marketing-funnel/
+People-tracking-by-detection and people-detection-by-tracking
+https://ieeexplore.ieee.org/document/4587583
+How stores track your shopping behavior | Ray Burke | TEDxIndianapolis
+https://www.youtube.com/watch?v=jeQ7C4JLpug
+Video Analysis Solutions
+https://www.stayinfrontdigital.com/video-analysis/
+In-store Customer Tracking
+https://www.raydiant.com/blog/in-store-customer-tracking
