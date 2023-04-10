@@ -1,0 +1,492 @@
+%\documentclass{report}
+%\input{includePackages.tex}
+%\begin{document}
+
+%\chapter{Sprint0 :  <{}< version 0 >{}>}
+
+\chapter{Sprint 0: Logo Detection with Image Processing}
+
+\section*{Introduction}
+\section{Specification of requirements}
+In this section, we introduce the different actors as well as the functional and non-functional requirements.
+\subsection{actors identification }
+\subsection{Description of functional requirements}
+\begin{itemize}
+\item The ESP32-CAM board should be able to capture a live stream of pictures or videos and make them available through its built-in server.
+\item The second ESP32 board should be able to connect to the server on the ESP32-CAM board and retrieve the images or videos.
+\item The system should be able to process the images on the second ESP32 board to determine if a specific logo is present or not.
+\item The system should be able to determine if the logo in the image is flipped on the X-axis.
+\item The system should be able to provide some form of feedback or output indicating whether the logo is present and if it is flipped or not.
+\end{itemize}
+\subsection{Description of non-functional requirements}
+The requirements do not stop at the functional level but tend towards requirements that contribute to better quality of the application. The most important ones are:
+\begin{itemize}
+\item \textbf{Reliability:} The system should be able to consistently capture and process images accurately.
+\item \textbf{Performance:} The system should be able to process images quickly and without noticeable lag or delay.
+\item \textbf{Security:} The system should have appropriate security measures in place to prevent unauthorized access to the servers and data.
+\item \textbf{Scalability:} The system should be able to handle multiple simultaneous connections and requests from clients without compromising its performance.
+\item \textbf{Maintainability:} The system should be easy to maintain and update, with clear and well-documented code and configuration.
+\item \textbf{Compatibility:} The system should be compatible with a wide range of devices and platforms.
+\item \textbf{Usability:} The system should be easy to use and understand for both technical and non-technical users.
+\end{itemize}
+
+\section{Modeling languages diagrams}
+\subsection{UML: use case diagram}
+\begin{figure}[htbp]
+    \centering
+    \begin{tikzpicture}
+        \umlactor[x=-4, y=0, scale=2,draw=black, line width=2pt]{ESP32-CAM}
+        \umlactor[x=-4, y=-5, scale=2,draw=black, line width=2pt]{ESP32}
+  \umlusecase[x=0, y=4, width=3cm, name=server,fill=white,draw=black, line width=2pt]{\begin{tabular}{c}Create a server\\         \end{tabular}}
+  \umlusecase[x=7, y=4, width=3cm, name=connect,fill=white,draw=black, line width=2pt]{\begin{tabular}{c}Connect to a wifi\\         \end{tabular}}
+  \umlusecase[x=5, y=-1, width=3cm, name=connect2,fill=white,draw=black, line width=2pt]{\begin{tabular}{c}Connect to a wifi\\         \end{tabular}}
+  \umlusecase[x=0, y=-2, width=3cm, name=connect_to_server,fill=white,draw=black, line width=2pt]{\begin{tabular}{c}Connect to the server \\         \end{tabular}}
+        \umlusecase[x=0, y=2, width=3cm, name=footages,fill=white,draw=black, line width=2pt]{\begin{tabular}{c}Take live footages\\         \end{tabular}}
+        \umlusecase[x=0, y=-4, width=3cm, name=predict,fill=white,draw=black, line width=2pt]{\begin{tabular}{c}Predict the state\\of the logo\\\end{tabular}}
+        \umlusecase[x=5, y=3, width=3cm, name=extend1,fill=white,draw=black, line width=2pt]{\begin{tabular}{c}Take photos\end{tabular}} 
+        \umlusecase[x=5, y=1, width=3cm, name=extend2,fill=white,draw=black, line width=2pt]{\begin{tabular}{c}Take vidoes\end{tabular}}  
+        \umlusecase[x=5, y=-5.5, width=3cm, name=Present logo,fill=white,draw=black, line width=2pt]{\begin{tabular}{c}Present logo\end{tabular}} 
+      %  \umlusecase[x=5, y=-4, width=3cm, name=Flipped on the x axis,fill=white,draw=black, line width=2pt]{\begin{tabular}{c}Logo flipped on \\ the x  axis\end{tabular}}  
+        \umlusecase[x=5, y=-2.5, width=3cm, name=No logo,fill=white,draw=black, line width=2pt]{\begin{tabular}{c}No logo\end{tabular}}  
+  \umlinclude{server}{connect}
+ \umlinclude{connect_to_server}{predict}
+ \umlinclude{connect2}{connect_to_server}
+
+        \umlinherit{Present logo}{predict}
+      %  \umlinherit{Flipped on the x axis}{predict}
+        \umlinherit{No logo}{predict}  
+        \umlinherit{footages}{extend2} 
+        \umlinherit{footages}{extend1} 
+        \node[fit=(predict), inner ysep=4ex] {}; % increase height of predict use case
+      %  \node[fit=(Flipped on the x axis), inner ysep=4ex]{};
+        \umlassoc{ESP32-CAM}{footages}
+  \umlassoc{ESP32-CAM}{server}
+        \umlassoc{ESP32}{predict}
+    \end{tikzpicture}
+    \caption{Use case Diagram for sprint version 0}
+    \label{fig:usecase-sprint0}
+\end{figure}
+
+
+
+
+\subsection{SysMl}
+
+
+
+\section{Project component}
+\subsection{Hardware environment}
+\subsubsection{ESP32-CAM}
+\FloatBarrier
+\begin{figure}[h]
+         \centering
+        \includegraphics[width=0.4\textwidth]{esp32cam}
+   
+        \caption{ESP32-CAM}
+        \label{fig:esp32cam}
+    \end{figure}
+\FloatBarrier
+\FloatBarrier
+\begin{table}[h]
+\centering
+\begin{tabular}{|l|l|}
+\hline
+\textbf{Component} & \textbf{Specification} \\ \hline
+WiFi+Bluetooth module & ESP-32S \\ \hline
+Camera module & OV2640 2MP \\ \hline
+SPI Flash & 4MB \\ \hline
+RAM & Internal 512KB + External 4MB PSRAM \\ \hline
+Onboard TF card slot & Supports up to 4G TF card for data storage \\ \hline
+Wi-Fi & 802.11b/g/n/e/i \\ \hline
+Operating voltage & 3.3/5 Vdc \\ \hline
+Power consumption (Flash off) & 180mA@5V \\ \hline
+Power consumption (Flash on and brightness max) & 310mA@5V \\ \hline
+Power consumption (Modern-Sleep) & as low as 20mA@5V \\ \hline
+Power consumption (Light-Sleep) & as low as 6.7mA@5V \\ \hline
+Power consumption (Deep-Sleep) & as low as 6mA@5V \\ \hline
+Operating temperature & -20 °C ~ 85 °C \\ \hline
+Dimensions & 40.5mm x 27mm x 4.5mm \\ \hline
+Flash light & LED built-in on board \\ \hline
+\end{tabular}
+\caption{ESP32-CAM characteristics \cite{HT}}
+\label{table:esp32-cam-characteristics}
+\end{table}
+\FloatBarrier
+\subsubsection{Esp32-wroom-32}
+\FloatBarrier
+\begin{figure}[h]
+         \centering
+        \includegraphics[width=0.4\textwidth]{esp32-wroom-32}
+   
+        \caption{Esp32-wroom-32}
+        \label{fig:esp32cam}
+    \end{figure}
+\FloatBarrier
+\FloatBarrier
+\begin{table}[h]
+\centering
+\begin{tabular}{|l|l|}
+\hline
+\textbf{Component} & \textbf{Specification} \\ \hline
+Wireless connectivity & Wi-Fi 802.11 b/g/n/e/i \\ \hline
+Operating voltage/Power supply & 2.7 V ~ 3.6 V \\ \hline
+Operating temperature & –40 °C ~ +85 °C \\ \hline
+Integrated crystal & 40 MHz \\ \hline
+Integrated flash & 4 MB \\ \hline
+External flash & 8 MB \\ \hline
+RAM & 520 KB SRAM, 8 MB PSRAM \\ \hline
+Package size & (18.00±0.10) mm × (25.50±0.10) mm × (3.10±0.10) mm \\ \hline
+\end{tabular}
+\caption{Esp32-wroom-32 characteristics \cite{E19}}
+\label{table:esp32-wroom32-characteristics }
+\end{table}
+\FloatBarrier
+\subsubsection{PC}
+\FloatBarrier
+\begin{figure}[h]
+         \centering
+        \includegraphics[width=0.4\textwidth]{lenovo-ideapad-gaming-3}
+   
+        \caption{lenovo ideapad gaming 3}
+        \label{fig:lenovo-ideapad-gaming-3}
+    \end{figure}
+\FloatBarrier
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|l|l|}
+\hline
+\textbf{Component} & \textbf{Specification} \\ \hline
+Processor & AMD Ryzen 7 4800H \\ \hline
+Memory & 16 GB DDR4 RAM \\ \hline
+Graphics & NVIDIA GeForce GTX 1650Ti (4GB GDDR6) \\ \hline
+Storage & 512 GB SSD \\ \hline
+Operating System & Windows 10 \\ \hline
+\end{tabular}
+\caption{Specifications of the PC}
+\label{table:pc-specifications}
+\end{table}
+
+\subsection{Software environment }
+\subsubsection{Software}
+\begin{itemize}
+  \item Arduino IDE
+\FloatBarrier
+\begin{figure}[h]
+         \centering
+        \includegraphics[width=0.2\textwidth]{ArduinoIDELogo}
+   
+        \caption{Arduino IDE Logo}
+        \label{fig:ArduinoIDELogo}
+    \end{figure}
+\FloatBarrier
+\subitem\textbf{Arduino IDE} is an official Arduino software application used for writing, compiling, and uploading code to Arduino microcontrollers. The IDE environment consists of two basic parts: Editor and Compiler and supports both C and C++ languages.\cite{MA18}
+
+ % \item VNC
+%\FloatBarrier
+%\begin{figure}[h]
+   %      \centering
+      %  \includegraphics[width=0.2\textwidth]{VNCLogo}
+   
+        %\caption{VNCLogo}
+        %\label{fig:VNCLogo}
+    %\end{figure}
+%\FloatBarrier
+%\subitem\textbf{VNC } (Virtual Network Computing) is a thin-client system that allows users to remotely control and operate another computer or server over a network. It consists of two components: a server that runs on the remote computer, and a client that runs on the local computer.
+%\subitem  The server sends screen updates to the client, so the user can see and interact with the remote computer's desktop as if they were sitting right in front of it
+  \item Jupter Notebook
+\begin{figure}[h]
+         \centering
+        \includegraphics[width=0.2\textwidth]{jupyterNotebookLogo}
+   
+        \caption{Jupyter notebook logo}
+        \label{fig:Jupyter notebook logo}
+    \end{figure}
+\FloatBarrier
+\subitem\textbf{Jupyter Notebook} is a free, open-source web application that enables interactive computing and data analysis using various programming languages, including Julia, Python, and R.\cite{BMIPC17}
+\subitem It allows users to create virtual lab notebooks to support workflows, code, data, and visualizations detailing the research process, making science more open and accessible.\cite{BMIPC17}
+\end{itemize}
+\subsubsection{programming languages}
+\begin{itemize}
+
+\item C++
+\FloatBarrier
+\begin{figure}[h]
+         \centering
+        \includegraphics[width=0.2\textwidth]{c++Logo}
+   
+        \caption{C++ logo}
+        \label{fig:c++Logo}
+    \end{figure}
+\FloatBarrier
+\subitem\textbf{C++} is a programming language that is widely used in software development. It is a standardized, general-purpose, and object-oriented language, which means it can be used to create a variety of applications, including system software, device drivers, video games, and desktop applications.\cite{SD20}
+
+\item Python
+\begin{figure}[h]
+\FloatBarrier
+         \centering
+        \includegraphics[width=0.2\textwidth]{PythonLogo}
+   
+        \caption{Python logo}
+        \label{fig:PythonLogo}
+\FloatBarrier
+    \end{figure}
+\subitem\textbf{Python} is a popular high-level programming languagethat supports object-oriented, functional, 
+and imperative programming styles. scripting language, but can be compiled into computer-readable binary.\cite{SD20}
+
+
+\end{itemize}
+
+\subsection{Workflow}
+We tried the approach of using contour detection to detect the logo on three different images. The first image was taken from a phone's 32mp camera, the second image was of the printed image of the phone's 32mp camera, captured using an OV2640 camera module, and the third image was of the actual physical product with an OV2640 camera module. However, before applying contour detection to these images, there were other necessary steps that needed to be taken
+\subsubsection{Brightness and contrast adjustment}
+
+\FloatBarrier
+\begin{figure}[h]
+\FloatBarrier
+         \centering
+        \includegraphics[width=0.6\textwidth]{image_comparison}
+   
+        \caption{Phone's images : normal to darker}
+        \label{fig:Phone's images : normal to darker}
+\FloatBarrier
+    \end{figure}
+
+
+\FloatBarrier
+\FloatBarrier
+\begin{figure}[h]
+\FloatBarrier
+         \centering
+        \includegraphics[width=0.6\textwidth]{image_comparison_esp_printedImage_lighredction.png}
+   
+        \caption{esp32-cam on printed images : normal to darker}
+        \label{fig:Phone's images : normal to darker}
+\FloatBarrier
+    \end{figure}
+
+
+\FloatBarrier
+\FloatBarrier
+\begin{figure}[h]
+\FloatBarrier
+         \centering
+        \includegraphics[width=0.6\textwidth]{image_comparison}
+   
+        \caption{esp32-cam on the actual product : normal to darker}
+        \label{fig:Phone's images : normal to darker}
+\FloatBarrier
+    \end{figure}
+
+
+\FloatBarrier
+\begin{lstlisting}[language=Python]
+import cv2 as cv
+import numpy as np
+
+alpha = 0.4
+beta = -10
+result = cv.addWeighted(frame, alpha, np.zeros(frame.shape, frame.dtype), 0, beta)
+\end{lstlisting}
+
+
+The cv.addWeighted() function blends two input images by taking their pixel values and calculating a weighted sum for each corresponding pixel \cite{WG10} using this equation:\\
+\begin{equation}
+output\_Pixel = \alpha * input1\_Pixel +\beta * input2\_pixel + \gamma \cite{WG10} 
+\end{equation}
+where: \\
+\begin{itemize}
+\item $\text{output\_Pixel} = \text{output pixel value}$
+\item $\alpha = \text{weight given to the first input image (input1\_pixel)}$
+\item $\text{input1\_Pixel} = \text{first source array}$
+\item $\beta = \text{weight given to the second input image (input2\_pixel)}$
+\item $\text{input2\_Pixel} = \text{second source array}$
+\item $\gamma = \text{optional scalar value added to every output pixel value}$
+\end{itemize}
+\subsubsection{grayscaling}
+
+\FloatBarrier
+\begin{figure}[h]
+\FloatBarrier
+         \centering
+        \includegraphics[width=0.6\textwidth]{gray_comparison}
+   
+        \caption{Phone's images :darker to gray}
+        \label{fig:Phone's images : darker to gray}
+\FloatBarrier
+    \end{figure}
+
+
+\FloatBarrier
+\FloatBarrier
+\begin{figure}[h]
+\FloatBarrier
+         \centering
+        \includegraphics[width=0.6\textwidth]{image_comparison_esp_printedImage_grayscale}
+   
+        \caption{esp32-cam on printed images : darker to gray}
+        \label{fig:esp32-cam on printed images :  darker to gray}
+\FloatBarrier
+    \end{figure}
+
+
+\FloatBarrier
+\FloatBarrier
+\begin{figure}[h]
+\FloatBarrier
+         \centering
+        \includegraphics[width=0.6\textwidth]{gray_comparison}
+   
+        \caption{esp32-cam on the actual product : darker to gray}
+        \label{fig:Phone's images :  darker to gray}
+\FloatBarrier
+    \end{figure}
+
+
+\FloatBarrier 
+\begin{lstlisting}[language=Python]
+ gray = cv.cvtColor(frame, cv.COLOR_BGR2GRAY)
+\end{lstlisting}
+The cv.cvtColor It takes as input the values of the red, green, and blue color channels of a pixel (R, G, B) and calculates a weighted average of these values to produce a single grayscale value using this equation:\cite{WG10}
+\begin{equation}
+result = 0.299 R + 0.587 G + 0.114 B \cite{WG10}
+\end{equation}
+
+Where:
+
+\begin{itemize}
+\item result: represents the grayscale value of a pixel in the output image.
+\item $R$: represents the red values of a pixel in the BGR image.
+\item $G$: represents the green values of a pixel in the BGR image.
+\item $B$: represents the blue values of a pixel in the BGR image.
+\end{itemize}
+\subsubsection{Image thresholding}
+
+\FloatBarrier
+\begin{figure}[h]
+\FloatBarrier
+         \centering
+        \includegraphics[width=0.6\textwidth]{binary_comparison}
+   
+        \caption{Phone's images :Gray to binary}
+        \label{fig:Phone's images : Gray to binary}
+\FloatBarrier
+    \end{figure}
+
+
+\FloatBarrier
+\FloatBarrier
+\begin{figure}[h]
+\FloatBarrier
+         \centering
+        \includegraphics[width=0.6\textwidth]{binary_comparison}
+   
+        \caption{esp32-cam on printed images : Gray to binary}
+        \label{fig:Phone's images : Gray to binary}
+\FloatBarrier
+    \end{figure}
+
+
+\FloatBarrier
+\FloatBarrier
+\begin{figure}[h]
+\FloatBarrier
+         \centering
+        \includegraphics[width=0.6\textwidth]{binary_comparison}
+   
+        \caption{esp32-cam on the actual product :Gray to binary}
+        \label{fig:Phone's images :  Gray to binary}
+\FloatBarrier
+    \end{figure}
+
+
+\FloatBarrier 
+\begin{lstlisting}[language=Python]
+ ret, thresh = cv.threshold(adjusted, 70, 255, 0)
+\end{lstlisting}
+ cv.threshold is used to threshold an image. It takes a gray image and applies a threshold to it \cite{WG10} using this equation:
+
+\begin{equation}
+dst(x,y) = \begin{cases}
+maxVal &\text{if } src(x,y) > T \\
+0 &\text{otherwise}
+\end{cases}
+\cite{WG10}
+\end{equation}
+\begin{itemize}
+\item $dst(x,y)$: the output image pixel value at position $(x,y)$ after thresholding
+\item $maxval$: the maximum pixel value 
+\item $src(x,y)$: the input image pixel value at position $(x,y)$
+\item $T$: the threshold value 
+\end{itemize}
+
+\subsubsection{Contour detection}
+\FloatBarrier
+\begin{figure}[h]
+
+         \centering
+        \includegraphics[width=0.8\textwidth]{prediction_comparison}
+   
+        \caption{prediction results}
+        \label{fig:prediction results}
+\FloatBarrier
+    \end{figure}
+\FloatBarrier
+\FloatBarrier
+\begin{lstlisting}[language=Python]
+    contours, hierarchy = cv.findContours(thresh, cv.RETR_EXTERNAL, cv.CHAIN_APPROX_SIMPLE)
+
+\end{lstlisting}
+\FloatBarrier
+
+
+
+The \texttt{cv.findContours()} function in OpenCV is used to detect contours in a binary image. In our case, it uses the contour approximation method \texttt{CHAIN\_APPROX\_SIMPLE} \cite{CD21}, which is based on the Douglas-Peucker algorithm for curve simplification. This algorithm works as follows:
+we begin with a set of $n$ points $S = \{s_1, s_2, ..., s_n\}$ that represent a curve in two-dimensional space. We also have a tolerance value $\epsilon$. The algorithm proceeds as follows:
+
+\begin{enumerate}
+\item  We calculate the line D that connects the first and last points in S.
+\item  We calculate the distance d(s, D) between each point s in S and the line D.
+\item We then find the point smax in S that has the maximum distance d(smax, D).
+\item If d(smax, D) is greater than $\epsilon$, we split the curve into two sub-curves at point smax, and we apply steps 1 to 3 recursively to each sub-curve.
+\item Otherwise, we return the set of points {s1, sn, smax}.
+\end{enumerate}
+
+To compute the distance $d(s, D)$ between a point $s$ and a line $D$, we use the following formula:
+
+\begin{equation*}
+    d(s, D) = \frac{|(s - s_1) \times (s_2 - p_1)|}{|s_2 - s_1|}
+\end{equation*}
+
+Here, $s_1$ and $s_2$ represent the two endpoints of the line $D$.
+\vspace{1em}
+\section{Project management with SCRUM }
+\subsection{Team and roles}
+\begin{table}[!ht]
+  \centering
+  \begin{tabular}{|l|l|p{9cm}|}
+    \hline
+    % after \\: \hline or \cline{col1-col2} \cline{col3-col4} ...
+    Role & Actor & Mission \\
+    \hline
+    Team & Ahmed Omrani &Conception, development, unit testing, deployment. \\
+    \hline
+    SCRUM master & Radhwen Aloui &Ensure the smooth running of the SCRUM methodology.. \\
+    \hline
+    Product owner & ********** &Define the product features and ensure their conformity. \\
+    \hline
+  \end{tabular}
+  \caption{SCRUM Actors}\label{ActScrum}
+\end{table}
+\subsection{Backlog Product}
+\vspace{1em}
+\section*{Conclusion}
+
+\newpage
+
+%\input{Chaps/biblio.tex}
+
+
+
+
+%\end{document}

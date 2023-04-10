@@ -1,10 +1,54 @@
-\documentclass[oneside]{book}
-\usepackage[T1]{fontenc}
-\usepackage[english]{babel}
+\documentclass{report}
+\input{Chaps/includePackages.tex}
 
-% /*"cSpell.language": "French"*/
+
+
 
 \begin{document}
-  \chapter{Project baseline}
-  \input{Chaps/scopeStatements.tex}
+% -----------------------------
+% Cover Page
+% -----------------------------
+%\pagenumbering{gobble}
+
+\input{Chaps/coverpage.tex}
+
+% -----------------------------
+% Thanks Page
+% -----------------------------
+ \input{Chaps/thanks.tex}
+\tableofcontents
+\listoffigures
+\listoftables
+% -----------------------------
+% Introduction Page
+% -----------------------------
+ \input{Chaps/introduction.tex}
+
+% -----------------------------
+% First chapter : Project Framework and Methodology
+% -----------------------------
+\input{Chaps/chapter1.tex}
+% -----------------------------
+% Second chapter : Sprint 0
+% -----------------------------
+\input{Chaps/chapter2.tex}
+% -----------------------------
+% Third chapter : Sprint 1
+% -----------------------------
+\input{Chaps/chapter3.tex}
+% -----------------------------
+% forth chapter : Sprint 3
+% -----------------------------
+\input{Chaps/chapter3.tex}
+% -----------------------------
+% forth chapter : Sprint 4
+% -----------------------------
+\input{Chaps/chapter4.tex}
+% -----------------------------
+% bibliographie 
+% -----------------------------
+\input{Chaps/biblio.tex}
+
+
+
 \end{document}
