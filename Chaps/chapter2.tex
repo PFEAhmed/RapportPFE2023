@@ -13,10 +13,9 @@ In this section, we introduce the different actors as well as the functional and
 \subsection{Description of functional requirements}
 \begin{itemize}
 \item The ESP32-CAM board should be able to capture a live stream of pictures or videos and make them available through its built-in server.
-\item The second ESP32 board should be able to connect to the server on the ESP32-CAM board and retrieve the images or videos.
-\item The system should be able to process the images on the second ESP32 board to determine if a specific logo is present or not.
-\item The system should be able to determine if the logo in the image is flipped on the X-axis.
-\item The system should be able to provide some form of feedback or output indicating whether the logo is present and if it is flipped or not.
+\item The PC should be able to connect to the server on the ESP32-CAM board and retrieve the images or videos.
+\item The PC should be able to process the images to determine if a specific logo is present or not.
+\item The PC should be able to provide some form of feedback or output indicating whether the logo is present and if it is flipped or not.
 \end{itemize}
 \subsection{Description of non-functional requirements}
 The requirements do not stop at the functional level but tend towards requirements that contribute to better quality of the application. The most important ones are:
@@ -35,9 +34,11 @@ The requirements do not stop at the functional level but tend towards requiremen
 \begin{figure}[htbp]
     \centering
     \begin{tikzpicture}
-        \umlactor[x=-4, y=0, scale=2,draw=black, line width=2pt]{ESP32-CAM}
-        \umlactor[x=-4, y=-5, scale=2,draw=black, line width=2pt]{ESP32}
-  \umlusecase[x=0, y=4, width=3cm, name=server,fill=white,draw=black, line width=2pt]{\begin{tabular}{c}Create a server\\         \end{tabular}}
+        \node[draw, fill=white, minimum height=2cm, minimum width=2cm, line width=2pt] (ESP32-CAM) at (-4,0) {};
+        \node[draw, fill=white, minimum height=2cm, minimum width=2cm, line width=2pt] (PC) at (-4,-5) {};
+      %  \umlactor[x=-4, y=0, scale=2,draw=black, line width=2pt]{ESP32-CAM}
+        %\umlactor[x=-4, y=-5, scale=2,draw=black, line width=2pt]{ESP32}
+  \umlusecase[x=-2, y=4, width=3cm, name=server,fill=white,draw=black, line width=2pt]{\begin{tabular}{c}Create a server\\         \end{tabular}}
   \umlusecase[x=7, y=4, width=3cm, name=connect,fill=white,draw=black, line width=2pt]{\begin{tabular}{c}Connect to a wifi\\         \end{tabular}}
   \umlusecase[x=5, y=-1, width=3cm, name=connect2,fill=white,draw=black, line width=2pt]{\begin{tabular}{c}Connect to a wifi\\         \end{tabular}}
   \umlusecase[x=0, y=-2, width=3cm, name=connect_to_server,fill=white,draw=black, line width=2pt]{\begin{tabular}{c}Connect to the server \\         \end{tabular}}
@@ -48,6 +49,9 @@ The requirements do not stop at the functional level but tend towards requiremen
         \umlusecase[x=5, y=-5.5, width=3cm, name=Present logo,fill=white,draw=black, line width=2pt]{\begin{tabular}{c}Present logo\end{tabular}} 
       %  \umlusecase[x=5, y=-4, width=3cm, name=Flipped on the x axis,fill=white,draw=black, line width=2pt]{\begin{tabular}{c}Logo flipped on \\ the x  axis\end{tabular}}  
         \umlusecase[x=5, y=-2.5, width=3cm, name=No logo,fill=white,draw=black, line width=2pt]{\begin{tabular}{c}No logo\end{tabular}}  
+%\draw[->] (connect_to_server.west) -| node[pos=1, above] {<<secondary>>} ([xshift=-4mm]ESP32-CAM.east) |- (connect_to_server.east);
+
+
   \umlinclude{server}{connect}
  \umlinclude{connect_to_server}{predict}
  \umlinclude{connect2}{connect_to_server}
@@ -61,7 +65,9 @@ The requirements do not stop at the functional level but tend towards requiremen
       %  \node[fit=(Flipped on the x axis), inner ysep=4ex]{};
         \umlassoc{ESP32-CAM}{footages}
   \umlassoc{ESP32-CAM}{server}
-        \umlassoc{ESP32}{predict}
+\node[below] at (ESP32-CAM.south) {ESP32-CAM};
+        \node[below] at (PC.south) {PC};
+        \umlassoc{PC}{predict}
     \end{tikzpicture}
     \caption{Use case Diagram for sprint version 0}
     \label{fig:usecase-sprint0}
@@ -112,35 +118,7 @@ Flash light & LED built-in on board \\ \hline
 \label{table:esp32-cam-characteristics}
 \end{table}
 \FloatBarrier
-\subsubsection{Esp32-wroom-32}
-\FloatBarrier
-\begin{figure}[h]
-         \centering
-        \includegraphics[width=0.4\textwidth]{esp32-wroom-32}
-   
-        \caption{Esp32-wroom-32}
-        \label{fig:esp32cam}
-    \end{figure}
-\FloatBarrier
-\FloatBarrier
-\begin{table}[h]
-\centering
-\begin{tabular}{|l|l|}
-\hline
-\textbf{Component} & \textbf{Specification} \\ \hline
-Wireless connectivity & Wi-Fi 802.11 b/g/n/e/i \\ \hline
-Operating voltage/Power supply & 2.7 V ~ 3.6 V \\ \hline
-Operating temperature & –40 °C ~ +85 °C \\ \hline
-Integrated crystal & 40 MHz \\ \hline
-Integrated flash & 4 MB \\ \hline
-External flash & 8 MB \\ \hline
-RAM & 520 KB SRAM, 8 MB PSRAM \\ \hline
-Package size & (18.00±0.10) mm × (25.50±0.10) mm × (3.10±0.10) mm \\ \hline
-\end{tabular}
-\caption{Esp32-wroom-32 characteristics \cite{E19}}
-\label{table:esp32-wroom32-characteristics }
-\end{table}
-\FloatBarrier
+
 \subsubsection{PC}
 \FloatBarrier
 \begin{figure}[h]
@@ -258,7 +236,7 @@ We tried the approach of using contour detection to detect the logo on three dif
 \begin{figure}[h]
 \FloatBarrier
          \centering
-        \includegraphics[width=0.6\textwidth]{image_comparison_esp_printedImage_lighredction.png}
+        \includegraphics[width=0.6\textwidth]{image_comparison_esp_printedImage_lighredction}
    
         \caption{esp32-cam on printed images : normal to darker}
         \label{fig:Phone's images : normal to darker}
@@ -271,7 +249,7 @@ We tried the approach of using contour detection to detect the logo on three dif
 \begin{figure}[h]
 \FloatBarrier
          \centering
-        \includegraphics[width=0.6\textwidth]{image_comparison}
+        \includegraphics[width=0.6\textwidth]{image_comparison_esp_actualImage_dark}
    
         \caption{esp32-cam on the actual product : normal to darker}
         \label{fig:Phone's images : normal to darker}
@@ -303,6 +281,8 @@ where: \\
 \item $\text{input2\_Pixel} = \text{second source array}$
 \item $\gamma = \text{optional scalar value added to every output pixel value}$
 \end{itemize}
+\subsubsection{reflection}
+During my image processing experiments, I decided to test the effects of reducing brightness and adding contrast to images captured using different devices. To do this, I selected three images: the first was taken from a high-end 32 megapixel phone camera and it didn't have any problems with overexposure or loss of detail. The second image was a printed copy of the same photo, but this time using an ESP32-CAM as the capture device. Unfortunately, even with careful brightness reduction, a ray of sunlight was still visible in the image, and the overall quality was noticeably poorer than the first image. Finally, I used the ESP32-CAM to capture an image of the actual product in question, and again I observed a reduction in image quality compared to the high-end phone camera image. Even after applying the same brightness reduction and contrast enhancement techniques used on the other images, there was still visible noise and loss of detail, as well as a ray of sunlight that remained in the image. It seems that moving from a high-quality camera to an ESP32-CAM can have a significant impact on image quality, even with careful image processing techniques.
 \subsubsection{grayscaling}
 
 \FloatBarrier
@@ -322,7 +302,7 @@ where: \\
 \begin{figure}[h]
 \FloatBarrier
          \centering
-        \includegraphics[width=0.6\textwidth]{image_comparison_esp_printedImage_grayscale}
+        \includegraphics[width=0.6\textwidth]{image_comparison_esp_printedImage_gray}
    
         \caption{esp32-cam on printed images : darker to gray}
         \label{fig:esp32-cam on printed images :  darker to gray}
@@ -335,7 +315,7 @@ where: \\
 \begin{figure}[h]
 \FloatBarrier
          \centering
-        \includegraphics[width=0.6\textwidth]{gray_comparison}
+        \includegraphics[width=0.6\textwidth]{image_comparison_esp_actualImage_gray}
    
         \caption{esp32-cam on the actual product : darker to gray}
         \label{fig:Phone's images :  darker to gray}
@@ -360,6 +340,9 @@ Where:
 \item $G$: represents the green values of a pixel in the BGR image.
 \item $B$: represents the blue values of a pixel in the BGR image.
 \end{itemize}
+
+\subsubsection{reflection}
+As part of my image processing experiments, I decided to apply grayscaling to the images as a preprocessing step before using contour detection to locate the logos. While this technique worked well for the first image, which was taken using a 32 megapixel phone camera and did not have any significant issues, it actually made the problems with the second and third images worse. Despite reducing the brightness and increasing the contrast, the ray of sunlight was still present in the images, and the grayscaling process made the problem more pronounced.
 \subsubsection{Image thresholding}
 
 \FloatBarrier
@@ -379,7 +362,7 @@ Where:
 \begin{figure}[h]
 \FloatBarrier
          \centering
-        \includegraphics[width=0.6\textwidth]{binary_comparison}
+        \includegraphics[width=0.6\textwidth]{image_comparison_esp_printedImage_binary}
    
         \caption{esp32-cam on printed images : Gray to binary}
         \label{fig:Phone's images : Gray to binary}
@@ -392,7 +375,7 @@ Where:
 \begin{figure}[h]
 \FloatBarrier
          \centering
-        \includegraphics[width=0.6\textwidth]{binary_comparison}
+        \includegraphics[width=0.6\textwidth]{image_comparison_esp_actualImage_binary}
    
         \caption{esp32-cam on the actual product :Gray to binary}
         \label{fig:Phone's images :  Gray to binary}
@@ -419,8 +402,10 @@ maxVal &\text{if } src(x,y) > T \\
 \item $src(x,y)$: the input image pixel value at position $(x,y)$
 \item $T$: the threshold value 
 \end{itemize}
-
+\subsubsection{reflection}
+During the thresholding step, we didn't encounter any issues with the first image as the logo was clearly white and the background was black. However, the last two images posed a challenge as there was additional white noise caused by the light source, making it difficult to distinguish the logo from the noise.
 \subsubsection{Contour detection}
+In the contour detection step, we used a computer vision algorithm to identify and extract the logo from the images. While the algorithm worked perfectly fine for the first image captured from the 32 megapixel phone camera, it struggled to accurately detect the logo in the last two images taken with the ESP32 cam. The presence of the white noise in the images due to the sunlight made it difficult for the algorithm to distinguish between the logo and the background and oither wihite shapes, resulting in inaccurate or incomplete detection
 \FloatBarrier
 \begin{figure}[h]
 
@@ -460,31 +445,15 @@ To compute the distance $d(s, D)$ between a point $s$ and a line $D$, we use the
 
 Here, $s_1$ and $s_2$ represent the two endpoints of the line $D$.
 \vspace{1em}
-\section{Project management with SCRUM }
-\subsection{Team and roles}
-\begin{table}[!ht]
-  \centering
-  \begin{tabular}{|l|l|p{9cm}|}
-    \hline
-    % after \\: \hline or \cline{col1-col2} \cline{col3-col4} ...
-    Role & Actor & Mission \\
-    \hline
-    Team & Ahmed Omrani &Conception, development, unit testing, deployment. \\
-    \hline
-    SCRUM master & Radhwen Aloui &Ensure the smooth running of the SCRUM methodology.. \\
-    \hline
-    Product owner & ********** &Define the product features and ensure their conformity. \\
-    \hline
-  \end{tabular}
-  \caption{SCRUM Actors}\label{ActScrum}
-\end{table}
-\subsection{Backlog Product}
-\vspace{1em}
-\section*{Conclusion}
 
+
+\section*{Conclusion}
+In conclusion, the first sprint of our project focused on image processing techniques to extract the logo from images captured using the ESP32 cam. While we were able to successfully apply various techniques such as grayscaling, thresholding, and contour detection to extract the logo from the images, we faced significant challenges due to the presence of white noise in the images. Despite our best efforts, we were unable to achieve accurate results for all images. However, we learned valuable lessons and identified the limitations of traditional image processing techniques in solving this problem.
+
+Moving forward, we plan to incorporate deep learning techniques in our next sprint to improve the accuracy and efficiency of the logo detection system. Specifically, we will train a neural network to identify the logo in the images captured using the ESP32 cam, and we believe that this approach will provide better results than traditional image processing techniques. While the first sprint of our project did not produce the desired outcome, we remain optimistic and committed to finding a solution to this problem through continued experimentation and innovation.
 \newpage
 
-%\input{Chaps/biblio.tex}
+%\input{biblio.tex}
 
 
 

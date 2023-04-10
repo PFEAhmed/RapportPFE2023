@@ -10,6 +10,7 @@
 \usepackage{ifpdf}
 \usepackage{ae}
 \usepackage{tikz}
+%\usepackage{../Packages/tikz-uml}% this package is for uml diagrams
 \usepackage{Packages/tikz-uml}% this package is for uml diagrams
 \usepackage{caption} % load caption package
 \usepackage{enumitem}
@@ -40,6 +41,7 @@
 \renewcommand{\thesection}{\Roman{section}} 
 \renewcommand{\thesubsection}{\arabic{subsection}}
 \titlespacing{\subsection}{5pt}{1em}{0pt}
-\graphicspath{ {./Ilustrations}{./}{./images} }
+\graphicspath{ {./Ilustrations}{./}{./images}}
+%\graphicspath{ {../Ilustrations}{../images}}
 
 \tikzstyle{usecase}=[ellipse, fill=white, draw=black, thick, inner sep=2pt, text centered]
