@@ -10,6 +10,7 @@
 \usepackage{ifpdf}
 \usepackage{ae}
 \usepackage{tikz}
+\usepackage{wrapfig}
 %\usepackage{../Packages/tikz-uml}% this package is for uml diagrams
 \usepackage{Packages/tikz-uml}% this package is for uml diagrams
 \usepackage{caption} % load caption package
@@ -17,6 +18,19 @@
 \usepackage{listings}
 \usepackage{amsmath}
 \usepackage{subcaption}
+\usepackage{xcolor}
+\usepackage{listings}
+
+\definecolor{LightGray}{gray}{0.95}
+
+\lstset{ 
+  backgroundcolor=\color{LightGray},
+  basicstyle=\ttfamily,
+  breaklines=true,
+  captionpos=b,
+  language=bash,
+  frame=single
+}
 \usetikzlibrary{positioning}
 \lstset{frame=tb,
   language=Python,
@@ -34,8 +48,8 @@
   breakatwhitespace=true,
   tabsize=3
 }
-\setcounter{secnumdepth}{3}
-\setcounter{tocdepth}{3}
+\setcounter{secnumdepth}{4}
+\setcounter{tocdepth}{4}
 \addcontentsline{toc}{section}{Introduction}
 
 \renewcommand{\thesection}{\Roman{section}} 

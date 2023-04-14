@@ -258,6 +258,240 @@ and imperative programming styles. scripting language, but can be compiled into 
 \end{itemize}
 
 \subsection{Workflow}
+\subsubsection{Setting up the rapsberry pi}
+\begin{itemize}
+\item{ setting up the OS }
+\begin{itemize}
+
+\item 
+
+\begin{minipage}{0.5\textwidth}
+download the Raspberry Pi Imager from the official Raspberry Pi website.
+\end{minipage}
+\hfill
+\begin{minipage}{0.6\textwidth}
+\hspace*{0.3in} \includegraphics[width=\textwidth]{1i}
+\end{minipage}
+\vspace{0.5in}
+
+\item 
+\begin{minipage}{0.5\textwidth}
+choose the raspberry pi operating system (64-bit)
+\end{minipage}
+\hfill
+\begin{minipage}{0.6\textwidth}
+\includegraphics[width=\textwidth]{3i}
+\end{minipage}
+\vspace{0.5in}
+\item 
+\begin{minipage}{0.5\textwidth}
+Configure the parameters of the operating system: set a hostname,enable SSH,set username and password,configure wireless lan and set local settings
+\end{minipage}
+\hfill
+\begin{minipage}{0.6\textwidth}
+\includegraphics[width=\textwidth]{8i}
+\end{minipage}
+\vspace{0.5in}
+\item 
+\begin{minipage}{0.5\textwidth}
+Select the SD card you want to use for the installation.
+\end{minipage}
+\hfill
+\begin{minipage}{0.6\textwidth}
+\includegraphics[width=\textwidth]{5i}
+\end{minipage}
+\vspace{0.5in}
+\item 
+\begin{minipage}{0.5\textwidth}
+Click on the "Write" button to start the installation process. This will take several minutes to complete.
+\end{minipage}
+\hfill
+\begin{minipage}{0.6\textwidth}
+\includegraphics[width=\textwidth]{9i}
+\end{minipage}
+\end{itemize}
+
+
+\item{setting up the VNC}
+\begin{itemize}
+\item{Establishing connection with puttty}
+\FloatBarrier
+\begin{figure}[h]
+
+       \centering
+
+        \includegraphics[width=0.5\textwidth]{1p}
+   
+        \caption{putty interface}
+        \label{fig:putty interface}
+
+    \end{figure}
+
+\FloatBarrier
+\end{itemize}
+\begin{itemize}
+\item In the "Host Name (or IP address)" field, enter the IP address of your Raspberry Pi.
+\item In the "Port" field, enter "22". This is the default SSH port for Raspberry Pi.
+\item Under "Connection type", select "SSH".
+\item Click the "Open" button to start the SSH connection.
+\end{itemize}
+\item{Updating the system}
+\FloatBarrier
+\begin{figure}[h]
+
+       \centering
+
+        \includegraphics[width=0.5\textwidth]{updatefile}
+   
+        \caption{Update.sh file}
+        \label{fig:update.sh}
+
+    \end{figure}
+
+\FloatBarrier
+I have created \textbf{update.sh} that contain these three commands:
+\begin{itemize}
+\item \texttt{sudo apt-get update}: This command updates the list of available software packages and their versions from the repositories defined in the package manager sources list.
+\item \texttt{sudo apt-get upgrade}: This command upgrades the installed packages on the system to their latest versions.
+\item \texttt{sudo reboot}: This command restarts the system after the update and upgrade processes have completed.
+\end{itemize}
+To execute the update.sh just run this command:
+\begin{lstlisting}
+sh update.sh
+\end{lstlisting}
+This table represent the total time taking by this command:
+\begin{table}[h]
+    \centering
+    \begin{tabular}{|c|c|}
+        \hline
+        \textbf{Metric} & \textbf{Value} \\
+        \hline
+        real & 9.631 s \\
+        \hline
+        user & 3.065 s \\
+        \hline
+        sys & 1.097 s \\
+        \hline
+    \end{tabular}
+    \caption{Execution time of sh update.sh}
+    \label{tab:time}
+\end{table}
+
+\item{Activating VNC server}\\
+Enter this command:
+\begin{lstlisting}
+sudo raspi-config
+\end{lstlisting}
+\FloatBarrier
+\begin{figure}[h]
+
+       \centering
+
+        \includegraphics[width=0.5\textwidth]{5v}
+   
+        \caption{Enable vnc menu}
+        \label{fig:Enable vnc menu}
+
+    \end{figure}
+\FloatBarrier
+Go to Interfacing options > vnc and click on “Select” While their, enable vnc
+\item{Prepare working environment}\\
+\FloatBarrier
+\begin{figure}[h]
+
+       \centering
+
+        \includegraphics[width=0.5\textwidth]{prepareEnv}
+   
+        \caption{prepareEnv.sh file}
+        \label{fig:prepareEnv.sh file}
+
+    \end{figure}
+\FloatBarrier
+I have created \textbf{prepareEnv.sh} that execute the following:
+\begin{itemize}
+    \item Create a new directory named "project" using the "mkdir" command.
+    \item Change the current working directory to the "project" directory using the "cd" command.
+    \item Clone the "yolov5" repository from the GitHub account of "ultralytics" using the "git clone" command.
+    \item Install the "virtualenv" package using the "sudo pip install" command, which creates a virtual environment in the "env" directory.
+    \item Change the current working directory to the "yolov5" directory using the "cd" command.
+    \item Activate the virtual environment created earlier using the "." command followed by the path to the "env/bin/activate" file.
+    \item Install the Python packages listed in the "requirements.txt" file using the "pip install -r" command.
+    \item Install  torch version 1.13.1 torchvision version 0.14.1 torchaudio version 0.13.1 packages using the "pip3 install" command because the the ones in "requirements.txt" file are not compatible with the current yolov5.
+    \item Install the "gpiozero" package using the "pip install" command.
+    \item Install the "RPi.GPIO" package using the "pip install" command.
+    \item Install the "subprocess.run" package using the "pip install" command.
+    \item Install the "time" package using the "pip install" command.
+    \item Clone the "YoloV5LogoDetection" repository from the GitHub account of "AhmedOmrani10" using the "git clone" command.
+\end{itemize}
+To execute the prepareEnv.sh just run this command:
+\begin{lstlisting}
+sh prepareEnv.sh
+\end{lstlisting}
+This table represent the total time taking by the command:
+\begin{table}[h]
+    \centering
+    \begin{tabular}{|c|c|}
+        \hline
+        \textbf{Metric} & \textbf{Value} \\
+        \hline
+        real & 18.759 m \\
+        \hline
+        user & 3.334 s \\
+        \hline
+        sys & 31.253 s \\
+        \hline
+    \end{tabular}
+    \caption{Execution time of sh prepareEnv.sh}
+    \label{tab:time}
+\end{table}
+
+\end{itemize}
+\subsubsection{Deep learning pipeline}
+\begin{itemize}
+\item{Selecting the deep learning model: Why YOLOv5s?}//
+Before delving into the reasons for choosing YOLOv5s, it is important to understand some of the key metrics used to evaluate object detection models. 
+\begin{itemize}
+\item Precision:
+\begin{equation}
+P = \frac{TP}{TP+FP}
+\end{equation}
+Precision, also known as positive predictive value, is a metric used in machine learning to evaluate the accuracy of a classification model. It is calculated as the ratio of true positives to the sum of true positives and false positives. When expressed as a probability, it represents the likelihood that a randomly selected instance classified as positive is actually a true positive. A perfect classifier with no false positives has a precision of 1.\cite{KGMM21}
+
+\item Recall:
+
+\begin{equation}
+R = \frac{TP}{TP+FN}
+\end{equation}
+Recall, also known as sensitivity, is a performance metric used in machine learning that measures the proportion of positive instances that are correctly identified as positive by the model. When expressed as a probability, it represents the likelihood that a randomly selected true positive instance will be correctly classified as positive by the model. Unlike precision, which only takes into account instances predicted as positive by the model, recall considers all actual positive instances.\cite{KGMM21}
+
+\item mAP:
+
+\begin{equation}
+mAP = \frac{1}{n} \sum_{k=1}^{N} AP_k
+\end{equation}
+mAP is a metric based on the area under precision-recall curve (PRC) that is preprocessed to eliminate zig-zag behavior (Padilla et al., 2021 [1]). Where $AP_k$ is the average precision (AP) of class $k$ and $n$ is the number of thresholds. The mAP values were calculated at $Z$ value threshold value for intersection over union (IoU) meaning, all the predicted bounding boxes that resulted in ratios of overlapping areas to the union areas with ground truth bounding greater than $Z$ were considered and the remaining were discarded.\cite{MG21}
+
+\item IoU:
+\begin{equation}
+IoU(A,B) = \frac{A \cap B}{A \cup B}, \quad IoU(A,B) \in [0,1]
+\end{equation}
+Intersection over Union (IoU) is a commonly used method to evaluate object detection algorithms. It measures the overlap between the proposed bounding box and the ground truth bounding box by computing the ratio of their intersection over their union. If the resulting value is above a certain threshold, the proposed bounding box is considered a correct detection.\cite{MG21}
+\end{itemize}
+
+
+\end{itemize}
+
+
+
+
+
+
+
+
+
+
+
 
 %\input{biblio.tex}
 
