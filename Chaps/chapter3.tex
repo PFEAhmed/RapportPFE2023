@@ -481,6 +481,57 @@ Intersection over Union (IoU) is a commonly used method to evaluate object detec
 
 
 \end{itemize}
+In Table~\ref{tab:yolov5_comparison} and the firgure \ref{fig:comparisation}, we compare the performance of different YOLOv5 models.
+\FloatBarrier
+\begin{figure}[h]
+
+       \centering
+
+        \includegraphics[width=0.7\textwidth]{comparisationYolov5}
+   
+        \caption{Comparison between yolov5 family and Efficientdet for the COCO dataset in term of speed and accuracy}
+        \label{fig:comparisation}
+
+    \end{figure}
+\FloatBarrier
+\FloatBarrier
+\begin{table}[h!]
+  \centering
+  
+  \begin{tabular}{|c|c|c|c|c|c|c|c|}
+    \hline
+    \textbf{Model} & \textbf{Size (pixels)} & \textbf{mAPval@50-95} & \textbf{mAPval@50} & \textbf{Speed CPU b1 (ms)} & \textbf{Speed V100 b1 (ms)} & \textbf{Speed V100 b32 (ms)} & \textbf{Params (M)} \\ \hline
+    YOLOv5n & 640 & 28.0 & 45.7 & 45 & 6.3 & 0.6 & 1.9 \\ \hline
+    YOLOv5s & 640 & 37.4 & 56.8 & 98 & 6.4 & 0.9 & 7.2 \\ \hline
+    YOLOv5m & 640 & 45.4 & 64.1 & 224 & 8.2 & 1.7 & 21.2 \\ \hline
+    YOLOv5l & 640 & 49.0 & 67.3 & 430 & 10.1 & 2.7 & 46.5 \\ \hline
+    YOLOv5x & 640 & 50.7 & 68.9 & 766 & 12.1 & 4.8 & 86.7 \\ \hline
+  \end{tabular}
+\caption{Comparison of YOLOv5 Models \cite{U23}}
+  \label{tab:yolov5_comparison}
+\vspace{0.5cm}
+
+\footnotesize All YOLOv5 checkpoints in the table are trained up to 300 epochs with default settings. The Nano and Small models use hyp.scratch-low.yaml hyps, while all other models use hyp.scratch-high.yaml. The mAPval values shown in the table are for single-model single-scale on the COCO val2017 dataset. To reproduce these results, one can run the command "python val.py --data coco.yaml --img 640 --conf 0.001 --iou 0.65".\cite{U23}
+
+The speed measurements shown in the table are averaged over COCO val images using an AWS p3.2xlarge instance. The NMS times, which take about 1 ms per image, are not included in these measurements. To reproduce these results, one can run the command "python val.py --data coco.yaml --img 640 --task speed --batch 1".\cite{U23}
+
+The TTA (Test Time Augmentation) Test Time Augmentation includes reflection and scale augmentations. To reproduce these results, one can run the command "python val.py --data coco.yaml --img 1536 --iou 0.7 --augment".\cite{U23}
+\end{table}
+\FloatBarrier
+
+The \textbf{YOLOv5} model is a state-of-the-art object detection model that has gained popularity due to its high accuracy and speed. The YOLOv5 family includes several models such as YOLOv5n, YOLOv5s, YOLOv5m, YOLOv5l, and YOLOv5x, each with different sizes and performance characteristics. To determine the best model for our application of logo detection on a Raspberry Pi 4, we used this table \ref{tab:yolov5_comparison} to compare the YOLOv5 models using metrics such as mAPval@50-95, mAPval@50, speed on CPU and V100, number of parameters, and FLOPs.//
+
+Firstly, let's consider the Yolov5n model, which has the smallest size(1.9 million params) and computational requirements in the Yolov5 family. While this model is suitable for low-resource devices, it sacrifices accuracy (mAPval50-95 = 28.0 and mAPval50 =  45.7) for speed ( CPU b1 = 45 ms  , Speed V100 b1 = 6.3 ms and Speed V100 b32 = 	0.6 ms), making it less suitable for complex object detection tasks.
+
+Next, the Yolov5m model strikes a balance between accuracy(mAPval50-95 = 45.4 and mAPval50 =  64.1) and speed ( CPU b1 = 224 ms, Speed V100 b1 = 8.2 ms and Speed V100 b32 = 1.7 ms), making it a popular choice for most applications. However, it still requires significant computational power (21.2 million params), which may not be feasible for low-resource devices like the Raspberry Pi 4.
+
+The Yolov5l and x models offer the highest accuracy (mAPval50-95 = 49.0 and mAPval50 =  67.3 and mAPval50-95 = 50.7 and mAPval50 =  68.9 ) but come with even greater computational requirements (46.5 and 86.7 million params). They are best suited for high-end GPUs or cloud computing platforms and are not ideal for the Raspberry Pi 4.
+
+Finally, we come to Yolov5s, which is the best choice for the Raspberry Pi 4. It has a smaller size and computational requirements (7.2 million params) than the other models in the family, making it easier to deploy on low-resource devices. Additionally, Yolov5s achieves high accuracy (mAPval50-95 = 37.4 and mAPval50 =  56.8) while maintaining a fast inference speed ( CPU b1 = 98 ms, Speed V100 b1 = 6.4 ms and Speed V100 b32 = 0.9 ms), making it an excellent choice for object detection tasks that require real-time performance.
+
+In summary, the Yolov5s model is the best choice for the Raspberry Pi 4 due to its small size, low computational requirements, and high accuracy. It strikes the perfect balance between speed and accuracy, making it ideal for most object detection tasks.
+
+
 
 
 
