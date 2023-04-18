@@ -478,9 +478,6 @@ IoU(A,B) = \frac{A \cap B}{A \cup B}, \quad IoU(A,B) \in [0,1]
 \end{equation}
 Intersection over Union (IoU) is a commonly used method to evaluate object detection algorithms. It measures the overlap between the proposed bounding box and the ground truth bounding box by computing the ratio of their intersection over their union. If the resulting value is above a certain threshold, the proposed bounding box is considered a correct detection.\cite{MG21}
 \end{itemize}
-
-
-\end{itemize}
 In Table~\ref{tab:yolov5_comparison} and the firgure \ref{fig:comparisation}, we compare the performance of different YOLOv5 models.
 \FloatBarrier
 \begin{figure}[h]
@@ -532,6 +529,52 @@ Finally, we come to Yolov5s, which is the best choice for the Raspberry Pi 4. It
 In summary, the Yolov5s model is the best choice for the Raspberry Pi 4 due to its small size, low computational requirements, and high accuracy. It strikes the perfect balance between speed and accuracy, making it ideal for most object detection tasks.
 
 
+\item{Building our dataset}
+\FloatBarrier
+\begin{figure}[ht]
+  \centering
+  \begin{minipage}[b]{0.45\linewidth}
+    \includegraphics[width=\linewidth]{normalDataset}
+    \caption{Normal dataset}
+    \label{fig:image1}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{0.45\linewidth}
+    \includegraphics[width=\linewidth]{invertedDataset}
+    \caption{Inverted dataset}
+    \label{fig:image2}
+  \end{minipage}
+\end{figure}
+\FloatBarrier
+
+To train our Yolov5s model, we first gathered a dataset of 726 images containing logos. We split the dataset into two classes: Normal and Inverted. The Normal class \ref{fig:image1} contained 363 images of logos in their standard orientation, while the Inverted class \ref{fig:image2} contained 363 images of logos that had been rotated 180 degrees.
+
+\item{Image labeling}
+\FloatBarrier
+\begin{figure}[ht]
+  \centering
+    \includegraphics[width=\linewidth]{labeling}
+    \caption{Labeling an image}
+    \label{fig:labeling}
+
+
+\end{figure}
+\FloatBarrier
+I used Roboflow to perform the image labeling. Image labeling involves annotating the images with bounding boxes that define the location of the logos in each image. This step is essential for training an object detection model like Yolov5s.
+After hours of scouring through an endless stream of images and yelling at my computer screen, I finally finished the task of labeling the images for our dataset. With every annotation made, I felt as if a weight had been lifted from my shoulders (and added to my mouse finger). The satisfaction of seeing all of our hard work come together was almost as great as the relief of knowing I won't have to do it again anytime soon. Now, with our dataset fully labeled and ready for training, it's time to sit back, relax, and let the computer do the heavy lifting.
+\item{Image data augmentation}
+\FloatBarrier
+\begin{figure}
+    \centering
+    \includegraphics[width=0.5\textwidth]{augmentatedDataset}
+    \caption{Augmented dataset}
+    \label{fig:Augmented dataset}
+\end{figure}
+\FloatBarrier
+For data augmentation, we used several techniques in Roboflow, including Hue, Saturation, Brightness, and Blur. Hue refers to the color of the image, and we applied random rotations between -11° and +11° to create variations in color. Saturation refers to the intensity of the colors, and we applied random variations between -14\% and +14\% to increase the diversity of the dataset. Brightness refers to the overall brightness of the image, and we applied random variations between 0\% and +36\% to simulate different lighting conditions. Finally, we applied a blur of up to 0.75 pixels to simulate blurring caused by motion or other factors.
+
+After augmenting our dataset, we ended up with triple the number of images, which allowed us to train a more robust model.
+\end{itemize}
 
 
 
