@@ -10,6 +10,9 @@
 \usepackage{ifpdf}
 \usepackage{ae}
 \usepackage{tikz}
+\usepackage{colortbl}
+\usepackage{caption}
+
 \usepackage{wrapfig}
 %\usepackage{../Packages/tikz-uml}% this package is for uml diagrams
 \usepackage{Packages/tikz-uml}% this package is for uml diagrams
@@ -20,9 +23,16 @@
 \usepackage{subcaption}
 \usepackage{xcolor}
 \usepackage{listings}
+\usepackage{tcolorbox}
 
+\tcbuselibrary{listings}
 \definecolor{LightGray}{gray}{0.95}
-
+\usepackage{tcolorbox}
+\definecolor{dkgreen}{RGB}{0,128,0}
+\NewTotalTCBox{\commandbox}{ s v }
+{verbatim,colupper=white,colback=black!75!white,colframe=black}
+{\IfBooleanT{#1}{\textcolor{red}{\ttfamily\bfseries > }}%
+\lstinline[language=command.com,keywordstyle=\color{blue!35!white}\bfseries]^#2^}
 \lstset{ 
   backgroundcolor=\color{LightGray},
   basicstyle=\ttfamily,
@@ -31,6 +41,12 @@
   language=bash,
   frame=single
 }
+
+
+\tcbset{colframe=blue!50!black,colback=white,colupper=black,
+fonttitle=\bfseries,nobeforeafter,center title}
+\definecolor{mauve}{RGB}{224,176,255}
+
 \usetikzlibrary{positioning}
 \lstset{frame=tb,
   language=Python,

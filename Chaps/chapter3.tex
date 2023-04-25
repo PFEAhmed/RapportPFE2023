@@ -1,5 +1,8 @@
 %\documentclass{report}
 %\input{includePackages.tex}
+
+
+
 %\begin{document}
 
 
@@ -89,175 +92,15 @@ The requirements do not stop at the functional level but tend towards requiremen
 
 
 \section{Project component}
-\subsection{Hardware environment}
-\subsubsection{ESP32-CAM}
-\FloatBarrier
-\begin{figure}[h]
-         \centering
-        \includegraphics[width=0.4\textwidth]{esp32cam}
-   
-        \caption{ESP32-CAM}
-        \label{fig:esp32cam}
-    \end{figure}
-\FloatBarrier
-\FloatBarrier
-\begin{table}[h]
-\centering
-\begin{tabular}{|l|l|}
-\hline
-\textbf{Component} & \textbf{Specification} \\ \hline
-WiFi+Bluetooth module & ESP-32S \\ \hline
-Camera module & OV2640 2MP \\ \hline
-SPI Flash & 4MB \\ \hline
-RAM & Internal 512KB + External 4MB PSRAM \\ \hline
-Onboard TF card slot & Supports up to 4G TF card for data storage \\ \hline
-Wi-Fi & 802.11b/g/n/e/i \\ \hline
-Operating voltage & 3.3/5 Vdc \\ \hline
-Power consumption (Flash off) & 180mA@5V \\ \hline
-Power consumption (Flash on and brightness max) & 310mA@5V \\ \hline
-Power consumption (Modern-Sleep) & as low as 20mA@5V \\ \hline
-Power consumption (Light-Sleep) & as low as 6.7mA@5V \\ \hline
-Power consumption (Deep-Sleep) & as low as 6mA@5V \\ \hline
-Operating temperature & -20 °C ~ 85 °C \\ \hline
-Dimensions & 40.5mm x 27mm x 4.5mm \\ \hline
-Flash light & LED built-in on board \\ \hline
-\end{tabular}
-\caption{ESP32-CAM characteristics \cite{HT}}
-\label{table:esp32-cam-characteristics}
-\end{table}
-\FloatBarrier
-
-\subsubsection{PC}
-\FloatBarrier
-\begin{figure}[h]
-         \centering
-        \includegraphics[width=0.4\textwidth]{lenovo-ideapad-gaming-3}
-   
-        \caption{lenovo ideapad gaming 3}
-        \label{fig:lenovo-ideapad-gaming-3}
-    \end{figure}
-\FloatBarrier
-
-\begin{table}[h]
-\centering
-\begin{tabular}{|l|l|}
-\hline
-\textbf{Component} & \textbf{Specification} \\ \hline
-Processor & AMD Ryzen 7 4800H \\ \hline
-Memory & 16 GB DDR4 RAM \\ \hline
-Graphics & NVIDIA GeForce GTX 1650Ti (4GB GDDR6) \\ \hline
-Storage & 512 GB SSD \\ \hline
-Operating System & Windows 10 \\ \hline
-\end{tabular}
-\caption{Specifications of the PC}
-\label{table:pc-specifications}
-\end{table}
-
-\subsection{Software environment }
-\subsubsection{Software}
-\begin{itemize}
-  %\item Arduino IDE
-%\FloatBarrier
-%\begin{figure}[h]
-   %      \centering
-      %  \includegraphics[width=0.2\textwidth]{ArduinoIDELogo}
-   
-        %\caption{Arduino IDE Logo}
-        %\label{fig:ArduinoIDELogo}
-    %\end{figure}
-%\FloatBarrier
-%\subitem\textbf{Arduino IDE} is an official Arduino software application used for writing, compiling, and uploading code to Arduino microcontrollers. The IDE environment consists of two basic parts: Editor and Compiler and supports both C and C++ languages.\cite{MA18}
-
-  \item Raspberry Pi Imager
-\begin{figure}[h]
-       \centering
-        \includegraphics[width=0.5\textwidth]{raspberry-pi-imagerLogo}
-   
-        \caption{Raspberry pi imager logo}
-        \label{fig:raspberry-pi-imagerLogo}
-    \end{figure}
-\FloatBarrier
-\subitem\textbf{Raspberry Pi Imager}  is a free and open-source software application developed by the Raspberry Pi Foundation.\cite{RSND}
-With Raspberry Pi Imager, users can easily choose to install a variety of os, like Raspbian, Ubuntu, Kali Linux, and more,  onto a microSD card that can be used to boot up your Raspberry Pi.
-\subitem  It can be downloaded and installed on Windows, Mac, and Linux operating systems.\cite{RSND}
- \item PuTTY
-\FloatBarrier
-\begin{figure}[h]
-       \centering
-        \includegraphics[width=0.2\textwidth]{puttyLogo}
-   
-        \caption{puttyLogo}
-        \label{fig:}
-    \end{figure}
-\FloatBarrier
-\subitem\textbf{PuTTY} is a free and open-source terminal emulator, serial console, and network file transfer application. It was originally developed for Windows but is now available on many other operating systems.\cite{PYND}
-\subitem PuTTY also supports many network protocols, such as Telnet, rlogin, SSH and raw TCP. It also includes additional features such as session management, SSH key generation, and support for local printing.\cite{PYND}
- \item VNC
-\FloatBarrier
-\begin{figure}[h]
-       \centering
-        \includegraphics[width=0.2\textwidth]{VNCLogo}
-   
-        \caption{VNCLogo}
-        \label{fig:VNCLogo}
-    \end{figure}
-\FloatBarrier
-\subitem\textbf{VNC } (Virtual Network Computing) is a thin-client system that allows users to remotely control and operate another computer or server over a network. It consists of two components: a server that runs on the remote computer, and a client that runs on the local computer.\cite{RVND}
-\subitem  The server sends screen updates to the client, so the user can see and interact with the remote computer's desktop as if they were sitting right in front of it.\cite{RVND}
-  \item Geany
-\begin{figure}[h]
-         \centering
-        \includegraphics[width=0.2\textwidth]{Geanylogo}
-   
-        \caption{Geany logo}
-        \label{fig:Geanylogo}
-    \end{figure}
-\FloatBarrier
-\subitem\textbf{Geany} is a simple and lightweight text editor designed for programmers and developers. It provides features such as syntax highlighting for a wide range of programming languages, code folding, auto-indentation, and built-in support for various programming tools and compilers.\cite{GND}
-  \item Google Colab
-\begin{figure}[h]
-         \centering
-        \includegraphics[width=0.4\textwidth]{ColabLogo}
-   
-        \caption{Google colab logo}
-        \label{fig: Google Colab logo}
-    \end{figure}
-\FloatBarrier
-\subitem\textbf{Google Colab} (short for Collaboratory) is a cloud-based platform provided by Google that allows users to run and share Jupyter notebook files for data analysis, machine learning and deep learning tasks. .\cite{GRND}
-\subitem It provides access to computing resources such as CPU, GPU,RAM, disk and TPU for free, allowing users to execute complex computational tasks without the need to use their local hardware..\cite{GRND}
-\end{itemize}
-\subsubsection{programming languages}
-\begin{itemize}
-
-\item C++
-\FloatBarrier
-\begin{figure}[h]
-         \centering
-        \includegraphics[width=0.2\textwidth]{c++Logo}
-   
-        \caption{C++ logo}
-        \label{fig:c++Logo}
-    \end{figure}
-\FloatBarrier
-\subitem\textbf{C++} is a programming language that is widely used in software development. It is a standardized, general-purpose, and object-oriented language, which means it can be used to create a variety of applications, including system software, device drivers, video games, and desktop applications.\cite{SD20}
-
-\item Python
-\FloatBarrier
-\begin{figure}[h]
-         \centering
-        \includegraphics[width=0.2\textwidth]{PythonLogo}
-   
-        \caption{Python logo}
-        \label{fig:PythonLogo}
-    \end{figure}
-\FloatBarrier
-\subitem\textbf{Python} is a popular high-level programming languagethat supports object-oriented, functional, 
-and imperative programming styles. scripting language, but can be compiled into computer-readable binary.\cite{SD20}
+\subsection{Hardware and Software environment}
+For a comprehensive understanding of the hardware and software environment components used in this study, I recommend referring to the annex chapter \ref{Annex} of this report. The annex contains detailed information on the system specifications and configurations, including hardware components such as ESP32-cam, as well as the software components such as  application programs. By referring to the annex, you can gain a deeper insight into the technical details of the system, which can be helpful in evaluating the validity and reliability of the study results.
 
 
-\end{itemize}
 
-\subsection{Workflow}
+
+
+
+\section{Workflow}
 \subsubsection{Setting up the rapsberry pi}
 \begin{itemize}
 \item{ setting up the OS }
@@ -351,31 +194,63 @@ Click on the "Write" button to start the installation process. This will take se
 \FloatBarrier
 I have created \textbf{update.sh} that contain these three commands:
 \begin{itemize}
-\item \texttt{sudo apt-get update}: This command updates the list of available software packages and their versions from the repositories defined in the package manager sources list.
-\item \texttt{sudo apt-get upgrade}: This command upgrades the installed packages on the system to their latest versions.
-\item \texttt{sudo reboot}: This command restarts the system after the update and upgrade processes have completed.
+\item\commandbox*{sudo apt-get update} : This command updates the list of available software packages and their versions from the repositories defined in the package manager sources list.
+\item \commandbox*{sudo apt-get upgrade}: This command upgrades the installed packages on the system to their latest versions.
+\item  \commandbox*{sudo reboot}: This command restarts the system after the update and upgrade processes have completed.
 \end{itemize}
 To execute the update.sh just run this command:
-\begin{lstlisting}
-sh update.sh
-\end{lstlisting}
-This table represent the total time taking by this command:
+\commandbox*{sh update.sh}
+This table represent the total time taking by this command:\\
+\FloatBarrier
 \begin{table}[h]
-    \centering
-    \begin{tabular}{|c|c|}
-        \hline
+
+\centering
+\tcbox[width=\linewidth,
+  left=0mm,
+  right=0mm,
+  top=0mm,
+  bottom=0mm,
+  boxsep=0mm,
+  toptitle=0.5mm,
+  bottomtitle=0.5mm, title = Execution time of sh update.sh]{%
+\arrayrulecolor{blue!50!black}\renewcommand{\arraystretch}{1.2}%
+
+
+
+\begin{tabular}{|c|c|}
+  \hline
         \textbf{Metric} & \textbf{Value} \\
         \hline
-        real & 9.631 s \\
+
+        real   & 9.631 s \\
         \hline
         user & 3.065 s \\
         \hline
         sys & 1.097 s \\
         \hline
-    \end{tabular}
-    \caption{Execution time of sh update.sh}
-    \label{tab:time}
+\end{tabular}}
+    \addcontentsline{lot}{table}{Execution time of sh update.sh}
+
+\label{tab:time}
 \end{table}
+
+\FloatBarrier
+%\begin{table}[h]
+   % \centering
+    %\begin{tabular}{|c|c|}
+       % \hline
+        %\textbf{Metric} & \textbf{Value} \\
+        %\hline
+        %real & 9.631 s \\
+        %\hline
+        %user & 3.065 s \\
+        %\hline
+        %sys & 1.097 s \\
+        %\hline
+    %\end{tabular}
+    %\caption{Execution time of sh update.sh}
+    %\label{tab:time}
+%\end{table}
 
 \item{Activating VNC server}\\
 Enter this command:
@@ -410,29 +285,41 @@ Go to Interfacing options > vnc and click on “Select” While their, enable vn
 \FloatBarrier
 I have created \textbf{prepareEnv.sh} that execute the following:
 \begin{itemize}
-    \item Create a new directory named "project" using the "mkdir" command.
-    \item Change the current working directory to the "project" directory using the "cd" command.
-    \item Clone the "yolov5" repository from the GitHub account of "ultralytics" using the "git clone" command.
-    \item Install the "virtualenv" package using the "sudo pip install" command, which creates a virtual environment in the "env" directory.
-    \item Change the current working directory to the "yolov5" directory using the "cd" command.
-    \item Activate the virtual environment created earlier using the "." command followed by the path to the "env/bin/activate" file.
-    \item Install the Python packages listed in the "requirements.txt" file using the "pip install -r" command.
-    \item Install  torch version 1.13.1 torchvision version 0.14.1 torchaudio version 0.13.1 packages using the "pip3 install" command because the the ones in "requirements.txt" file are not compatible with the current yolov5.
-    \item Install the "gpiozero" package using the "pip install" command.
-    \item Install the "RPi.GPIO" package using the "pip install" command.
-    \item Install the "subprocess.run" package using the "pip install" command.
-    \item Install the "time" package using the "pip install" command.
-    \item Clone the "YoloV5LogoDetection" repository from the GitHub account of "AhmedOmrani10" using the "git clone" command.
+    \item  \commandbox*{mkdir project}:Create a new directory named  \commandbox{project} using the  \commandbox*{mkdir} command.
+    \item  \commandbox*{cd project}:Change the current working directory to the \commandbox{project} directory using the "cd" command.
+    \item  \commandbox*{git clone https://github.com/ultralytics/yolov5}:Clone the "yolov5" repository from the GitHub account of "ultralytics" using the  \commandbox*{git clone} command.
+    \item  \commandbox*{sudo pip install virtualenv}:Install the "virtualenv" package using the \commandbox*{sudo pip install} command, which creates a virtual environment in the \commandbox{env} directory.
+    \item  \commandbox*{cd yolov5}:Change the current working directory to the \commandbox{yolov5}directory using the \commandbox*{cd} command.
+    \item  \commandbox*{. env/bin/activate}:Activate the virtual environment created earlier using the \commandbox*{.} command followed by the path to the \commandbox{env/bin/activate} file.
+    \item  \commandbox*{pip install -r requirements.txt}:Install the Python packages listed in the "requirements.txt" file using the \commandbox*{pip install -r} command.
+    \item  \commandbox*{pip3 install torch==1.13.1 torchvision==0.14.1 torchaudio==0.13.1}:Install  torch version 1.13.1 torchvision version 0.14.1 torchaudio version 0.13.1 packages using the \commandbox*{pip3 install} command because the the ones in "requirements.txt" file are not compatible with the current yolov5.
+    \item  \commandbox*{pip install gpiozero}:Install the \commandbox{gpiozero} package using the \commandbox*{pip install} command.
+    \item  \commandbox*{pip install RPi.GPIO}:Install the \commandbox{RPi.GPIO} package using the \commandbox*{pip install} command.
+    \item  \commandbox*{pip install subprocess.run}:Install the \commandbox*{subprocess.run} package using the \commandbox*{pip install} command.
+    \item  \commandbox*{git clone https://github.com/AhmedOmrani10/YoloV5LogoDetection.git}:Clone the "YoloV5LogoDetection" repository from the GitHub account of "AhmedOmrani10" using the \commandbox*{git clone} command.
 \end{itemize}
 To execute the prepareEnv.sh just run this command:
-\begin{lstlisting}
-sh prepareEnv.sh
-\end{lstlisting}
+\commandbox*{sh prepareEnv.sh}
 This table represent the total time taking by the command:
+\FloatBarrier
 \begin{table}[h]
-    \centering
-    \begin{tabular}{|c|c|}
-        \hline
+
+\centering
+\tcbox[
+  left=0mm,
+  right=0mm,
+  top=0mm,
+  bottom=0mm,
+  boxsep=0mm,
+  toptitle=0.5mm,
+  bottomtitle=0.5mm, title = Execution time of prepareEnv.sh]{%
+\arrayrulecolor{blue!50!black}\renewcommand{\arraystretch}{1.2}%
+
+
+
+\begin{tabular}{|c|c|}
+
+       \hline
         \textbf{Metric} & \textbf{Value} \\
         \hline
         real & 18.759 m \\
@@ -441,10 +328,29 @@ This table represent the total time taking by the command:
         \hline
         sys & 31.253 s \\
         \hline
-    \end{tabular}
-    \caption{Execution time of sh prepareEnv.sh}
-    \label{tab:time}
+\end{tabular}}
+    \addcontentsline{lot}{table}{Execution time of prepareEnv.sh}
+
+\label{tab:time}
 \end{table}
+
+\FloatBarrier
+%\begin{table}[h]
+   % \centering
+    %\begin{tabular}{|c|c|}
+      %  \hline
+        %\textbf{Metric} & \textbf{Value} \\
+        %\hline
+        %real & 18.759 m \\
+        %\hline
+        %user & 3.334 s \\
+       % \hline
+        %sys & 31.253 s \\
+        %\hline
+    %\end{tabular}
+    %\caption{Execution time of sh prepareEnv.sh}
+    %\label{tab:time}
+%\end{table}
 
 \end{itemize}
 \subsubsection{Deep learning pipeline}
@@ -491,9 +397,21 @@ In Table~\ref{tab:yolov5_comparison} and the firgure \ref{fig:comparisation}, we
 
     \end{figure}
 \FloatBarrier
-\FloatBarrier
-\begin{table}[h!]
-  \centering
+\begin{table}[h]
+
+\centering
+\tcbox[width=\linewidth,
+  left=0mm,
+  right=0mm,
+  top=0mm,
+  bottom=0mm,
+  boxsep=0mm,
+  toptitle=0.5mm,
+  bottomtitle=0.5mm, title = Comparison of YOLOv5 Models \cite{U23}]{%
+\arrayrulecolor{blue!50!black}\renewcommand{\arraystretch}{1.2}%
+
+
+
   
   \begin{tabular}{|c|c|c|c|c|c|c|c|}
     \hline
@@ -503,9 +421,10 @@ In Table~\ref{tab:yolov5_comparison} and the firgure \ref{fig:comparisation}, we
     YOLOv5m & 640 & 45.4 & 64.1 & 224 & 8.2 & 1.7 & 21.2 \\ \hline
     YOLOv5l & 640 & 49.0 & 67.3 & 430 & 10.1 & 2.7 & 46.5 \\ \hline
     YOLOv5x & 640 & 50.7 & 68.9 & 766 & 12.1 & 4.8 & 86.7 \\ \hline
-  \end{tabular}
-\caption{Comparison of YOLOv5 Models \cite{U23}}
-  \label{tab:yolov5_comparison}
+  \end{tabular}}
+    \addcontentsline{lot}{table}{Comparison of YOLOv5 Models \cite{U23}}
+
+\label{tab:yolov5_comparison}
 \vspace{0.5cm}
 
 \footnotesize All YOLOv5 checkpoints in the table are trained up to 300 epochs with default settings. The Nano and Small models use hyp.scratch-low.yaml hyps, while all other models use hyp.scratch-high.yaml. The mAPval values shown in the table are for single-model single-scale on the COCO val2017 dataset. To reproduce these results, one can run the command "python val.py --data coco.yaml --img 640 --conf 0.001 --iou 0.65".\cite{U23}
@@ -514,6 +433,31 @@ The speed measurements shown in the table are averaged over COCO val images usin
 
 The TTA (Test Time Augmentation) Test Time Augmentation includes reflection and scale augmentations. To reproduce these results, one can run the command "python val.py --data coco.yaml --img 1536 --iou 0.7 --augment".\cite{U23}
 \end{table}
+
+\FloatBarrier
+\FloatBarrier
+%\begin{table}[h!]
+  %\centering
+  
+ % \begin{tabular}{|c|c|c|c|c|c|c|c|}
+    %\hline
+    %\textbf{Model} & \textbf{Size (pixels)} & \textbf{mAPval@50-95} & \textbf{mAPval@50} & \textbf{Speed CPU b1 (ms)} & \textbf{Speed V100 b1 (ms)} & \textbf{Speed V100 b32 (ms)} & \textbf{Params (M)} \\ \hline
+   % YOLOv5n & 640 & 28.0 & 45.7 & 45 & 6.3 & 0.6 & 1.9 \\ \hline
+    %YOLOv5s & 640 & 37.4 & 56.8 & 98 & 6.4 & 0.9 & 7.2 \\ \hline
+   % YOLOv5m & 640 & 45.4 & 64.1 & 224 & 8.2 & 1.7 & 21.2 \\ \hline
+   % YOLOv5l & 640 & 49.0 & 67.3 & 430 & 10.1 & 2.7 & 46.5 \\ \hline
+    %YOLOv5x & 640 & 50.7 & 68.9 & 766 & 12.1 & 4.8 & 86.7 \\ \hline
+  %\end{tabular}
+%\caption{Comparison of YOLOv5 Models \cite{U23}}
+  %\label{tab:yolov5_comparison}
+\vspace{0.5cm}
+
+%\footnotesize All YOLOv5 checkpoints in the table are trained up to 300 epochs with default settings. The Nano and Small models use hyp.scratch-low.yaml hyps, while all other models use hyp.scratch-high.yaml. The mAPval values shown in the table are for single-model single-scale on the COCO val2017 dataset. To reproduce these results, one can run the command "python val.py --data coco.yaml --img 640 --conf 0.001 --iou 0.65".\cite{U23}
+
+%The speed measurements shown in the table are averaged over COCO val images using an AWS p3.2xlarge instance. %The NMS times, which take about 1 ms per image, are not included in these measurements. To reproduce these results, one can run the command "python val.py --data coco.yaml --img 640 --task speed --batch 1".\cite{U23}
+
+%The TTA (Test Time Augmentation) Test Time Augmentation includes reflection and scale augmentations. To reproduce these results, one can run the command "python val.py --data coco.yaml --img 1536 --iou 0.7 --augment".\cite{U23}
+%\end{table}
 \FloatBarrier
 
 The \textbf{YOLOv5} model is a state-of-the-art object detection model that has gained popularity due to its high accuracy and speed. The YOLOv5 family includes several models such as YOLOv5n, YOLOv5s, YOLOv5m, YOLOv5l, and YOLOv5x, each with different sizes and performance characteristics. To determine the best model for our application of logo detection on a Raspberry Pi 4, we used this table \ref{tab:yolov5_comparison} to compare the YOLOv5 models using metrics such as mAPval@50-95, mAPval@50, speed on CPU and V100, number of parameters, and FLOPs.//
@@ -574,7 +518,90 @@ After hours of scouring through an endless stream of images and yelling at my co
 For data augmentation, we used several techniques in Roboflow, including Hue, Saturation, Brightness, and Blur. Hue refers to the color of the image, and we applied random rotations between -11° and +11° to create variations in color. Saturation refers to the intensity of the colors, and we applied random variations between -14\% and +14\% to increase the diversity of the dataset. Brightness refers to the overall brightness of the image, and we applied random variations between 0\% and +36\% to simulate different lighting conditions. Finally, we applied a blur of up to 0.75 pixels to simulate blurring caused by motion or other factors.
 
 After augmenting our dataset, we ended up with triple the number of images, which allowed us to train a more robust model.
+
+
+\item{Data loading}
+\begin{lstlisting}[language=Python]
+# Import the Roboflow package
+from roboflow import Roboflow
+
+# Instantiate a Roboflow object and provide your API key
+rf = Roboflow(api_key="AKSDKS85skldkMLD755S")
+
+# Specify the project and dataset that you want to download
+project = rf.workspace("ahmed-omrani-uqhfw").project("logodetection-fmddc")
+dataset = project.version(3).download("yolov5")
+
+
+\end{lstlisting}
+The training data was downloaded using the Roboflow Python package, which is a popular tool for managing and preprocessing computer vision datasets. The training data was downloaded from a specific Roboflow project and was in the YOLOv5 PyTorch format
+\item{Transfer learining on yolov5s}\\
+Fine-tuning is a popular technique in machine learning that involves taking a pre-trained model and adapting it to a new problem. Transfer learning is the process of using a pre-trained model to jumpstart a new model's training. These techniques are widely used in computer vision tasks where labeled data is limited, and collecting more data is costly. By fine-tuning a pre-trained model, the model can leverage its knowledge and adapt to the new task quickly. The process typically involves freezing some of the pre-trained layers and only updating the weights of the output layer or a few top layers. By doing so, the model can adapt its weights to the new problem while retaining its knowledge of the previously learned features. This approach often leads to improved performance with fewer labeled examples.
+\FloatBarrier
+\begin{lstlisting}[language=Python]
+  %%writetemplate /content/yolov5/models/custom_yolov5s.yaml
+
+# parameters
+nc: {num_classes}  # number of classes
+depth_multiple: 0.33  # model depth multiple
+width_multiple: 0.50  # layer channel multiple
+anchors:
+  - [10,13, 16,30, 33,23]  # P3/8
+  - [30,61, 62,45, 59,119]  # P4/16
+  - [116,90, 156,198, 373,326]  # P5/32
+
+# YOLOv5 v6.0 backbone
+backbone:
+  # [from, number, module, args]
+  [[-1, 1, Conv, [64, 6, 2, 2]],  # 0-P1/2
+   [-1, 1, Conv, [128, 3, 2]],  # 1-P2/4
+   [-1, 3, C3, [128]],
+   [-1, 1, Conv, [256, 3, 2]],  # 3-P3/8
+   [-1, 6, C3, [256]],
+   [-1, 1, Conv, [512, 3, 2]],  # 5-P4/16
+   [-1, 9, C3, [512]],
+   [-1, 1, Conv, [1024, 3, 2]],  # 7-P5/32
+   [-1, 3, C3, [1024]],
+   [-1, 1, SPPF, [1024, 5]],  # 9
+  ]
+
+# YOLOv5 v6.0 head
+head:
+  [[-1, 1, Conv, [512, 1, 1]],
+   [-1, 1, nn.Upsample, [None, 2, 'nearest']],
+   [[-1, 6], 1, Concat, [1]],  # cat backbone P4
+   [-1, 3, C3, [512, False]],  # 13
+
+   [-1, 1, Conv, [256, 1, 1]],
+   [-1, 1, nn.Upsample, [None, 2, 'nearest']],
+   [[-1, 4], 1, Concat, [1]],  # cat backbone P3
+   [-1, 3, C3, [256, False]],  # 17 (P3/8-small)
+
+   [-1, 1, Conv, [256, 3, 2]],
+   [[-1, 14], 1, Concat, [1]],  # cat head P4
+   [-1, 3, C3, [512, False]],  # 20 (P4/16-medium)
+
+   [-1, 1, Conv, [512, 3, 2]],
+   [[-1, 10], 1, Concat, [1]],  # cat head P5
+   [-1, 3, C3, [1024, False]],  # 23 (P5/32-large)
+
+   [[17, 20, 23], 1, Detect, [nc, anchors]],  # Detect(P3, P4, P5)
+  ]
+
+\end{lstlisting}
+\FloatBarrier
+In this case and as you can see from the code above , the YOLOv5s model was fine-tuned to detect two classes: normal logos and inverted logos, instead of the original model which was trained on 80 classes. The model was modified to recognize only these two specific classes by adjusting the number of classes parameter in the YOLOv5s model's configuration file. The configuration file, which is a YAML file that specifies the network architecture and its parameters, was updated to reflect the change in the number of classes. This customization allows the model to be optimized for the specific task of detecting normal and inverted logos, rather than having to account for the nuances of 80 different classes.
+By using transfer learning, only the last layer of the YOLOv5s model was modified to detect the two new classes. The other layers of the model were left unchanged, as they were already trained to detect objects. This means that the feature extraction layers of the model are kept intact and only the classification layers are modified.
+The modified configuration file was saved as custom\_yolov5s.yaml. This file was used to train the fine-tuned YOLOv5s model.
+\item{Training the fine-tuned yolovs}
+\begin{lstlisting}[language=Python]
+!python train.py --img 416 --batch 16 --epochs 300 --data {dataset.location}/data.yaml --cfg ./models/custom_yolov5s.yaml  --name yolov5s_results  --cache
+\end{lstlisting}
+Once the data was downloaded, the training process was initiate. The model was trained using the train.py script from the YOLOv5 repository. The script was configured to use the custom configuration file and the downloaded training data.
+
+During the training process, the weights of the YOLOv5s model were updated to detect only two classes. The model was trained for 300 epochs, with a batch size of 16 and an image size of 416x416. The model was also cached, which means that the weights of the model were saved after each epoch, reducing the training time in the future.
 \end{itemize}
+
 
 
 
