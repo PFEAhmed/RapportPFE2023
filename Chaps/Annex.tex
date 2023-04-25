@@ -1,0 +1,204 @@
+
+
+%\documentclass{report}
+%\input{includePackages.tex}
+%\begin{document}
+\chapter{Annex}
+\section{Project component}
+\subsection{Hardware environment}
+\subsubsection{ESP32-CAM}
+\FloatBarrier
+\begin{figure}[h]
+         \centering
+        \includegraphics[width=0.4\textwidth]{esp32cam}
+   
+        \caption{ESP32-CAM}
+        \label{fig:esp32cam}
+    \end{figure}
+\FloatBarrier
+\FloatBarrier
+\begin{table}[h]
+\centering
+\begin{tabular}{|l|l|}
+\hline
+\textbf{Component} & \textbf{Specification} \\ \hline
+WiFi+Bluetooth module & ESP-32S \\ \hline
+Camera module & OV2640 2MP \\ \hline
+SPI Flash & 4MB \\ \hline
+RAM & Internal 512KB + External 4MB PSRAM \\ \hline
+Onboard TF card slot & Supports up to 4G TF card for data storage \\ \hline
+Wi-Fi & 802.11b/g/n/e/i \\ \hline
+Operating voltage & 3.3/5 Vdc \\ \hline
+Power consumption (Flash off) & 180mA@5V \\ \hline
+Power consumption (Flash on and brightness max) & 310mA@5V \\ \hline
+Power consumption (Modern-Sleep) & as low as 20mA@5V \\ \hline
+Power consumption (Light-Sleep) & as low as 6.7mA@5V \\ \hline
+Power consumption (Deep-Sleep) & as low as 6mA@5V \\ \hline
+Operating temperature & -20 °C ~ 85 °C \\ \hline
+Dimensions & 40.5mm x 27mm x 4.5mm \\ \hline
+Flash light & LED built-in on board \\ \hline
+\end{tabular}
+\caption{ESP32-CAM characteristics \cite{HT}}
+\label{table:esp32-cam-characteristics}
+\end{table}
+\FloatBarrier
+
+\subsubsection{PC}
+\FloatBarrier
+\begin{figure}[h]
+         \centering
+        \includegraphics[width=0.4\textwidth]{lenovo-ideapad-gaming-3}
+   
+        \caption{lenovo ideapad gaming 3}
+        \label{fig:lenovo-ideapad-gaming-3}
+    \end{figure}
+\FloatBarrier
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|l|l|}
+\hline
+\textbf{Component} & \textbf{Specification} \\ \hline
+Processor & AMD Ryzen 7 4800H \\ \hline
+Memory & 16 GB DDR4 RAM \\ \hline
+Graphics & NVIDIA GeForce GTX 1650Ti (4GB GDDR6) \\ \hline
+Storage & 512 GB SSD \\ \hline
+Operating System & Windows 10 \\ \hline
+\end{tabular}
+\caption{Specifications of the PC}
+\label{table:pc-specifications}
+\end{table}
+
+\subsection{Software environment }
+\subsubsection{Software}
+\begin{itemize}
+  \item Arduino IDE
+\FloatBarrier
+\begin{figure}[h]
+         \centering
+        \includegraphics[width=0.2\textwidth]{ArduinoIDELogo}
+   
+        \caption{Arduino IDE Logo}
+        \label{fig:ArduinoIDELogo}
+    \end{figure}
+\FloatBarrier
+\subitem\textbf{Arduino IDE} is an official Arduino software application used for writing, compiling, and uploading code to Arduino microcontrollers. The IDE environment consists of two basic parts: Editor and Compiler and supports both C and C++ languages.\cite{MA18}
+
+ % \item VNC
+%\FloatBarrier
+%\begin{figure}[h]
+   %      \centering
+      %  \includegraphics[width=0.2\textwidth]{VNCLogo}
+   
+        %\caption{VNCLogo}
+        %\label{fig:VNCLogo}
+    %\end{figure}
+%\FloatBarrier
+%\subitem\textbf{VNC } (Virtual Network Computing) is a thin-client system that allows users to remotely control and operate another computer or server over a network. It consists of two components: a server that runs on the remote computer, and a client that runs on the local computer.
+%\subitem  The server sends screen updates to the client, so the user can see and interact with the remote computer's desktop as if they were sitting right in front of it
+  \item Jupter Notebook
+\begin{figure}[h]
+         \centering
+        \includegraphics[width=0.2\textwidth]{jupyterNotebookLogo}
+   
+        \caption{Jupyter notebook logo}
+        \label{fig:Jupyter notebook logo}
+    \end{figure}
+\FloatBarrier
+\subitem\textbf{Jupyter Notebook} is a free, open-source web application that enables interactive computing and data analysis using various programming languages, including Julia, Python, and R.\cite{BMIPC17}
+\subitem It allows users to create virtual lab notebooks to support workflows, code, data, and visualizations detailing the research process, making science more open and accessible.\cite{BMIPC17}
+  \item Raspberry Pi Imager
+\begin{figure}[h]
+       \centering
+        \includegraphics[width=0.5\textwidth]{raspberry-pi-imagerLogo}
+   
+        \caption{Raspberry pi imager logo}
+        \label{fig:raspberry-pi-imagerLogo}
+    \end{figure}
+\FloatBarrier
+\subitem\textbf{Raspberry Pi Imager}  is a free and open-source software application developed by the Raspberry Pi Foundation.\cite{RSND}
+With Raspberry Pi Imager, users can easily choose to install a variety of os, like Raspbian, Ubuntu, Kali Linux, and more,  onto a microSD card that can be used to boot up your Raspberry Pi.
+\subitem  It can be downloaded and installed on Windows, Mac, and Linux operating systems.\cite{RSND}
+ \item PuTTY
+\FloatBarrier
+\begin{figure}[h]
+       \centering
+        \includegraphics[width=0.2\textwidth]{puttyLogo}
+   
+        \caption{puttyLogo}
+        \label{fig:}
+    \end{figure}
+\FloatBarrier
+\subitem\textbf{PuTTY} is a free and open-source terminal emulator, serial console, and network file transfer application. It was originally developed for Windows but is now available on many other operating systems.\cite{PYND}
+\subitem PuTTY also supports many network protocols, such as Telnet, rlogin, SSH and raw TCP. It also includes additional features such as session management, SSH key generation, and support for local printing.\cite{PYND}
+ \item VNC
+\FloatBarrier
+\begin{figure}[h]
+       \centering
+        \includegraphics[width=0.2\textwidth]{VNCLogo}
+   
+        \caption{VNCLogo}
+        \label{fig:VNCLogo}
+    \end{figure}
+\FloatBarrier
+\subitem\textbf{VNC } (Virtual Network Computing) is a thin-client system that allows users to remotely control and operate another computer or server over a network. It consists of two components: a server that runs on the remote computer, and a client that runs on the local computer.\cite{RVND}
+\subitem  The server sends screen updates to the client, so the user can see and interact with the remote computer's desktop as if they were sitting right in front of it.\cite{RVND}
+  \item Geany
+\begin{figure}[h]
+         \centering
+        \includegraphics[width=0.2\textwidth]{Geanylogo}
+   
+        \caption{Geany logo}
+        \label{fig:Geanylogo}
+    \end{figure}
+\FloatBarrier
+\subitem\textbf{Geany} is a simple and lightweight text editor designed for programmers and developers. It provides features such as syntax highlighting for a wide range of programming languages, code folding, auto-indentation, and built-in support for various programming tools and compilers.\cite{GND}
+  \item Google Colab
+\begin{figure}[h]
+         \centering
+        \includegraphics[width=0.4\textwidth]{ColabLogo}
+   
+        \caption{Google colab logo}
+        \label{fig: Google Colab logo}
+    \end{figure}
+\FloatBarrier
+\subitem\textbf{Google Colab} (short for Collaboratory) is a cloud-based platform provided by Google that allows users to run and share Jupyter notebook files for data analysis, machine learning and deep learning tasks. .\cite{GRND}
+\subitem It provides access to computing resources such as CPU, GPU,RAM, disk and TPU for free, allowing users to execute complex computational tasks without the need to use their local hardware..\cite{GRND}
+\end{itemize}
+
+\subsubsection{programming languages}
+\begin{itemize}
+
+\item C++
+\FloatBarrier
+\begin{figure}[h]
+         \centering
+        \includegraphics[width=0.2\textwidth]{c++Logo}
+   
+        \caption{C++ logo}
+        \label{fig:c++Logo}
+    \end{figure}
+\FloatBarrier
+\subitem\textbf{C++} is a programming language that is widely used in software development. It is a standardized, general-purpose, and object-oriented language, which means it can be used to create a variety of applications, including system software, device drivers, video games, and desktop applications.\cite{SD20}
+
+\item Python
+\begin{figure}[h]
+\FloatBarrier
+         \centering
+        \includegraphics[width=0.2\textwidth]{PythonLogo}
+   
+        \caption{Python logo}
+        \label{fig:PythonLogo}
+\FloatBarrier
+    \end{figure}
+\subitem\textbf{Python} is a popular high-level programming languagethat supports object-oriented, functional, 
+and imperative programming styles. scripting language, but can be compiled into computer-readable binary.\cite{SD20}
+
+
+\end{itemize}
+%\input{biblio.tex}
+
+
+
+
+%\end{document}
