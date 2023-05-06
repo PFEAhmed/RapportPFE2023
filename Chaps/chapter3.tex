@@ -594,12 +594,143 @@ In this case and as you can see from the code above , the YOLOv5s model was fine
 By using transfer learning, only the last layer of the YOLOv5s model was modified to detect the two new classes. The other layers of the model were left unchanged, as they were already trained to detect objects. This means that the feature extraction layers of the model are kept intact and only the classification layers are modified.
 The modified configuration file was saved as custom\_yolov5s.yaml. This file was used to train the fine-tuned YOLOv5s model.
 \item{Training the fine-tuned yolovs}
+
+Once the data was downloaded, the training process was initiate. The model was trained using the train.py script from the YOLOv5 repository. The script was configured to use the custom configuration file and the downloaded training data.
+To validate the YOLOv5 model, we use the following line of code:
 \begin{lstlisting}[language=Python]
 !python train.py --img 416 --batch 16 --epochs 300 --data {dataset.location}/data.yaml --cfg ./models/custom_yolov5s.yaml  --name yolov5s_results  --cache
 \end{lstlisting}
-Once the data was downloaded, the training process was initiate. The model was trained using the train.py script from the YOLOv5 repository. The script was configured to use the custom configuration file and the downloaded training data.
-
 During the training process, the weights of the YOLOv5s model were updated to detect only two classes. The model was trained for 300 epochs, with a batch size of 16 and an image size of 416x416. The model was also cached, which means that the weights of the model were saved after each epoch, reducing the training time in the future.
+
+\FloatBarrier
+\begin{table}[h]
+
+\centering
+\tcbox[
+  left=0mm,
+  right=0mm,
+  top=0mm,
+  bottom=0mm,
+  boxsep=0mm,
+  toptitle=0.5mm,
+  bottomtitle=0.5mm, title =Training and Validation Metrics for YOLOv5s]{%
+\arrayrulecolor{blue!50!black}\renewcommand{\arraystretch}{1.2}%
+
+
+
+\begin{tabular}{|c|c|c|c|}
+\hline
+ \textbf{Precision} & \textbf{Recall} & \textbf{mAP50} & \textbf{mAP50-95} \\ \hline
+ 0.998 & 1.000 & 0.995 & 0.889 \\ \hline
+\end{tabular}}
+    \addcontentsline{lot}{table}{Training and Validation Metrics for YOLOv5s}
+
+
+\end{table}
+
+\FloatBarrier
+
+
+The training output shows that the model achieves a precision of 0.999, a recall of 1, mAP50 of 0.995, and mAP50-95 of 0.889. These metrics indicate that the model has learned to detect objects with high accuracy.
+
+\item{Validating the fine-tuned yolovs}
+Validation is a critical step in the training process, which involves evaluating the performance of the trained model on a validation dataset. The validation dataset is a separate dataset from the training dataset that is used to ensure that the model is not overfitting to the training data.
+
+To validate the YOLOv5 model, we use the following  line of code :
+\begin{lstlisting}[language=Python]
+!python val.py --weight "runs/train/yolov5s_results/weights/best.pt" --data "/content/yolov5/LogoDetection-3/data.yaml"
+\end{lstlisting}
+The val.py script loads the trained model and evaluates it on the validation dataset specified in the data.yaml file. The --weight flag specifies the path to the weights of the trained model, and the --data flag specifies the path to the dataset configuration file.
+\FloatBarrier
+
+\begin{table}[h]
+
+\centering
+\tcbox[
+  left=0mm,
+  right=0mm,
+  top=0mm,
+  bottom=0mm,
+  boxsep=0mm,
+  toptitle=0.5mm,
+  bottomtitle=0.5mm, title =Training and Validation Metrics for YOLOv5s]{%
+\arrayrulecolor{blue!50!black}\renewcommand{\arraystretch}{1.2}%
+
+
+
+\begin{tabular}{|c|c|c|c|}
+\hline
+ \textbf{Precision} & \textbf{Recall} & \textbf{mAP50} & \textbf{mAP50-95} \\ \hline
+0.999 & 1.000 & 0.955 & 0.877 \\ \hline
+\end{tabular}}
+    \addcontentsline{lot}{table}{Training and Validation Metrics for YOLOv5s}
+
+
+\end{table}
+
+\FloatBarrier
+
+The validation output shows that the model achieves a precision of 0.99, a recall of 1, mAP50 of 0.955, and mAP50-95 of 0.877. These metrics indicate that the model is performing well on the validation dataset and didn't overfit that much to the training data.
+
+\item{Testing the fine-tuned yolovs}
+Testing is the process of evaluating the performance of the trained model on a completely new dataset that the model has never seen before. It is used to ensure that the model can generalize well to new data.
+To test the YOLOv5 model, we use the following line of code:
+\begin{lstlisting}[language=Python]
+!python val.py --weight "runs/train/yolov5s_results/weights/best.pt" --data "/content/yolov5/LogoDetection-3/data.yaml" --task test
+\end{lstlisting}
+This command is used to evaluate the performance of the trained YOLOv5 model on a test dataset. The val.py script is used here again, but this time with the --task test flag which tells the script to evaluate the model on the test dataset. The --weight flag specifies the path to the best weights file obtained during training. The --data flag specifies the path to the dataset YAML file containing information about the test dataset. 
+\FloatBarrier
+
+\begin{table}[h]
+
+\centering
+\tcbox[
+  left=0mm,
+  right=0mm,
+  top=0mm,
+  bottom=0mm,
+  boxsep=0mm,
+  toptitle=0.5mm,
+  bottomtitle=0.5mm, title =Training and Validation Metrics for YOLOv5s]{%
+\arrayrulecolor{blue!50!black}\renewcommand{\arraystretch}{1.2}%
+
+
+
+\begin{tabular}{|c|c|c|c|}
+\hline
+ \textbf{Precision} & \textbf{Recall} & \textbf{mAP50} & \textbf{mAP50-95} \\ \hline
+0.999 & 0.997 & 0.954 & 0.878 \\ \hline
+\end{tabular}}
+    \addcontentsline{lot}{table}{Training and Validation Metrics for YOLOv5s}
+
+
+\end{table}
+
+\FloatBarrier
+The test output shows that the model achieves a precision of 0.999, a recall of 0.977, mAP50 of 0.994, and mAP50-95 of 0.878. These metrics indicate that the model is performing well on the test and didn't overfit that much to the training data.
+
+\item{Classes Detection}\\
+After completing the crucial steps of image gathering, image labeling, image augmentation, and training the YOLOv5 model, we finally reach the intense step of inference. Inference is the process of using the trained model to make predictions on new, unseen images. This step is the culmination of all the hard work put into building and refining the model, and it is where the model's true effectiveness is put to the real-life test. Through inference, we can evaluate the model's accuracy and see how well it performs on real-world data, ultimately determining its usefulness in solving the problem at hand.\\
+During inference, the YOLOv5 algorithm takes an input image and passes it through a convolutional neural network (CNN) to extract feature maps. The CNN uses several layers of convolution and pooling operations to extract features from the image. These features are then passed through a series of fully connected layers to produce a set of bounding boxes and associated confidence scores for each detected object.
+
+The bounding boxes are defined by their coordinates (x, y) and their width and height (w, h). The confidence scores indicate the probability that an object is present in the bounding box. During inference, the YOLOv5 algorithm evaluates the confidence scores for each detected object and selects the object with the highest score as the primary detection.
+
+If an object is in an inverted position, the YOLOv5 algorithm will still be able to detect it. This is because the CNN is able to learn and recognize patterns and features of objects, regardless of their orientation in the image. The algorithm will simply detect the object and output its bounding box and confidence score, regardless of whether it is in a normal or inverted position and if it doesn't we can coclude that there is no logo.
+
+Now To detect if the logo is printed on the right or left side of the product, you can use image processing techniques. First, you can extract the coordinates of the bounding box resulting from the YOLOv5 prediction by assigning xmin, ymin, xmax, ymax to the variables row[0], row[1], row[2], and row[3], respectively.
+\begin{lstlisting}[language=Python]
+xmin, xmax = row[0],row[2]
+\end{lstlisting}
+Next, you can calculate the center of the bounding box by finding the average of xmin and xmax. This can be done with the following code:
+\begin{lstlisting}[language=Python]
+center_x = (xmin + xmax) / 2
+\end{lstlisting}
+Then, you can calculate the width of the frame using the shape attribute of the frame, which returns the height, width, and number of channels of the image. This can be done with the following code:
+\begin{lstlisting}[language=Python]
+width = frame.shape[1]
+\end{lstlisting}
+the code above  calculates the width of the image using the shape attribute of the frame, but only assigns the second element (index 1) to the variable width, which corresponds to the width of the image. The height and number of channels are not used in this code.
+Finally, you can compare the center of the bounding box with the center of the image. If the center of the bounding box is smaller than the center of the image, it means that the logo is located on the left side of the product, which is a defective piece. If it is on the right side, it means that the logo is printed on the right side of the product, which is a normal piece.
 \end{itemize}
 
 
