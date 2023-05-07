@@ -2,10 +2,23 @@
 %\input{includePackages.tex}
 %\begin{document}
 
-%\chapter{Sprint0 :  <{}< version 0 >{}>}
+
 
 \chapter{Sprint 2: Stabilizing the System}
+\section{Introduction}
+In this sprint, we made several significant changes to our project that have improved its functionality and usability. First, we decided to switch from using a traditional router to using a Raspberry Pi as an access point, which allowed us to have more control over our network and make our setup more portable. We also made the decision to give our ESP32-CAM server a static IP address, which helped to improve its stability and reliability.
 
+In addition, we identified an issue with the position of the logo and the font. To address this, we used image processing with the addition of a new class to the YOLOV5s to help us accurately identify and classify these types of objects. This change has significantly improved the accuracy and reliability of our system, and we are confident that it will provide a better user experience for our end-users.
+
+Overall, we are pleased with the progress we have made in this sprint and believe that these changes will have a positive impact on our project moving forward.
+\section{Workflow}
+\subsection{Network improvements}
+\subsubsection{Turning the raspberry pi into an access}
+There are several reasons I turned the Raspberry Pi into an access point rather than relying on a normal router. First, Flexibility: By setting up a Raspberry Pi as an access point, you have more control over your network and can customize it to meet your specific needs. Second, Cost: Using a Raspberry Pi as an access point can be cheaper than buying a dedicated router, especially if you already have a spare Raspberry Pi lying around.Third,Portability: A Raspberry Pi is small and portable, making it easy to set up an access point on the go. This can be useful if you need to quickly set up a network in a remote location, such as a camping trip or a field research project.Finally, Integration: If I'am already using a Raspberry Pi for other purposes, so I can easily integrate the access point functionality into your existing setup.
+\subsubsection{Giving static address to ESP32-CAM}
+There are several advantages of assigning a static IP address to an ESP32-CAM device compared to using a dynamic IP address obtained from a DHCP server such as Stability: With a static IP address, the ESP32-CAM device will always have the same IP address, which ensures stability in the network connection. In contrast, a dynamic IP address may change periodically, which can cause connectivity issues if the device's IP address changes without the network administrator's knowledge
+and in addition to that Easier network access: A static IP address makes it easier to access the ESP32-CAM device remotely. Since the IP address remains constant, there is no need to check the DHCP server for the device's current IP address, which can be especially beneficial in situations where you need to access the device frequently.
+\subsubsection{Detection improvements}
 
 %\input{Chaps/biblio.tex}
 

@@ -86,7 +86,7 @@ For a comprehensive understanding of the hardware and software environment compo
 
 \section{Workflow}
 We tried the approach of using contour detection to detect the logo on three different images. The first image was taken from a phone's 32mp camera, the second image was of the printed image of the phone's 32mp camera, captured using an OV2640 camera module, and the third image was of the actual physical product with an OV2640 camera module. However, before applying contour detection to these images, there were other necessary steps that needed to be taken
-\subsubsection{Brightness and contrast adjustment}
+\subsection{Brightness and contrast adjustment}
 
 \FloatBarrier
 \begin{figure}[h]
@@ -150,9 +150,9 @@ where: \\
 \item $\text{input2\_Pixel} = \text{second source array}$
 \item $\gamma = \text{optional scalar value added to every output pixel value}$
 \end{itemize}
-\subsubsection{reflection}
+\subsection{reflection}
 During my image processing experiments, I decided to test the effects of reducing brightness and adding contrast to images captured using different devices. To do this, I selected three images: the first was taken from a high-end 32 megapixel phone camera and it didn't have any problems with overexposure or loss of detail. The second image was a printed copy of the same photo, but this time using an ESP32-CAM as the capture device. Unfortunately, even with careful brightness reduction, a ray of sunlight was still visible in the image, and the overall quality was noticeably poorer than the first image. Finally, I used the ESP32-CAM to capture an image of the actual product in question, and again I observed a reduction in image quality compared to the high-end phone camera image. Even after applying the same brightness reduction and contrast enhancement techniques used on the other images, there was still visible noise and loss of detail, as well as a ray of sunlight that remained in the image. It seems that moving from a high-quality camera to an ESP32-CAM can have a significant impact on image quality, even with careful image processing techniques.
-\subsubsection{grayscaling}
+\subsection{grayscaling}
 
 \FloatBarrier
 \begin{figure}[h]
@@ -210,9 +210,9 @@ Where:
 \item $B$: represents the blue values of a pixel in the BGR image.
 \end{itemize}
 
-\subsubsection{reflection}
+\subsection{reflection}
 As part of my image processing experiments, I decided to apply grayscaling to the images as a preprocessing step before using contour detection to locate the logos. While this technique worked well for the first image, which was taken using a 32 megapixel phone camera and did not have any significant issues, it actually made the problems with the second and third images worse. Despite reducing the brightness and increasing the contrast, the ray of sunlight was still present in the images, and the grayscaling process made the problem more pronounced.
-\subsubsection{Image thresholding}
+\subsection{Image thresholding}
 
 \FloatBarrier
 \begin{figure}[h]
@@ -271,9 +271,9 @@ maxVal &\text{if } src(x,y) > T \\
 \item $src(x,y)$: the input image pixel value at position $(x,y)$
 \item $T$: the threshold value 
 \end{itemize}
-\subsubsection{reflection}
+\subsection{reflection}
 During the thresholding step, we didn't encounter any issues with the first image as the logo was clearly white and the background was black. However, the last two images posed a challenge as there was additional white noise caused by the light source, making it difficult to distinguish the logo from the noise.
-\subsubsection{Contour detection}
+\subsection{Contour detection}
 In the contour detection step, we used a computer vision algorithm to identify and extract the logo from the images. While the algorithm worked perfectly fine for the first image captured from the 32 megapixel phone camera, it struggled to accurately detect the logo in the last two images taken with the ESP32 cam. The presence of the white noise in the images due to the sunlight made it difficult for the algorithm to distinguish between the logo and the background and oither wihite shapes, resulting in inaccurate or incomplete detection
 \FloatBarrier
 \begin{figure}[h]
