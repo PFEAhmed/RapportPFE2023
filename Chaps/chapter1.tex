@@ -24,10 +24,22 @@ In order to ensure a successful outcome for an IT project, it is crucial to foll
 \vspace{0.25cm}
 There are many different methodologies that can be used for IT project management, such as Agile\cite{Aw15} and Heavyweight\cite{Aw15} . Each methodology has its own set of principles, practices, and tools that are designed to optimize project performance and efficiency.
 
-
-\begin{table}[ht]
+\FloatBarrier
+\begin{table}[h]
 
 \centering
+\tcbox[
+  left=0mm,
+  right=0mm,
+  top=0mm,
+  bottom=0mm,
+  boxsep=0mm,
+  toptitle=0.5mm,
+  bottomtitle=0.5mm, title = Comparison of heavyweight and agile methods \cite{PGC10}]{%
+\arrayrulecolor{blue!50!black}\renewcommand{\arraystretch}{1.2}%
+
+
+
 \begin{tabular}{|l|c|r|}
 \hline
 \multicolumn{1}{|l|}{         } & \multicolumn{1}{|c|}{Heavyweight Methods}& \multicolumn{1}{|c|}{Agile Methods} \\
@@ -58,11 +70,12 @@ Return on Investment & Early in Project & End of Project \\
 \hline
 Team Size & Small/Creative & Large \\
 \hline
-\end{tabular}
-\caption{Comparison of heavyweight and agile methods \cite{PGC10}}
+\end{tabular}}
+    \addcontentsline{lot}{table}{Comparison of heavyweight and agile methods \cite{PGC10}}
+
 \label{table:comparison}
 \end{table}
-
+\FloatBarrier
 
 \newpage
 \subsection{Chosen methodology: SCRUM}
@@ -161,9 +174,23 @@ The grammar and notations of SysML are defined in a standards specification publ
 
 \section{Project management with SCRUM }
 \subsection{Team and roles}
-\begin{table}[!ht]
-  \centering
-  \begin{tabular}{|l|l|p{9cm}|}
+\FloatBarrier
+\begin{table}[h]
+
+\centering
+\tcbox[
+  left=0mm,
+  right=0mm,
+  top=0mm,
+  bottom=0mm,
+  boxsep=0mm,
+  toptitle=0.5mm,
+  bottomtitle=0.5mm, title = SCRUM Actors]{%
+\arrayrulecolor{blue!50!black}\renewcommand{\arraystretch}{1.2}%
+
+
+
+ \begin{tabular}{|l|l|p{9cm}|}
     \hline
     % after \\: \hline or \cline{col1-col2} \cline{col3-col4} ...
     Role & Actor & Mission \\
@@ -174,9 +201,14 @@ The grammar and notations of SysML are defined in a standards specification publ
     \hline
     Product owner & ********** &Define the product features and ensure their conformity. \\
     \hline
-  \end{tabular}
-  \caption{SCRUM Actors}\label{ActScrum}
+  \end{tabular}}
+    \addcontentsline{lot}{table}{SCRUM Actors}
+
+\label{ActScrum}
 \end{table}
+
+\FloatBarrier
+
 
 \subsection{Backlog Product}
 \vspace{1em}

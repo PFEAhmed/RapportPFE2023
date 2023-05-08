@@ -10,6 +10,8 @@ In this sprint, we made several significant changes to our project that have imp
 
 In addition, we identified an issue with the position of the logo and the font. To address this, we used image processing with the addition of a new class to the YOLOV5s to help us accurately identify and classify these types of objects. This change has significantly improved the accuracy and reliability of our system, and we are confident that it will provide a better user experience for our end-users.
 
+Furthermore, I am excited to announce that I automated the main script for inference and I fixed the raspberry pi's temperature issue.
+
 Overall, we are pleased with the progress we have made in this sprint and believe that these changes will have a positive impact on our project moving forward.
 \section{Workflow}
 \subsection{Network improvements}
@@ -18,7 +20,23 @@ There are several reasons I turned the Raspberry Pi into an access point rather 
 \subsubsection{Giving static address to ESP32-CAM}
 There are several advantages of assigning a static IP address to an ESP32-CAM device compared to using a dynamic IP address obtained from a DHCP server such as Stability: With a static IP address, the ESP32-CAM device will always have the same IP address, which ensures stability in the network connection. In contrast, a dynamic IP address may change periodically, which can cause connectivity issues if the device's IP address changes without the network administrator's knowledge
 and in addition to that Easier network access: A static IP address makes it easier to access the ESP32-CAM device remotely. Since the IP address remains constant, there is no need to check the DHCP server for the device's current IP address, which can be especially beneficial in situations where you need to access the device frequently.
+\subsection{Software improvement}
+\subsubsection{Automating the main script for inference}
+Once we installed our product in the factory, we noticed that the main script inside it required human intervention to work properly. This was problematic because it meant that an operator had to be present to initiate the script every time the system was started up. We knew that this was not an efficient or sustainable solution, so we began exploring ways to automate the script.
+
+After some research and testing, we were able to configure the script to run automatically at the start of the Raspberry Pi. This allowed the system to operate without any human intervention, reducing the need for manual input and increasing the overall efficiency of the system. With the script now automated, the system could start up and run smoothly without any manual intervention, freeing up our operators to focus on other tasks.
+
+The benefits of automating a script are numerous. Automating a script can reduce the need for manual input, saving time and increasing efficiency. In addition, automating a script can reduce the potential for human error, ensuring that the system operates reliably and accurately. Furthermore, automating a script can help to reduce costs associated with hiring additional staff or training existing staff on manual processes.
+
+Overall, the automation of our script was a significant improvement to our system, and we are confident that it will continue to improve the efficiency and reliability of our product moving forward. By automating this process, we have created a more sustainable and efficient system that will benefit both our team and our end-users.
 \subsubsection{Detection improvements}
+\subsection{Fixing the temperature issue}
+After installing the first version of our product in the factory, we noticed that the temperature of the Raspberry Pi was rising significantly. This was likely due to the hot environment and the fact that the Raspberry Pi was running YOLOv5, which requires a significant amount of processing power. We knew that this issue could impact the reliability and longevity of our product, so we immediately began exploring solutions.
+
+After considering several options, we decided to install a fan to cool the Raspberry Pi. This solution proved to be effective in reducing the temperature of the Raspberry Pi and maintaining stable performance. By keeping the Raspberry Pi cool, we were able to prevent it from overheating and potentially causing damage to the system. Additionally, we found that cooling the Raspberry Pi improved the overall performance of our system, allowing it to run more smoothly and efficiently.
+
+In general, the benefits of cooling a Raspberry Pi are numerous. Cooling a Raspberry Pi can improve its longevity, reduce the risk of damage, and ensure that it runs smoothly and efficiently. Overheating can cause a Raspberry Pi to crash, freeze, or even become permanently damaged. By keeping the Raspberry Pi cool, we can prevent these issues and ensure that our product is reliable and durable. Furthermore, cooling a Raspberry Pi can help to extend its lifespan, which can ultimately save time and money in the long run.
+
 
 %\input{Chaps/biblio.tex}
 

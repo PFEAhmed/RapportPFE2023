@@ -6,7 +6,8 @@
 
 \chapter{Sprint 0: Logo Detection with Image Processing}
 
-\section*{Introduction}
+\section{Introduction}
+In this chapter, we explore the workflow involved in detecting a logo on different images captured using various devices. We begin by discussing the necessary steps required before applying contour detection to the images, including brightness and contrast adjustment, reflection removal, and grayscaling. We then examine the results of applying these techniques on three different images captured using a high-end phone camera, an OV2640 camera module, and an ESP32-CAM, respectively. Through our experiments, we observe the impact of image capture devices on image quality and demonstrate the effectiveness of image processing techniques in enhancing image quality for logo detection.
 \section{Specification of requirements}
 In this section, we introduce the different actors as well as the functional and non-functional requirements.
 \subsection{actors identification }
@@ -30,7 +31,7 @@ The requirements do not stop at the functional level but tend towards requiremen
 \end{itemize}
 
 \section{Modeling languages diagrams}
-\subsection{UML: use case diagram}
+\subsection{SysMl}
 \begin{figure}[htbp]
     \centering
     \begin{tikzpicture}
@@ -76,7 +77,7 @@ The requirements do not stop at the functional level but tend towards requiremen
 
 
 
-\subsection{SysMl}
+
 
 
 \section{Project component}

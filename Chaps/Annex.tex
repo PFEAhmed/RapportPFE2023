@@ -7,18 +7,23 @@
 \section{Project component}
 \subsection{Hardware environment}
 \subsubsection{ESP32-CAM}
-\FloatBarrier
-\begin{figure}[h]
-         \centering
-        \includegraphics[width=0.4\textwidth]{esp32cam}
-   
-        \caption{ESP32-CAM}
-        \label{fig:esp32cam}
-    \end{figure}
-\FloatBarrier
+
 \FloatBarrier
 \begin{table}[h]
+
 \centering
+\tcbox[width=\linewidth,
+  left=0mm,
+  right=0mm,
+  top=0mm,
+  bottom=0mm,
+  boxsep=0mm,
+  toptitle=0.5mm,
+  bottomtitle=0.5mm, title = ESP32-CAM characteristics \cite{HT}]{%
+\arrayrulecolor{blue!50!black}\renewcommand{\arraystretch}{1.2}%
+
+
+
 \begin{tabular}{|l|l|}
 \hline
 \textbf{Component} & \textbf{Specification} \\ \hline
@@ -37,12 +42,13 @@ Power consumption (Deep-Sleep) & as low as 6mA@5V \\ \hline
 Operating temperature & -20 °C ~ 85 °C \\ \hline
 Dimensions & 40.5mm x 27mm x 4.5mm \\ \hline
 Flash light & LED built-in on board \\ \hline
-\end{tabular}
-\caption{ESP32-CAM characteristics \cite{HT}}
+\end{tabular}}
+    \addcontentsline{lot}{table}{ESP32-CAM characteristics \cite{HT}}
+
 \label{table:esp32-cam-characteristics}
 \end{table}
-\FloatBarrier
 
+\FloatBarrier
 \subsubsection{PC}
 \FloatBarrier
 \begin{figure}[h]
@@ -53,9 +59,21 @@ Flash light & LED built-in on board \\ \hline
         \label{fig:lenovo-ideapad-gaming-3}
     \end{figure}
 \FloatBarrier
-
 \begin{table}[h]
+
 \centering
+\tcbox[width=\linewidth,
+  left=0mm,
+  right=0mm,
+  top=0mm,
+  bottom=0mm,
+  boxsep=0mm,
+  toptitle=0.5mm,
+  bottomtitle=0.5mm, title = Specifications of the PC]{%
+\arrayrulecolor{blue!50!black}\renewcommand{\arraystretch}{1.2}%
+
+
+
 \begin{tabular}{|l|l|}
 \hline
 \textbf{Component} & \textbf{Specification} \\ \hline
@@ -64,10 +82,14 @@ Memory & 16 GB DDR4 RAM \\ \hline
 Graphics & NVIDIA GeForce GTX 1650Ti (4GB GDDR6) \\ \hline
 Storage & 512 GB SSD \\ \hline
 Operating System & Windows 10 \\ \hline
-\end{tabular}
-\caption{Specifications of the PC}
+\end{tabular}}
+    \addcontentsline{lot}{table}{Specifications of the PC}
+
 \label{table:pc-specifications}
 \end{table}
+
+\FloatBarrier
+
 
 \subsection{Software environment }
 \subsubsection{Software}
