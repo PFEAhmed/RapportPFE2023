@@ -18,8 +18,30 @@ Overall, we are pleased with the progress we have made in this sprint and believ
 \subsubsection{Turning the raspberry pi into an access}
 There are several reasons I turned the Raspberry Pi into an access point rather than relying on a normal router. First, Flexibility: By setting up a Raspberry Pi as an access point, you have more control over your network and can customize it to meet your specific needs. Second, Cost: Using a Raspberry Pi as an access point can be cheaper than buying a dedicated router, especially if you already have a spare Raspberry Pi lying around.Third,Portability: A Raspberry Pi is small and portable, making it easy to set up an access point on the go. This can be useful if you need to quickly set up a network in a remote location, such as a camping trip or a field research project.Finally, Integration: If I'am already using a Raspberry Pi for other purposes, so I can easily integrate the access point functionality into your existing setup.
 \subsubsection{Giving static address to ESP32-CAM}
-There are several advantages of assigning a static IP address to an ESP32-CAM device compared to using a dynamic IP address obtained from a DHCP server such as Stability: With a static IP address, the ESP32-CAM device will always have the same IP address, which ensures stability in the network connection. In contrast, a dynamic IP address may change periodically, which can cause connectivity issues if the device's IP address changes without the network administrator's knowledge
-and in addition to that Easier network access: A static IP address makes it easier to access the ESP32-CAM device remotely. Since the IP address remains constant, there is no need to check the DHCP server for the device's current IP address, which can be especially beneficial in situations where you need to access the device frequently.
+There are several advantages of assigning a static IP address to an ESP32-CAM device compared to using a dynamic IP address obtained from a DHCP server. Stability is one of the key advantages. With a static IP address, the ESP32-CAM device will always have the same IP address, ensuring stability in the network connection. In contrast, a dynamic IP address may change periodically, causing connectivity issues if the device's IP address changes without the network administrator's knowledge.
+
+Another advantage is easier network access. By assigning a static IP address, it becomes easier to access the ESP32-CAM device remotely. Since the IP address remains constant, there is no need to check the DHCP server for the device's current IP address. This can be especially beneficial in situations where frequent access to the device is required.
+
+It is essential for the ESP32-CAM device to have a static IP address. This is because the Raspberry Pi needs to connect to the ESP32-CAM's web server to retrieve images. By assigning a static IP address to the ESP32-CAM, such as 10.42.0.58, the Raspberry Pi can reliably establish a connection with the ESP32-CAM's web server without having to constantly check for the device's IP address.
+
+To configure the ESP32-CAM with a static IP address, the following code snippet can be used:
+\FloatBarrier
+\begin{lstlisting}[language=C]
+// Set your Static IP address
+IPAddress local_IP(10, 42, 0, 58);
+// Set your Gateway IP address
+IPAddress gateway(10, 42, 0, 1);
+IPAddress subnet(255, 255, 255, 0);
+IPAddress primaryDNS(8, 8, 8, 8); //optional
+IPAddress secondaryDNS(8, 8, 4, 4); //optional
+
+if (!WiFi.config(local_IP, gateway, subnet, primaryDNS, secondaryDNS)) {
+    Serial.println("STA Failed to configure");
+}
+
+
+\end{lstlisting}
+By including this in my esp32-cam code , I can ensure that the it will always uses the specified static IP address when connecting to the network. This allows the Raspberry Pi to easily retrieve images from the ESP32-CAM's web server by accessing the fixed IP address (10.42.0.58 in this case). This configuration provides stability and reliability to the image retrieval process, enabling seamless communication between the Raspberry Pi and the ESP32-CAM.
 \subsection{Software improvement}
 \subsubsection{Automating the main script for inference}
 Once we installed our product in the factory, we noticed that the main script inside it required human intervention to work properly. This was problematic because it meant that an operator had to be present to initiate the script every time the system was started up. We knew that this was not an efficient or sustainable solution, so we began exploring ways to automate the script.
@@ -38,7 +60,7 @@ After considering several options, we decided to install a fan to cool the Raspb
 In general, the benefits of cooling a Raspberry Pi are numerous. Cooling a Raspberry Pi can improve its longevity, reduce the risk of damage, and ensure that it runs smoothly and efficiently. Overheating can cause a Raspberry Pi to crash, freeze, or even become permanently damaged. By keeping the Raspberry Pi cool, we can prevent these issues and ensure that our product is reliable and durable. Furthermore, cooling a Raspberry Pi can help to extend its lifespan, which can ultimately save time and money in the long run.
 
 
-%\input{Chaps/biblio.tex}
+%\input{biblio.tex}
 
 
 
