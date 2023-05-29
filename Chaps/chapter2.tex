@@ -23,59 +23,67 @@ The requirements do not stop at the functional level but tend towards requiremen
 \begin{itemize}
 \item \textbf{Reliability:} The system should be able to consistently capture and process images accurately.
 \item \textbf{Performance:} The system should be able to process images quickly and without noticeable lag or delay.
-\item \textbf{Security:} The system should have appropriate security measures in place to prevent unauthorized access to the servers and data.
 \item \textbf{Scalability:} The system should be able to handle multiple simultaneous connections and requests from clients without compromising its performance.
 \item \textbf{Maintainability:} The system should be easy to maintain and update, with clear and well-documented code and configuration.
-\item \textbf{Compatibility:} The system should be compatible with a wide range of devices and platforms.
-\item \textbf{Usability:} The system should be easy to use and understand for both technical and non-technical users.
 \end{itemize}
 
 \section{Modeling languages diagrams}
 \subsection{SysMl}
-\begin{figure}[htbp]
-    \centering
-    \begin{tikzpicture}
-        \node[draw, fill=white, minimum height=2cm, minimum width=2cm, line width=2pt] (ESP32-CAM) at (-4,0) {};
-        \node[draw, fill=white, minimum height=2cm, minimum width=2cm, line width=2pt] (PC) at (-4,-5) {};
-      %  \umlactor[x=-4, y=0, scale=2,draw=black, line width=2pt]{ESP32-CAM}
-        %\umlactor[x=-4, y=-5, scale=2,draw=black, line width=2pt]{ESP32}
-  \umlusecase[x=-2, y=4, width=3cm, name=server,fill=white,draw=black, line width=2pt]{\begin{tabular}{c}Create a server\\         \end{tabular}}
-  \umlusecase[x=7, y=4, width=3cm, name=connect,fill=white,draw=black, line width=2pt]{\begin{tabular}{c}Connect to a wifi\\         \end{tabular}}
-  \umlusecase[x=5, y=-1, width=3cm, name=connect2,fill=white,draw=black, line width=2pt]{\begin{tabular}{c}Connect to a wifi\\         \end{tabular}}
-  \umlusecase[x=0, y=-2, width=3cm, name=connect_to_server,fill=white,draw=black, line width=2pt]{\begin{tabular}{c}Connect to the server \\         \end{tabular}}
-        \umlusecase[x=0, y=2, width=3cm, name=footages,fill=white,draw=black, line width=2pt]{\begin{tabular}{c}Take live footages\\         \end{tabular}}
-        \umlusecase[x=0, y=-4, width=3cm, name=predict,fill=white,draw=black, line width=2pt]{\begin{tabular}{c}Predict the state\\of the logo\\\end{tabular}}
-        \umlusecase[x=5, y=3, width=3cm, name=extend1,fill=white,draw=black, line width=2pt]{\begin{tabular}{c}Take photos\end{tabular}} 
-        \umlusecase[x=5, y=1, width=3cm, name=extend2,fill=white,draw=black, line width=2pt]{\begin{tabular}{c}Take vidoes\end{tabular}}  
-        \umlusecase[x=5, y=-5.5, width=3cm, name=Present logo,fill=white,draw=black, line width=2pt]{\begin{tabular}{c}Present logo\end{tabular}} 
-      %  \umlusecase[x=5, y=-4, width=3cm, name=Flipped on the x axis,fill=white,draw=black, line width=2pt]{\begin{tabular}{c}Logo flipped on \\ the x  axis\end{tabular}}  
-        \umlusecase[x=5, y=-2.5, width=3cm, name=No logo,fill=white,draw=black, line width=2pt]{\begin{tabular}{c}No logo\end{tabular}}  
-%\draw[->] (connect_to_server.west) -| node[pos=1, above] {<<secondary>>} ([xshift=-4mm]ESP32-CAM.east) |- (connect_to_server.east);
+
+\FloatBarrier
+\begin{figure}[h]
+\FloatBarrier
+         \centering
+        \includegraphics[width=1\textwidth]{UseCase Diagram1}
+   
+        \caption{Use case diagram version 0}
+        \label{Use case diagram version 0}
+\FloatBarrier
+    \end{figure}
 
 
-  \umlinclude{server}{connect}
- \umlinclude{connect_to_server}{predict}
- \umlinclude{connect2}{connect_to_server}
+\FloatBarrier
 
-        \umlinherit{Present logo}{predict}
-      %  \umlinherit{Flipped on the x axis}{predict}
-        \umlinherit{No logo}{predict}  
-        \umlinherit{footages}{extend2} 
-        \umlinherit{footages}{extend1} 
-        \node[fit=(predict), inner ysep=4ex] {}; % increase height of predict use case
-      %  \node[fit=(Flipped on the x axis), inner ysep=4ex]{};
-        \umlassoc{ESP32-CAM}{footages}
-  \umlassoc{ESP32-CAM}{server}
-\node[below] at (ESP32-CAM.south) {ESP32-CAM};
-        \node[below] at (PC.south) {PC};
-        \umlassoc{PC}{predict}
-    \end{tikzpicture}
-    \caption{Use case Diagram for sprint version 0}
-    \label{fig:usecase-sprint0}
-\end{figure}
+\FloatBarrier
+\begin{figure}[h]
+\FloatBarrier
+         \centering
+        \includegraphics[width=1\textwidth]{Activity Diagram1}
+   
+        \caption{Activity diagram version 0}
+        \label{Activity diagram version 0}
+\FloatBarrier
+    \end{figure}
 
 
+\FloatBarrier
 
+\FloatBarrier
+\begin{figure}[h]
+\FloatBarrier
+         \centering
+        \includegraphics[width=1\textwidth]{RequirementDiagram1}
+   
+        \caption{Requirement diagram version 0}
+        \label{Requirement diagram version 0}
+\FloatBarrier
+    \end{figure}
+
+
+\FloatBarrier
+\FloatBarrier
+\begin{figure}[h]
+\FloatBarrier
+         \centering
+        \includegraphics[width=1\textwidth]{Block Definition Diagram1}
+   
+        \caption{Block Definition Diagram version 0}
+        \label{Block Definition Diagram version 0}
+\FloatBarrier
+    \end{figure}
+
+
+\FloatBarrier
 
 
 
@@ -325,7 +333,6 @@ Moving forward, we plan to incorporate deep learning techniques in our next spri
 \newpage
 
 %\input{biblio.tex}
-
 
 
 

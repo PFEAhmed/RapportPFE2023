@@ -40,63 +40,61 @@ The requirements do not stop at the functional level but tend towards requiremen
 \item \textbf{Usability:} The system should be easy to use and understand for both technical and non-technical users.
 \end{itemize}
 
-\section{Modeling languages diagrams}
-\subsection{SysMl}
+\section{SysMl}
+
 \FloatBarrier
-\begin{figure}[htbp]
-    \centering
-    \begin{tikzpicture}
-        \node[draw, fill=white, minimum height=2cm, minimum width=2cm, line width=2pt] (ESP32-CAM) at (-4,0) {};
-        \node[draw, fill=white, minimum height=2cm, minimum width=2cm, line width=2pt] (Raspberry_pi) at (-4,-5) {};
-      %  \umlactor[x=-4, y=0, scale=2,draw=black, line width=2pt]{ESP32-CAM}
-        %\umlactor[x=-4, y=-5, scale=2,draw=black, line width=2pt]{ESP32}
-  \umlusecase[x=-2, y=4, width=3cm, name=server,fill=white,draw=black, line width=2pt]{\begin{tabular}{c}Create a server\\         \end{tabular}}
-  \umlusecase[x=7, y=4, width=3cm, name=connect,fill=white,draw=black, line width=2pt]{\begin{tabular}{c}Connect to a wifi\\         \end{tabular}}
-  \umlusecase[x=5, y=-1, width=3cm, name=connect2,fill=white,draw=black, line width=2pt]{\begin{tabular}{c}Connect to a wifi\\         \end{tabular}}
-  \umlusecase[x=0, y=-2, width=3cm, name=connect_to_server,fill=white,draw=black, line width=2pt]{\begin{tabular}{c}Connect to the server \\         \end{tabular}}
-        \umlusecase[x=0, y=2, width=3cm, name=footages,fill=white,draw=black, line width=2pt]{\begin{tabular}{c}Take live footages\\         \end{tabular}}
-        \umlusecase[x=0, y=-4, width=3cm, name=predict,fill=white,draw=black, line width=2pt]{\begin{tabular}{c}Predict the state\\of the logo\\\end{tabular}}
-        \umlusecase[x=5, y=3, width=3cm, name=extend1,fill=white,draw=black, line width=2pt]{\begin{tabular}{c}Take photos\end{tabular}} 
-        \umlusecase[x=5, y=1, width=3cm, name=extend2,fill=white,draw=black, line width=2pt]{\begin{tabular}{c}Take vidoes\end{tabular}}  
-        \umlusecase[x=4, y=-11, width=3cm, name=Present logo,fill=white,draw=black, line width=2pt]{\begin{tabular}{c}Present logo\end{tabular}} 
-        \umlusecase[x=5, y=-4, width=3cm, name=Flipped on the x axis,fill=white,draw=black, line width=2pt]{\begin{tabular}{c}Logo flipped on \\ the x  axis\end{tabular}}  
-   \umlusecase[x=5.5, y=-6, width=4.25cm, name=first,fill=white,draw=black, line width=2pt]{\begin{tabular}{c}Logo flipped on \\ the first half of the product\end{tabular}}  
-  \umlusecase[x=5.5, y=-8, width=4.25cm, name=second,fill=white,draw=black, line width=2pt]{\begin{tabular}{c}Logo flipped on \\ the second half of the product\end{tabular}}  
-        \umlusecase[x=5, y=-2.5, width=3cm, name=No logo,fill=white,draw=black, line width=2pt]{\begin{tabular}{c}No logo\end{tabular}}  
-%\draw[->] (connect_to_server.west) -| node[pos=1, above] {<<secondary>>} ([xshift=-4mm]ESP32-CAM.east) |- (connect_to_server.east);
+\begin{figure}[h]
+
+         \centering
+        \includegraphics[width=1\textwidth]{UseCase Diagram2}
+   
+        \caption{Use case diagram version 1}
+        \label{Use case diagram version 1}
+
+    \end{figure}
 
 
-  \umlinclude{server}{connect}
- \umlinclude{connect_to_server}{predict}
- \umlinclude{connect2}{connect_to_server}
-
-        \umlinherit{Present logo}{predict}
-        \umlinherit{Flipped on the x axis}{predict}
-        \umlinherit{No logo}{predict} 
-        \umlinherit{first}{predict}
-        \umlinherit{second}{predict}  
-        \umlinherit{extend1}{footages}  
-        \umlinherit{extend2}{footages} 
-
-        \node[fit=(predict), inner ysep=4ex] {}; % increase height of predict use case
-        \node[fit=(Flipped on the x axis), inner ysep=4ex]{};
-        \node[fit=(first), inner xsep=8ex]{};
-        \umlassoc{ESP32-CAM}{footages}
-  \umlassoc{ESP32-CAM}{server}
-\node[below] at (ESP32-CAM.south) {ESP32-CAM};
-        \node[below] at (Raspberry_pi.south) {Raspberry pi};
-        \umlassoc{Raspberry_pi}{predict}
-    \end{tikzpicture}
-    \caption{Use case Diagram for sprint version 1}
-    \label{fig:usecase-sprint0}
-\end{figure}
-
+\FloatBarrier
+\FloatBarrier
+\begin{figure}[h]
+\FloatBarrier
+         \centering
+        \includegraphics[width=1\textwidth]{Activity Diagram2}
+   
+        \caption{Activity diagram version 1}
+        \label{Activity diagram version 1}
+\FloatBarrier
+    \end{figure}
 
 
 \FloatBarrier
 
+\FloatBarrier
+\begin{figure}[h]
+\FloatBarrier
+         \centering
+        \includegraphics[width=1\textwidth]{Requirement Diagram2}
+   
+        \caption{Requirement diagram version 1}
+        \label{Requirement diagram version 1}
+\FloatBarrier
+    \end{figure}
 
 
+\FloatBarrier
+\FloatBarrier
+\begin{figure}[h]
+\FloatBarrier
+         \centering
+        \includegraphics[width=1\textwidth]{Block Definition Diagram2}
+   
+        \caption{Block Definition Diagram version 1}
+        \label{Block Definition Diagram version 1}
+\FloatBarrier
+    \end{figure}
+
+
+\FloatBarrier
 
 \section{Project component}
 \subsection{Hardware and Software environment}
@@ -740,17 +738,46 @@ the code above  calculates the width of the image using the shape attribute of t
 Finally, you can compare the center of the bounding box with the center of the image. If the center of the bounding box is smaller than the center of the image, it means that the logo is located on the left side of the product, which is a defective piece. If it is on the right side, it means that the logo is printed on the right side of the product, which is a normal piece.
 \end{itemize}
 
+\subsubsection{Relay module desgin}
+
+\FloatBarrier
+\begin{figure}[h]
+\FloatBarrier
+         \centering
+        \includegraphics[width=1\textwidth]{relay}
+   
+        \caption{Schematic Capture of the relay}
+        \label{Schematic Capture of the relay}
+\FloatBarrier
+    \end{figure}
+\FloatBarrier
+When interfacing a Raspberry Pi, which operates at 3.3V logic levels, with a device that requires a higher voltage, such as 24V in my case, using a relay becomes essential. The 3.3V GPIO signal from the Raspberry Pi may not be strong enough to directly trigger a response from the target device, like the automaton in your setup.
+
+A relay acts as an electrical switch that can control higher voltages and currents using a lower voltage control signal. In this scenario, the 3.3V signal from the Raspberry Pi activates the 5V relay's coil, which then switches its contacts to allow the passage of the higher voltage signal (in this case, 24V) to the automaton.
+
+By utilizing the relay, you create an isolation barrier between the low voltage control circuit (Raspberry Pi) and the high voltage load circuit (automaton). This isolation protects the Raspberry Pi's delicate electronics from potential damage caused by the higher voltage, ensuring safe and reliable operation.
 
 
+In my project, I designed a PCB relay module using Proteus software. I started by creating a new project and selecting the schematic capture option. In the schematic editor, I added all the necessary components such as the relay, terminal blocks, and supporting elements like diodes or resistors. I carefully connected the components together, making sure the signals flowed correctly by drawing wires between their pins. To ensure clarity, I included labels and annotations.
+
+Once the schematic was complete, I performed a design rule check to catch any errors or violations. I made the necessary revisions to ensure the schematic was error-free and ready for the next step.
 
 
+\FloatBarrier
+\FloatBarrier
+\begin{figure}[h]
+\FloatBarrier
+         \centering
+        \includegraphics[width=1\textwidth]{V3}
+   
+        \caption{Schematic Capture of the relay}
+        \label{Schematic Capture of the relay}
+\FloatBarrier
+    \end{figure}
+\FloatBarrier
+Moving on to the PCB layout stage, I selected the PCB layout option in Proteus and imported the schematic. This generated an initial component placement, which I organized and optimized for efficient routing. I took into consideration factors like signal paths, component clearance, and the overall size of the PCB.
 
-
-
-
-
-
-
+With the component placement finalized, I began routing the connections using Proteus's routing tools. I created traces that connected the appropriate pins of the components, following design rules and guidelines. I paid extra attention to critical paths and sensitive signals, ensuring proper separation and avoiding noise issues.
 
 %\input{biblio.tex}
 
