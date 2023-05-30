@@ -720,9 +720,46 @@ During inference, the YOLOv5 algorithm takes an input image and passes it throug
 
 The bounding boxes are defined by their coordinates (x, y) and their width and height (w, h). The confidence scores indicate the probability that an object is present in the bounding box. During inference, the YOLOv5 algorithm evaluates the confidence scores for each detected object and selects the object with the highest score as the primary detection.
 
-If an object is in an inverted position, the YOLOv5 algorithm will still be able to detect it. This is because the CNN is able to learn and recognize patterns and features of objects, regardless of their orientation in the image. The algorithm will simply detect the object and output its bounding box and confidence score, regardless of whether it is in a normal or inverted position and if it doesn't we can coclude that there is no logo.
+\FloatBarrier
 
-Now To detect if the logo is printed on the right or left side of the product, you can use image processing techniques. First, you can extract the coordinates of the bounding box resulting from the YOLOv5 prediction by assigning xmin, ymin, xmax, ymax to the variables row[0], row[1], row[2], and row[3], respectively.
+\begin{figure}[htbp]
+    \centering
+    
+    \begin{minipage}{0.3\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{normal1}
+        \caption{Normal class detection}
+        \label{fig:image1}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.3\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{inverted1}
+        \caption{Inverted class detection}
+        \label{fig:image2}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.3\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{nothing1}
+        \caption{Detection of nothing}
+        \label{fig:image3}
+    \end{minipage}
+
+    
+\end{figure}
+\FloatBarrier
+As we can see in figure \ref{fig:image1} If an object is in an inverted position, the YOLOv5 algorithm will still be able to detect it. This is because the CNN is able to learn and recognize patterns and features of objects, regardless of their orientation in the image. The algorithm will simply detect the object and output its bounding box and confidence score, regardless of whether it is in a normal  in figure \ref{fig:image2}  or inverted position  in figure \ref{fig:image1} and if it doesn't we can coclude that there is no logo  in figure \ref{fig:image3}.
+\begin{figure}[htbp]
+
+    
+
+        \centering
+        \includegraphics[width=\textwidth]{leftside1}
+        \caption{Logo on the left side detection}
+        \label{fig:image4}
+\end{figure}
+Now To detect if the logo is printed on the right or left side of the product, you can use image processing techniques. First, you can extract the coordinates of the bounding box resulting from the YOLOv5 prediction of the nromal class as shown in the figure \ref{fig:image4} by assigning xmin, ymin, xmax, ymax to the variables row[0], row[1], row[2], and row[3], respectively.
 \begin{lstlisting}[language=Python]
 xmin, xmax = row[0],row[2]
 \end{lstlisting}

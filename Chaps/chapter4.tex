@@ -107,6 +107,75 @@ The benefits of automating a script are numerous. Automating a script can reduce
 
 Overall, the automation of our script was a significant improvement to our system, and we are confident that it will continue to improve the efficiency and reliability of our product moving forward. By automating this process, we have created a more sustainable and efficient system that will benefit both our team and our end-users.
 \subsubsection{Detection improvements}
+
+\FloatBarrier
+
+\begin{figure}[htbp]
+    \centering
+    
+    \begin{minipage}{0.4\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{logodown}
+        \caption{Logo down from its normal position}
+        \label{fig:image1}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.4\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{font}
+        \caption{messed-up fonts in the logo}
+        \label{fig:image2}
+    \end{minipage}
+        
+\end{figure}
+\FloatBarrier
+A new issue has emerged in logo detection where logos can appear in abnormal positions in figure \ref{fig:image1} or with messed-up fonts  in figure \ref{fig:image2}.I coudn't get the defective pices To address these challenges, a proactive solution was implemented by adding an additional class called "part" to the dataset and retraining the model.
+\FloatBarrier
+
+\begin{figure}[htbp]
+    \centering
+    
+    \begin{minipage}{1\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{partanotate}
+        \caption{part class's annotation}
+        \label{fig:image3}
+    \end{minipage}
+\end{figure}
+I chose to incorporate the "part" class into my dataset because I faced a unique challenge where I did not have physical access to the actual product. Instead, the only resources provided to me were photographs of the product. This constraint prevented me from capturing images of the physical product from different angles or under various conditions.
+
+In this scenario, I decided to add the label "part" in the available photographs of the normal class since it represented as seen in the figure \ref{fig:image3} portions or components of the product. Although they did not encompass the complete product, they were the closest visual representation I had access to. By labeling these images as the "part" class, I intended to train the model to recognize and detect that specific component within the product logo.
+
+While this approach may not have provided direct access to the physical product, it allowed me to leverage the available photographs to train the model effectively. By incorporating the "part" class, I could capture the visual characteristics of the actual logo present in the provided images. 
+\FloatBarrier
+
+\begin{figure}[htbp]
+    \centering
+    
+    \begin{minipage}{1\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{font1}
+        \caption{Object detection of a mess-up font in the logo}
+        \label{fig:image4}
+    \end{minipage}
+\end{figure}
+\FloatBarrier 
+ First, I calculated the height of the bounding boxes for the "normal" and "part" classes in figure \ref{fig:image4}. Then, I determined the ratio by dividing the height of the "part" bounding box by the height of the "normal" bounding box. After conducting extensive experiments, I established a threshold of 0.51 as the ideal ratio. If the calculated ratio (hPart / hNormal) was greater than 0.51, it indicated that the logo's font was distorted. I noticed that the "normal" logo generally had a smaller height compared to the logo with the distorted font.
+\FloatBarrier
+\begin{figure}[htbp]
+    \centering
+    
+    \begin{minipage}{1\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{position1}
+        \caption{Object detection on a logo with a position problem}
+        \label{fig:image5}
+    \end{minipage}
+\end{figure}
+\FloatBarrier
+For the second problem, I utilized the x and y coordinates obtained from each bounding box  in figure \ref{fig:image5}. I developed a formula, $ratio_position$ = (y1 - ny1) * 100 // (ny2 - ny1), where y1 represents the y-coordinate minimum of the "part" bounding box, ny1 represents the minimum y-coordinate of the "normal" bounding box, and ny2 represents the maximum y-coordinate of the "normal" bounding box. Subsequently, I set a threshold of 40 based on numerous experiments. If the calculated $ratio_position$ was greater than 40, it indicated that the logo was positioned below the normal location.
+
+These approaches helped me address the challenges related to the logo's position and font during the object detection task.
 \subsection{Fixing the temperature issue}
 After installing the first version of our product in the factory, we noticed that the temperature of the Raspberry Pi was rising significantly. This was likely due to the hot environment and the fact that the Raspberry Pi was running YOLOv5, which requires a significant amount of processing power. We knew that this issue could impact the reliability and longevity of our product, so we immediately began exploring solutions.
 
