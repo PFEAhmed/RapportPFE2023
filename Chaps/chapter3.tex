@@ -7,15 +7,17 @@
 
 
 
-\chapter{Sprint Two: Raspberry pi 4 and ESP32 Cam Integration for Logo Detection}
+\chapter{Raspberry pi 4 and ESP32 Cam Integration for Logo Detection}
 \section{Introduction}
 This chapter is a step-by-step guide on how to train and use the YOLOv5 algorithm for logo detection. The process of logo detection involves identifying logos in images and videos, which can be challenging due to various factors such as logo occlusion, varying sizes and orientations, and the presence of similar objects in the background.
 
 To address these challenges, the chapter walks through the various steps involved in building a logo detection model using the YOLOv5s algorithm, including data gathering and preprocessing, model training, validation, and testing. The YOLOv5s algorithm is a popular object detection algorithm that is widely used due to its high accuracy and fast inference time.
 
-The chapter also covers various techniques for data preprocessing, including image labeling, data augmentation, and data splitting. These techniques help to improve the accuracy of the trained model.
+The chapter also covers various techniques for data preprocessing, including image labeling, data augmentation, and data splitting. These techniques help to improve the accuracy of the trained mode which concludes by demonstrating how to use the trained YOLOv5s model to detect logos in new, unseen images .
 
-The chapter concludes by demonstrating how to use the trained YOLOv5s model to detect logos in new, unseen images and videos. Overall, this chapter provides a comprehensive guide to building an accurate and efficient logo detection system using the YOLOv5s algorithm.
+This chapter coclude by diving into the steps needed to build a relay  module for the comuniation between the raspberry pi and the automaton.
+
+ Overall, this chapter provides a comprehensive guide to building an accurate and efficient logo detection system using the YOLOv5s algorithm.
 \section{Specification of requirements}
 In this section, we introduce the different actors as well as the functional and non-functional requirements.
 \subsection{actors identification }
@@ -816,6 +818,8 @@ Moving on to the PCB layout stage, I selected the PCB layout option in Proteus a
 
 With the component placement finalized, I began routing the connections using Proteus's routing tools. I created traces that connected the appropriate pins of the components, following design rules and guidelines. I paid extra attention to critical paths and sensitive signals, ensuring proper separation and avoiding noise issues.
 
+\section{Conclusion}
+In conclusion, implementing YOLOv5 proved superior to contour detection in detecting the four different states of the logo: normal, inverted, absent, and on the left side. However, new challenges emerged that need to be addressed in the next chapter such as new defective states of the logo , network improvements and more.
 %\input{biblio.tex}
 
 

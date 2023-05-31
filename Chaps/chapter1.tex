@@ -2,10 +2,11 @@
 %\input{includePackages.tex}
 %\begin{document}
 \chapter{Project Framework and Methodology}
-\section*{Introduction}
+\section{Introduction}
+The first chapter of this report aims to provide an overview of the host company, present a case study highlighting the problem to be addressed, and introduce the modeling language used for the project. This chapter sets the stage for the subsequent sections by establishing the context, significance, and scope of the actions undertaken in the next chapters.
  %Presentation of the  enterprise
 \section{Presentation of the  enterprise}
-esca Group is a family-run company with a background in textiles that has successfully ventured into the automotive industry, specifically automotive seating. Emulating the approach of a French automotive manufacturing house, Tesca Group meticulously crafts each piece, from its atelier to its global production sites. The company strives to embody the same creative audacity and prides itself on being a partner to major automotive manufacturers like : 
+Tesca Group is a family-run company with a background in textiles that has successfully ventured into the automotive industry, specifically automotive seating. Emulating the approach of a French automotive manufacturing house, Tesca Group meticulously crafts each piece, from its atelier to its global production sites. The company strives to embody the same creative audacity and prides itself on being a partner to major automotive manufacturers like : 
 
 
 
@@ -90,10 +91,85 @@ Overall, Tesca Group has established itself as a reputable partner to major auto
 \subsection{administrative organization chart of the enterprise}
 \vspace{1em}
  %Presentation of the  enterprise
-\section{Study of the existing system}
+\section{Case study}
+
 \subsection{description of the existing system }
+\FloatBarrier
+\begin{figure}[h]
+
+         \centering
+        \includegraphics[width=0.8\textwidth]{ifm1}
+   
+        \caption{IFM O2D220}
+        \label{fig:IFM O2D220}
+\FloatBarrier
+    \end{figure}
+
+\FloatBarrier
+Tesca is a factory that utilizes an object recognition sensor called ifm to detect potential defects in logos present on its products. The factory employs two types of sensors: the Contour Sensor and the Pixel Counter.
+
+The Contour Sensor is designed to quickly analyze and compare the defined shape of an object with similar objects. It is particularly useful when the shape of the inspected objects is repetitive. The sensor uses incident light or backlight to detect the contours of an object and then compares them with contours from reference images. Based on the level of conformity, the sensor generates an output indicating the presence of a model and, if applicable, identifies the specific model found.
+
+The Pixel Counter sensor analyzes the area of an object by counting the pixels. This sensor is best suited for inspecting objects that vary in terms of shape, size, or shade. It also utilizes incident light or backlight to detect object contours. By comparing the pixel count with predetermined thresholds, the sensor determines the characteristics and features of the object.
+
+To elaborate further, let's examine a couple of examples of the ifm object recognition sensor in action:
+
+\FloatBarrier
+\begin{figure}[h]
+
+         \centering
+        \includegraphics[width=0.8\textwidth]{exp2}
+   
+        \caption{Identify missing piece in O-ring assembly with IFM O2D220}
+        \label{fig:exp1}
+\FloatBarrier
+    \end{figure}
+
+\FloatBarrier
+Identify missing piece in O-ring assembly :  as you can see in figure \ref{exp1}, identifying that a piece is missingin an O-ring is imperative. The Pixel Counter is programmed to verify that the O-ring is complete and that no piece is missing regardless of the size and location of the missing piece. 
+\FloatBarrier
+\begin{figure}[h]
+
+         \centering
+        \includegraphics[width=0.8\textwidth]{exp3}
+   
+        \caption{Identify cap on top of spray can with IFM O2D220}
+        \label{fig:exp2}
+\FloatBarrier
+    \end{figure}
+
+\FloatBarrier
+Identify cap on top of spray can :  you can see in figure \ref{exp2}, The cap can be missing or improperly installed. By learning the outline of the top of the cap and the canister, the Contour Sensor allows detection of missing or incorrectly.
+installed caps.
 \subsection{criticism of the existing system}
+\FloatBarrier
+\begin{figure}[h]
+
+         \centering
+        \includegraphics[width=0.8\textwidth]{place holder}
+   
+        \caption{Product's place holder}
+        \label{fig:place holder}
+\FloatBarrier
+    \end{figure}
+
+\FloatBarrier
+
+
+In the factory's workflow, workers are responsible for placing the individual pieces of the product into designated placeholders along the assembly line seen in figure \ref{fig:place holder} . Once the piece is securely positioned, the system relies on the ifm object recognition sensor to assess its quality.
+The ifm sensor analyzes the piece, evaluating its characteristics and comparing them to predetermined quality criteria. If the piece meets the required standards and is determined to be good, the system triggers an automated mechanism associated with the placeholder. As a result, the placeholder smoothly lowers its position, indicating that the piece has been approved and can proceed to the next stage of production. the problem here is that When selecting the operating distance it has to be taken into account that contour detection becomes less reliable with decreasing size of the objects. The objects to
+be detected should cover at least 5\% of the field of view
+The requirement for objects to cover a certain percentage of the field of view indicates that the existing system may struggle to detect smaller objects reliably. This can result in potential issues such as false positives or missed detections, leading to a decrease in overall efficiency and quality control.
+
+Another issue that may arise with product placement is that this soltion is based on preconfigured rules. In the given example, if we focus on Figure \ref{exp2}, it is apparent that if the normal can were to be placesd slitly above  , it would mistakenly be detected as a defective piece because the the putline of the cap will be above the preconfigured outline.
+
+The reliance on fixed rules poses a challenge when dealing with variations in product placement that fall within acceptable tolerances. In cases where slight deviations occur, such as minor misalignments or positioning errors, the system may incorrectly classify the product as defective, leading to unnecessary interruptions in the production process.
+
+As a result, this limitation can lead to false detection of defects and potentially disrupt the production line. It highlights the importance of considering alternative or supplementary methods for accurately assessing the presence of the cap.
+
 \subsection{administrative organization chart of the enterprise}
+To address the limitations and challenges associated with the existing contour detection system, I propose an alternative solution that leverages the power of the YOLOv5 object detection.
+By integrating a system based on YOLOv5, we can overcome the drawbacks of the current approach and enhance our ability to detect defective logos on the production line. The improved accuracy of YOLOv5 ensures more precise identification and localization of logos, reducing the chances of false positives or missed detections. This is especially valuable when dealing with logos of varying sizes, shapes, and orientations.
 \vspace{1em}
 
 \subsection{Modeling languages : UML and SysMl}
@@ -152,8 +228,8 @@ The grammar and notations of SysML are defined in a standards specification publ
 \vspace{1em}
 
 
-\section*{Conclusion}
-
+\section{Conclusion}
+Overall, chapter 1 has provided the necessary foundation for the subsequent chapters, enabling a comprehensive exploration of the problem and the development of an effective solution. By understanding the host company, the specific problem through the case study, and the modeling language employed, you the  reader will be  equipped with the context and knowledge required to delve deeper into the next chapters presented in this report.
 
 
 
