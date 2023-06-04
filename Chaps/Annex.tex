@@ -1,14 +1,132 @@
-
-
 %\documentclass{report}
-%\input{includePackages.tex}
+%\input{includePackagesChaps.tex}
 %\begin{document}
 \chapter{Annex}
+
 \section{Project component}
 \subsection{Hardware environment}
-\subsubsection{ESP32-CAM}
+\subsubsection{Raspberry Pi 3 Model B+}
+\FloatBarrier
+\begin{figure}[h]
+         \centering
+        \includegraphics[width=1\textwidth]{ras3B+}
+   
+        \caption{Raspberry Pi 3 Model B+ }
+        \label{Raspberry Pi 3 Model B+ }
+    \end{figure}
+\FloatBarrier
+\FloatBarrier
+\begin{table}[htbp]
+\centering
+\tcbox[width=\linewidth,
+  left=0mm,
+  right=0mm,
+  top=0mm,
+  bottom=0mm,
+  boxsep=0mm,
+  toptitle=0.5mm,
+  bottomtitle=0.5mm, title = Raspberry Pi 3 Model B  characteristics \cite{RA16}]{%
+\arrayrulecolor{blue!50!black}\renewcommand{\arraystretch}{1.2}%
+\begin{tabular}{|l|l|}
+\hline
+\textbf{Component} & \textbf{Specification} \\ \hline
+Processor & 1.4 GHz quad-core BCM2837B0 ARMv8 64bit CPU\\ \hline
+Memory & 1 GB RAM \\ \hline
+Connectivity & 
+\begin{tabular}[c]{@{}l@{}}-dual-band (2.4 GHz and 5 GHz) IEEE 802.11.b/g/n/ac wireless LAN (WiFi)\\ 
+- LAN, Bluetooth 5.0, BLE\\ 
+- Gigabit Ethernet\\ 
+- 4 $\times$ USB 2.0 ports\end{tabular} \\ \hline
+GPIO & Standard 40-pin GPIO header (fully backwards-compatible with previous boards) \\ \hline
+Video \& Sound & 
+\begin{tabular}[c]{@{}l@{}}-  full size HDMI\\ 
+- MIPI DSI display port\\ 
+- MIPI CSI camera port\\ 
+- 4-pole stereo audio and composite video port\end{tabular} \\ \hline
+Multimedia & 
+\begin{tabular}[c]{@{}l@{}}-MPEG-4 decode (1080p30)\\ 
+- H.264 encode(1080p30)\\
+- OpenGL ES 1.1, 2.0 graphics
+\end{tabular} \\ \hline
+SD Card Support &Micro SD format for loading operating system anddata storage \\ \hline
+Input Power & 
+\begin{tabular}[c]{@{}l@{}}- 5V/2.5A DC via micro USB connector\\ 
+- 5V DC via GPIO header (minimum 3A)\\ 
+-Power over Ethernet (PoE)–enabled (requires
+separate PoE HAT)\end{tabular} \\ \hline
+Environment & Operating temperature 0--50ºC \\ \hline
+\end{tabular}}
+    \addcontentsline{lot}{table}{Raspberry Pi 3 Model B  characteristics \cite{RA16}}
+\end{table}
 
 \FloatBarrier
+\subsubsection{Raspberry Pi 4 Model B}
+\FloatBarrier
+\begin{figure}[h]
+         \centering
+        \includegraphics[width=1\textwidth]{ras4B}
+   
+        \caption{Raspberry Pi 4 Model B }
+        \label{Raspberry Pi 4 Model B }
+    \end{figure}
+\FloatBarrier
+\FloatBarrier
+\begin{table}[htbp]
+\centering
+\tcbox[width=\linewidth,
+  left=0mm,
+  right=0mm,
+  top=0mm,
+  bottom=0mm,
+  boxsep=0mm,
+  toptitle=0.5mm,
+  bottomtitle=0.5mm, title = Raspberry Pi 4 model B characteristics \cite{RA19}]{%
+\arrayrulecolor{blue!50!black}\renewcommand{\arraystretch}{1.2}%
+
+\begin{tabular}{|l|l|}
+\hline
+\textbf{Component} & \textbf{Specification} \\ \hline
+Processor & Broadcom BCM2711, quad-core Cortex-A72 (ARM v8) 64-bit SoC @ 1.5GHz \\ \hline
+Memory & 1GB, 2GB or 4GB LPDDR4 (depending on model) \\ \hline
+Connectivity & 
+\begin{tabular}[c]{@{}l@{}}- 2.4 GHz and 5.0 GHz IEEE 802.11b/g/n/ac wireless\\ 
+- LAN, Bluetooth 5.0, BLE\\ 
+- Gigabit Ethernet\\ 
+- 2 $\times$ USB 3.0 ports\\ 
+- 2 $\times$ USB 2.0 ports\end{tabular} \\ \hline
+GPIO & Standard 40-pin GPIO header (fully backwards-compatible with previous boards) \\ \hline
+Video \& Sound & 
+\begin{tabular}[c]{@{}l@{}}- 2 $\times$ micro HDMI ports (up to 4Kp60 supported)\\ 
+- 2-lane MIPI DSI display port\\ 
+- 2-lane MIPI CSI camera port\\ 
+- 4-pole stereo audio and composite video port\end{tabular} \\ \hline
+Multimedia & 
+\begin{tabular}[c]{@{}l@{}}- H.265 (4Kp60 decode)\\ 
+- H.264 (1080p60 decode, 1080p30 encode)\\ 
+- OpenGL ES, 3.0 graphics\end{tabular} \\ \hline
+SD Card Support & Micro SD card slot for loading operating system and data storage \\ \hline
+Input Power & 
+\begin{tabular}[c]{@{}l@{}}- 5V DC via USB-C connector (minimum 3A)\\ 
+- 5V DC via GPIO header (minimum 3A)\\ 
+- Power over Ethernet (PoE)–enabled\\ 
+  (requires separate PoE HAT)\end{tabular} \\ \hline
+Environment & Operating temperature 0--50ºC \\ \hline
+\end{tabular}}
+    \addcontentsline{lot}{table}{ Raspberry Pi 4 model B characteristics \cite{RA19}}
+\end{table}
+\FloatBarrier
+\subsubsection{ESP32-CAM}
+\FloatBarrier
+\begin{figure}[h]
+         \centering
+        \includegraphics[width=0.4\textwidth]{esp32cam-}
+   
+        \caption{ESP32-CAM}
+        \label{ESP32-CAM}
+    \end{figure}
+\FloatBarrier
+
+
 \begin{table}[h]
 
 \centering

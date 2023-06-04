@@ -11,16 +11,15 @@
 \section{Introduction}
 This chapter is a step-by-step guide on how to train and use the YOLOv5 algorithm for logo detection. The process of logo detection involves identifying logos in images and videos, which can be challenging due to various factors such as logo occlusion, varying sizes and orientations, and the presence of similar objects in the background.
 
-To address these challenges, the chapter walks through the various steps involved in building a logo detection model using the YOLOv5s algorithm, including data gathering and preprocessing, model training, validation, and testing. The YOLOv5s algorithm is a popular object detection algorithm that is widely used due to its high accuracy and fast inference time.
+To address these challenges, the chapter walks through the various steps involved in building a logo detection model using the YOLOv5s algorithm, including data gathering and preprocessing, model training, validation, and testing. 
 
-The chapter also covers various techniques for data preprocessing, including image labeling, data augmentation, and data splitting. These techniques help to improve the accuracy of the trained mode which concludes by demonstrating how to use the trained YOLOv5s model to detect logos in new, unseen images .
 
-This chapter coclude by diving into the steps needed to build a relay  module for the comuniation between the raspberry pi and the automaton.
+
+This chapter coclude by diving into the steps needed to build a relay  module for the communication between the raspberry pi and the automaton.
 
  Overall, this chapter provides a comprehensive guide to building an accurate and efficient logo detection system using the YOLOv5s algorithm.
 \section{Specification of requirements}
 In this section, we introduce the different actors as well as the functional and non-functional requirements.
-\subsection{actors identification }
 \subsection{Description of functional requirements}
 \begin{itemize}
 \item The ESP32-CAM board should be able to capture a live stream of pictures or videos and make them available through its built-in server.
@@ -28,18 +27,14 @@ In this section, we introduce the different actors as well as the functional and
 \item The raspberry pi should be able to process the images to determine if a specific logo is present or not.
 \item The raspberry pi should be able to process the images to determine if a specific logo is flipped on the x axis.
 \item The raspberry pi should be able to process the images to determine if a specific logo is in the first or the second half of the product.
-\item The raspberry pi should be able to provide some form of feedback or output indicating whether the logo is present and if it is flipped or not.
+\item The raspberry pi should be able to provide some form of feedback or output to the automaton indicating the state of the logo.
 \end{itemize}
 \subsection{Description of non-functional requirements}
 The requirements do not stop at the functional level but tend towards requirements that contribute to better quality of the application. The most important ones are:
 \begin{itemize}
 \item \textbf{Reliability:} The system should be able to consistently capture and process images accurately.
 \item \textbf{Performance:} The system should be able to process images quickly and without noticeable lag or delay.
-\item \textbf{Security:} The system should have appropriate security measures in place to prevent unauthorized access to the servers and data.
-\item \textbf{Scalability:} The system should be able to handle multiple simultaneous connections and requests from clients without compromising its performance.
-\item \textbf{Maintainability:} The system should be easy to maintain and update, with clear and well-documented code and configuration.
-\item \textbf{Compatibility:} The system should be compatible with a wide range of devices and platforms.
-\item \textbf{Usability:} The system should be easy to use and understand for both technical and non-technical users.
+\item \textbf{Maintainability:} The code should be easy to maintain and update, with clear and well-documented code and configuration.
 \end{itemize}
 
 \section{SysMl}
@@ -100,7 +95,7 @@ The requirements do not stop at the functional level but tend towards requiremen
 
 \section{Project component}
 \subsection{Hardware and Software environment}
-For a comprehensive understanding of the hardware and software environment components used in this study, I recommend referring to the annex chapter \ref{Annex} of this report. The annex contains detailed information on the system specifications and configurations, including hardware components such as ESP32-cam, as well as the software components such as  application programs. By referring to the annex, you can gain a deeper insight into the technical details of the system, which can be helpful in evaluating the validity and reliability of the study results.
+For a comprehensive understanding of the hardware and software environment components used in this study, I recommend referring to the annex chapter of this report. The annex contains detailed information on the system specifications and configurations, including hardware components such as ESP32-cam, as well as the software components such as  application programs. By referring to the annex, you can gain a deeper insight into the technical details of the system, which can be helpful in evaluating the validity and reliability of the study results.
 
 
 
@@ -108,29 +103,28 @@ For a comprehensive understanding of the hardware and software environment compo
 
 
 \section{Workflow}
-\subsubsection{Setting up the rapsberry pi}
-\begin{itemize}
-\item{ setting up the OS }
+\subsection{Setting up the rapsberry pi}
+\subsubsection{ setting up the OS }
 \begin{itemize}
 
 \item 
 
 \begin{minipage}{0.5\textwidth}
-download the Raspberry Pi Imager from the official Raspberry Pi website.
+Download the Raspberry Pi Imager from the official Raspberry Pi website.
 \end{minipage}
 \hfill
-\begin{minipage}{0.6\textwidth}
+\begin{minipage}{0.5\textwidth}
 \hspace*{0.3in} \includegraphics[width=\textwidth]{1i}
 \end{minipage}
 \vspace{0.5in}
 
 \item 
 \begin{minipage}{0.5\textwidth}
-choose the raspberry pi operating system (64-bit)
+Choose the raspberry pi operating system (64-bit)
 \end{minipage}
 \hfill
-\begin{minipage}{0.6\textwidth}
-\includegraphics[width=\textwidth]{3i}
+\begin{minipage}{0.5\textwidth}
+\hspace*{0.3in}\includegraphics[width=\textwidth]{3i}
 \end{minipage}
 \vspace{0.5in}
 \item 
@@ -138,8 +132,8 @@ choose the raspberry pi operating system (64-bit)
 Configure the parameters of the operating system: set a hostname,enable SSH,set username and password,configure wireless lan and set local settings
 \end{minipage}
 \hfill
-\begin{minipage}{0.6\textwidth}
-\includegraphics[width=\textwidth]{8i}
+\begin{minipage}{0.5\textwidth}
+\hspace*{0.3in}\includegraphics[width=\textwidth]{8i}
 \end{minipage}
 \vspace{0.5in}
 \item 
@@ -147,8 +141,8 @@ Configure the parameters of the operating system: set a hostname,enable SSH,set 
 Select the SD card you want to use for the installation.
 \end{minipage}
 \hfill
-\begin{minipage}{0.6\textwidth}
-\includegraphics[width=\textwidth]{5i}
+\begin{minipage}{0.5\textwidth}
+\hspace*{0.3in}\includegraphics[width=\textwidth]{5i}
 \end{minipage}
 \vspace{0.5in}
 \item 
@@ -156,13 +150,13 @@ Select the SD card you want to use for the installation.
 Click on the "Write" button to start the installation process. This will take several minutes to complete.
 \end{minipage}
 \hfill
-\begin{minipage}{0.6\textwidth}
-\includegraphics[width=\textwidth]{9i}
+\begin{minipage}{0.5\textwidth}
+\hspace*{0.3in}\includegraphics[width=\textwidth]{9i}
 \end{minipage}
 \end{itemize}
 
 
-\item{setting up the VNC}
+\subsubsection{setting up the VNC}
 \begin{itemize}
 \item{Establishing connection with puttty}
 \FloatBarrier
@@ -178,7 +172,6 @@ Click on the "Write" button to start the installation process. This will take se
     \end{figure}
 
 \FloatBarrier
-\end{itemize}
 \begin{itemize}
 \item In the "Host Name (or IP address)" field, enter the IP address of your Raspberry Pi.
 \item In the "Port" field, enter "22". This is the default SSH port for Raspberry Pi.
@@ -260,11 +253,10 @@ This table represent the total time taking by this command:\\
 %\end{table}
 
 \item{Activating VNC server}\\
-Enter this command:
-\begin{lstlisting}
-sudo raspi-config
-\end{lstlisting}
-\FloatBarrier
+\\
+\vspace{1cm}
+Enter this command: \commandbox*{sudo raspi-config} 
+
 \begin{figure}[h]
 
        \centering
@@ -277,7 +269,9 @@ sudo raspi-config
     \end{figure}
 \FloatBarrier
 Go to Interfacing options > vnc and click on “Select” While their, enable vnc
-\item{Prepare working environment}\\
+\end{itemize}
+
+\subsubsection{Prepare working environment}
 \FloatBarrier
 \begin{figure}[h]
 
@@ -359,8 +353,8 @@ This table represent the total time taking by the command:
     %\label{tab:time}
 %\end{table}
 
-\end{itemize}
-\subsubsection{Deep learning pipeline}
+
+\subsection{Deep learning pipeline}
 \begin{itemize}
 \item{Selecting the deep learning model: Why YOLOv5s?}//
 Before delving into the reasons for choosing YOLOv5s, it is important to understand some of the key metrics used to evaluate object detection models. 
@@ -391,18 +385,7 @@ IoU(A,B) = \frac{A \cap B}{A \cup B}, \quad IoU(A,B) \in [0,1]
 \end{equation}
 Intersection over Union (IoU) is a commonly used method to evaluate object detection algorithms. It measures the overlap between the proposed bounding box and the ground truth bounding box by computing the ratio of their intersection over their union. If the resulting value is above a certain threshold, the proposed bounding box is considered a correct detection.\cite{MG21}
 \end{itemize}
-In Table~\ref{tab:yolov5_comparison} and the firgure \ref{fig:comparisation}, we compare the performance of different YOLOv5 models.
-\FloatBarrier
-\begin{figure}[h]
-
-       \centering
-
-        \includegraphics[width=0.7\textwidth]{comparisationYolov5}
-   
-        \caption{Comparison between yolov5 family and Efficientdet for the COCO dataset in term of speed and accuracy}
-        \label{fig:comparisation}
-
-    \end{figure}
+In the two tables below, we compare the performance of different YOLOv5 models.
 \FloatBarrier
 \begin{table}[h]
 
@@ -506,7 +489,7 @@ The TTA (Test Time Augmentation) Test Time Augmentation includes reflection and 
 %\end{table}
 \FloatBarrier
 
-The \textbf{YOLOv5} model is a state-of-the-art object detection model that has gained popularity due to its high accuracy and speed. The YOLOv5 family includes several models such as YOLOv5n, YOLOv5s, YOLOv5m, YOLOv5l, and YOLOv5x, each with different sizes and performance characteristics. To determine the best model for our application of logo detection on a Raspberry Pi 4, we used those table above to compare the YOLOv5 models using metrics such as mAPval@50-95, mAPval@50, speed on CPU and V100, number of parameters, and FLOPs.//
+The \textbf{YOLOv5} model is a state-of-the-art object detection model that has gained popularity due to its high accuracy and speed. The YOLOv5 family includes several models such as YOLOv5n, YOLOv5s, YOLOv5m, YOLOv5l, and YOLOv5x, each with different sizes and performance characteristics. To determine the best model for our application of logo detection on a Raspberry Pi 4, we used those table above to compare the YOLOv5 models using metrics such as mAPval@50-95, mAPval@50, speed on CPU and V100, number of parameters, and FLOPs.
 
 Firstly, let's consider the Yolov5n model, which has the smallest size(1.9 million params) and computational requirements in the Yolov5 family. While this model is suitable for low-resource devices, it sacrifices accuracy (mAPval50-95 = 28.0 and mAPval50 =  45.7) for speed ( CPU b1 = 45 ms  , Speed V100 b1 = 6.3 ms and Speed V100 b32 = 	0.6 ms), making it less suitable for complex object detection tasks.
 
@@ -537,7 +520,7 @@ In summary, the Yolov5s model is the best choice for the Raspberry Pi 4 due to i
 \end{figure}
 \FloatBarrier
 
-To train our Yolov5s model, we first gathered a dataset of 726 images containing logos. We split the dataset into two classes: Normal and Inverted. The Normal class \ref{fig:image1} contained 363 images of logos in their standard orientation, while the Inverted class \ref{fig:image2} contained 363 images of logos that had been rotated 180 degrees.
+To train our Yolov5s model, we first gathered a dataset of 2500 images containing logos. We split the dataset into two classes: Normal and Inverted. The Normal class \ref{fig:image1} contained 1250 images of logos in their standard orientation, while the Inverted class \ref{fig:image2} contained 1250 images of logos that had been rotated 180 degrees.
 
 \item{Image labeling}
 \FloatBarrier
@@ -582,67 +565,16 @@ dataset = project.version(3).download("yolov5")
 \end{lstlisting}
 The training data was downloaded using the Roboflow Python package, which is a popular tool for managing and preprocessing computer vision datasets. The training data was downloaded from a specific Roboflow project and was in the YOLOv5 PyTorch format
 \item{Transfer learining on yolov5s}\\
-Fine-tuning is a popular technique in machine learning that involves taking a pre-trained model and adapting it to a new problem. Transfer learning is the process of using a pre-trained model to jumpstart a new model's training. These techniques are widely used in computer vision tasks where labeled data is limited, and collecting more data is costly. By fine-tuning a pre-trained model, the model can leverage its knowledge and adapt to the new task quickly. The process typically involves freezing some of the pre-trained layers and only updating the weights of the output layer or a few top layers. By doing so, the model can adapt its weights to the new problem while retaining its knowledge of the previously learned features. This approach often leads to improved performance with fewer labeled examples.
-\FloatBarrier
-\begin{lstlisting}[language=Python]
-  %%writetemplate /content/yolov5/models/custom_yolov5s.yaml
+\\
+Fine-tuning is a popular technique in machine learning that involves taking a pre-trained model and adapting it to a new problem. Transfer learning is the process of using a pre-trained model to jumpstart a new model's training. These techniques are widely used in computer vision tasks where labeled data is limited, and collecting more data is costly. By fine-tuning a pre-trained model, the model can leverage its knowledge and adapt to the new task quickly. The process typically involves freezing some of the pre-trained layers and only updating the weights of the output layer or a few top layers. By doing so, the model can adapt its weights to the new problem while retaining its knowledge of the previously learned features. This approach often leads to improved performance with fewer labeled examples.\cite{N22}
 
-# parameters
-nc: {num_classes}  # number of classes
-depth_multiple: 0.33  # model depth multiple
-width_multiple: 0.50  # layer channel multiple
-anchors:
-  - [10,13, 16,30, 33,23]  # P3/8
-  - [30,61, 62,45, 59,119]  # P4/16
-  - [116,90, 156,198, 373,326]  # P5/32
-
-# YOLOv5 v6.0 backbone
-backbone:
-  # [from, number, module, args]
-  [[-1, 1, Conv, [64, 6, 2, 2]],  # 0-P1/2
-   [-1, 1, Conv, [128, 3, 2]],  # 1-P2/4
-   [-1, 3, C3, [128]],
-   [-1, 1, Conv, [256, 3, 2]],  # 3-P3/8
-   [-1, 6, C3, [256]],
-   [-1, 1, Conv, [512, 3, 2]],  # 5-P4/16
-   [-1, 9, C3, [512]],
-   [-1, 1, Conv, [1024, 3, 2]],  # 7-P5/32
-   [-1, 3, C3, [1024]],
-   [-1, 1, SPPF, [1024, 5]],  # 9
-  ]
-
-# YOLOv5 v6.0 head
-head:
-  [[-1, 1, Conv, [512, 1, 1]],
-   [-1, 1, nn.Upsample, [None, 2, 'nearest']],
-   [[-1, 6], 1, Concat, [1]],  # cat backbone P4
-   [-1, 3, C3, [512, False]],  # 13
-
-   [-1, 1, Conv, [256, 1, 1]],
-   [-1, 1, nn.Upsample, [None, 2, 'nearest']],
-   [[-1, 4], 1, Concat, [1]],  # cat backbone P3
-   [-1, 3, C3, [256, False]],  # 17 (P3/8-small)
-
-   [-1, 1, Conv, [256, 3, 2]],
-   [[-1, 14], 1, Concat, [1]],  # cat head P4
-   [-1, 3, C3, [512, False]],  # 20 (P4/16-medium)
-
-   [-1, 1, Conv, [512, 3, 2]],
-   [[-1, 10], 1, Concat, [1]],  # cat head P5
-   [-1, 3, C3, [1024, False]],  # 23 (P5/32-large)
-
-   [[17, 20, 23], 1, Detect, [nc, anchors]],  # Detect(P3, P4, P5)
-  ]
-
-\end{lstlisting}
-\FloatBarrier
-In this case and as you can see from the code above , the YOLOv5s model was fine-tuned to detect two classes: normal logos and inverted logos, instead of the original model which was trained on 80 classes. The model was modified to recognize only these two specific classes by adjusting the number of classes parameter in the YOLOv5s model's configuration file. The configuration file, which is a YAML file that specifies the network architecture and its parameters, was updated to reflect the change in the number of classes. This customization allows the model to be optimized for the specific task of detecting normal and inverted logos, rather than having to account for the nuances of 80 different classes.
+In our case, the YOLOv5s model was fine-tuned to detect two classes: normal logos and inverted logos, instead of the original model which was trained on 80 classes. The model was modified to recognize only these two specific classes by adjusting the number of classes parameter in the YOLOv5s model's configuration file. The configuration file, which is a YAML file that specifies the network architecture and its parameters, was updated to reflect the change in the number of classes. This customization allows the model to be optimized for the specific task of detecting normal and inverted logos, rather than having to account for the nuances of 80 different classes.
 By using transfer learning, only the last layer of the YOLOv5s model was modified to detect the two new classes. The other layers of the model were left unchanged, as they were already trained to detect objects. This means that the feature extraction layers of the model are kept intact and only the classification layers are modified.
 The modified configuration file was saved as custom\_yolov5s.yaml. This file was used to train the fine-tuned YOLOv5s model.
 \item{Training the fine-tuned yolovs}
 
 Once the data was downloaded, the training process was initiate. The model was trained using the train.py script from the YOLOv5 repository. The script was configured to use the custom configuration file and the downloaded training data.
-To validate the YOLOv5 model, we use the following line of code:
+To train the YOLOv5 model, we use the following line of code:
 \begin{lstlisting}[language=Python]
 !python train.py --img 416 --batch 16 --epochs 300 --data {dataset.location}/data.yaml --cfg ./models/custom_yolov5s.yaml  --name yolov5s_results  --cache
 \end{lstlisting}
@@ -659,7 +591,7 @@ During the training process, the weights of the YOLOv5s model were updated to de
   bottom=0mm,
   boxsep=0mm,
   toptitle=0.5mm,
-  bottomtitle=0.5mm, title =Training and Validation Metrics for YOLOv5s]{%
+  bottomtitle=0.5mm, title =Training Metrics for YOLOv5s]{%
 \arrayrulecolor{blue!50!black}\renewcommand{\arraystretch}{1.2}%
 
 
@@ -669,7 +601,7 @@ During the training process, the weights of the YOLOv5s model were updated to de
  \textbf{Precision} & \textbf{Recall} & \textbf{mAP50} & \textbf{mAP50-95} \\ \hline
  0.998 & 1.000 & 0.995 & 0.889 \\ \hline
 \end{tabular}}
-    \addcontentsline{lot}{table}{Training and Validation Metrics for YOLOv5s}
+    \addcontentsline{lot}{table}{Training Metrics for YOLOv5s}
 
 
 \end{table}
@@ -699,7 +631,7 @@ The val.py script loads the trained model and evaluates it on the validation dat
   bottom=0mm,
   boxsep=0mm,
   toptitle=0.5mm,
-  bottomtitle=0.5mm, title =Training and Validation Metrics for YOLOv5s]{%
+  bottomtitle=0.5mm, title =Validation Metrics for YOLOv5s]{%
 \arrayrulecolor{blue!50!black}\renewcommand{\arraystretch}{1.2}%
 
 
@@ -709,7 +641,7 @@ The val.py script loads the trained model and evaluates it on the validation dat
  \textbf{Precision} & \textbf{Recall} & \textbf{mAP50} & \textbf{mAP50-95} \\ \hline
 0.999 & 1.000 & 0.955 & 0.877 \\ \hline
 \end{tabular}}
-    \addcontentsline{lot}{table}{Training and Validation Metrics for YOLOv5s}
+    \addcontentsline{lot}{table}{Validation Metrics for YOLOv5s}
 
 
 \end{table}
@@ -737,7 +669,7 @@ This command is used to evaluate the performance of the trained YOLOv5 model on 
   bottom=0mm,
   boxsep=0mm,
   toptitle=0.5mm,
-  bottomtitle=0.5mm, title =Training and Validation Metrics for YOLOv5s]{%
+  bottomtitle=0.5mm, title =Testing Metrics for YOLOv5s]{%
 \arrayrulecolor{blue!50!black}\renewcommand{\arraystretch}{1.2}%
 
 
@@ -747,7 +679,7 @@ This command is used to evaluate the performance of the trained YOLOv5 model on 
  \textbf{Precision} & \textbf{Recall} & \textbf{mAP50} & \textbf{mAP50-95} \\ \hline
 0.999 & 0.997 & 0.954 & 0.878 \\ \hline
 \end{tabular}}
-    \addcontentsline{lot}{table}{Training and Validation Metrics for YOLOv5s}
+    \addcontentsline{lot}{table}{Testing Metrics for YOLOv5s}
 
 
 \end{table}
@@ -756,10 +688,15 @@ This command is used to evaluate the performance of the trained YOLOv5 model on 
 The test output shows that the model achieves a precision of 0.999, a recall of 0.977, mAP50 of 0.994, and mAP50-95 of 0.878. These metrics indicate that the model is performing well on the test and didn't overfit that much to the training data.
 
 \item{Classes Detection}\\
-After completing the crucial steps of image gathering, image labeling, image augmentation, and training the YOLOv5 model, we finally reach the intense step of inference. Inference is the process of using the trained model to make predictions on new, unseen images. This step is the culmination of all the hard work put into building and refining the model, and it is where the model's true effectiveness is put to the real-life test. Through inference, we can evaluate the model's accuracy and see how well it performs on real-world data, ultimately determining its usefulness in solving the problem at hand.\\
+\\
+After completing the crucial steps of image gathering, image labeling, image augmentation, and training the YOLOv5 model, we finally reach the intense step of inference. Inference is the process of using the trained model to make predictions on new, unseen images. This step is the culmination of all the hard work put into building and refining the model, and it is where the model's true effectiveness is put to the real-life test. Through inference, we can evaluate the model's accuracy and see how well it performs on real-world data, ultimately determining its usefulness in solving the problem at hand.\cite{PS19}\\
 During inference, the YOLOv5 algorithm takes an input image and passes it through a convolutional neural network (CNN) to extract feature maps. The CNN uses several layers of convolution and pooling operations to extract features from the image. These features are then passed through a series of fully connected layers to produce a set of bounding boxes and associated confidence scores for each detected object.
 
-The bounding boxes are defined by their coordinates (x, y) and their width and height (w, h). The confidence scores indicate the probability that an object is present in the bounding box. During inference, the YOLOv5 algorithm evaluates the confidence scores for each detected object and selects the object with the highest score as the primary detection.
+The bounding boxes are defined by their coordinates (x, y) and their width and height (w, h).
+\\
+The confidence scores indicate the probability that an object is present in the bounding box.
+\\
+During inference, the YOLOv5 algorithm evaluates the confidence scores for each detected object and selects the object with the highest score as the primary detection.
 
 \FloatBarrier
 
@@ -790,7 +727,8 @@ The bounding boxes are defined by their coordinates (x, y) and their width and h
     
 \end{figure}
 \FloatBarrier
-As we can see in figure \ref{fig:image1} If an object is in an inverted position, the YOLOv5 algorithm will still be able to detect it. This is because the CNN is able to learn and recognize patterns and features of objects, regardless of their orientation in the image. The algorithm will simply detect the object and output its bounding box and confidence score, regardless of whether it is in a normal  in figure \ref{fig:image2}  or inverted position  in figure \ref{fig:image1} and if it doesn't we can coclude that there is no logo  in figure \ref{fig:image3}.
+As we can see in figure \ref{fig:image2} If an object is in an inverted position, the YOLOv5 algorithm will still be able to detect it. This is because the CNN is able to learn and recognize patterns and features of objects, regardless of their orientation in the image. The algorithm will simply detect the object and output its bounding box and confidence score, regardless of whether it is in a normal  in figure \ref{fig:image2}  or inverted position  in figure \ref{fig:image1} and if it doesn't we can conclude that there is no logo  in figure \ref{fig:image3}.\\
+\FloatBarrier
 \begin{figure}[htbp]
 
     
@@ -800,7 +738,8 @@ As we can see in figure \ref{fig:image1} If an object is in an inverted position
         \caption{Logo on the left side detection}
         \label{fig:image4}
 \end{figure}
-Now To detect if the logo is printed on the right or left side of the product, you can use image processing techniques. First, you can extract the coordinates of the bounding box resulting from the YOLOv5 prediction of the nromal class as shown in the figure \ref{fig:image4} by assigning xmin, ymin, xmax, ymax to the variables row[0], row[1], row[2], and row[3], respectively.
+\FloatBarrier
+Now To detect if the logo is printed on the right or left side of the product, you can use image processing techniques. First, you can extract the coordinates of the bounding box resulting from the YOLOv5 prediction of the normal class as shown in the figure \ref{fig:image4} by assigning xmin and xmax to the variables row[0] and  row[2] respectively.
 \begin{lstlisting}[language=Python]
 xmin, xmax = row[0],row[2]
 \end{lstlisting}
@@ -812,11 +751,60 @@ Then, you can calculate the width of the frame using the shape attribute of the 
 \begin{lstlisting}[language=Python]
 width = frame.shape[1]
 \end{lstlisting}
-the code above  calculates the width of the image using the shape attribute of the frame, but only assigns the second element (index 1) to the variable width, which corresponds to the width of the image. The height and number of channels are not used in this code.
+The code above  calculates the width of the image using the shape attribute of the frame, but only assigns the second element (index 1) to the variable width, which corresponds to the width of the image. The height and number of channels are not used in this code.
 Finally, you can compare the center of the bounding box with the center of the image. If the center of the bounding box is smaller than the center of the image, it means that the logo is located on the left side of the product, which is a defective piece. If it is on the right side, it means that the logo is printed on the right side of the product, which is a normal piece.
 \end{itemize}
+\section{Experimental Setup and Results}
+\label{sec:experimental}
 
-\subsubsection{Relay module desgin}
+To determine which Raspberry Pi model is better suited for running the custom YOLOv5s model, we conducted an experiment where we performed 500 object detections on both Raspberry Pi 4 and Raspberry Pi 3. The goal was to compare their performance in terms of detection time. 
+
+\subsection{Experimental Procedure}
+\vspace{1cm}
+The following steps were followed during the experiment:
+
+\begin{enumerate}
+  \item The custom YOLOv5s model was deployed on both Raspberry Pi 4 and Raspberry Pi 3.
+  \item A test dataset consisting of 500 images was prepared for object detection.
+  \item The model ran on each image in the dataset, and the time taken for detection was recorded.
+  \item The number of detections, average, minimum, and maximum detection time were calculated for each Raspberry Pi model.
+\end{enumerate}
+
+\subsection{Results}
+
+The results of the experiment are summarized in Table below:
+\FloatBarrier
+\begin{table}[htbp]
+\centering
+\tcbox[width=\linewidth,
+  left=0mm,
+  right=0mm,
+  top=0mm,
+  bottom=0mm,
+  boxsep=0mm,
+  toptitle=0.5mm,
+  bottomtitle=0.5mm, title = Detection time results for Raspberry Pi 4 and Raspberry Pi 3]{%
+\arrayrulecolor{blue!50!black}\renewcommand{\arraystretch}{1.2}%
+\begin{tabular}{|l|c|c|c|}
+\hline
+\textbf{Raspberry Pi Model} & \textbf{Number of Detections} & \textbf{Average Detection Time (s)} & \textbf{Range (s)} \\ \hline
+Raspberry Pi 4              & 500                           & 0.8843                              & 0.8687 - 0.9248    \\ \hline
+Raspberry Pi 3              & 500                           & 3.2731                              & 3.2186 - 3.3478    \\ \hline
+\end{tabular}}
+    \addcontentsline{lot}{table}{Detection time results for Raspberry Pi 4 and Raspberry Pi 3}
+\end{table}
+\FloatBarrier
+
+
+\subsection{Discussion}
+
+From the results, it is evident that Raspberry Pi 4 outperformed Raspberry Pi 3 in terms of detection time. The average detection time on Raspberry Pi 4 was approximately 0.8843 seconds, whereas on Raspberry Pi 3, it was around 3.2731 seconds. This significant difference indicates that Raspberry Pi 4 is better suited for running the custom YOLOv5s model.
+
+These findings highlight the importance of hardware capabilities when it comes to real-time object detection tasks. Raspberry Pi 4's improved processing power and memory capacity contribute to its superior performance in this scenario.
+
+Overall, based on the experiment results, we can conclude that Raspberry Pi 4 is the recommended choice for running the custom YOLOv5s model, as it provides faster and more efficient object detection.
+
+\subsection{Relay module desgin}
 
 \FloatBarrier
 \begin{figure}[h]
@@ -836,7 +824,7 @@ A relay acts as an electrical switch that can control higher voltages and curren
 By utilizing the relay, you create an isolation barrier between the low voltage control circuit (Raspberry Pi) and the high voltage load circuit (automaton). This isolation protects the Raspberry Pi's delicate electronics from potential damage caused by the higher voltage, ensuring safe and reliable operation.
 
 
-In my project, I designed a PCB relay module using Proteus software. I started by creating a new project and selecting the schematic capture option. In the schematic editor, I added all the necessary components such as the relay, terminal blocks, and supporting elements like diodes or resistors. I carefully connected the components together, making sure the signals flowed correctly by drawing wires between their pins. To ensure clarity, I included labels and annotations.
+In my project, I designed a PCB relay module using Proteus software. I started by creating a new project and selecting the schematic capture option.As you can see in figure \ref{Schematic Capture of the relay}, I added all the necessary components such as the relay, terminal blocks, and supporting elements like diodes or resistors. I carefully connected the components together, making sure the signals flowed correctly by drawing wires between their pins. To ensure clarity, I included labels and annotations.
 
 Once the schematic was complete, I performed a design rule check to catch any errors or violations. I made the necessary revisions to ensure the schematic was error-free and ready for the next step.
 

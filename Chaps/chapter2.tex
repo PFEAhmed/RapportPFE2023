@@ -2,18 +2,17 @@
 %\input{includePackagesChaps.tex}
 %\begin{document}
 
-%\chapter{Sprint0 :  <{}< version 0 >{}>}
+
 
 \chapter{Logo Detection with Image Processing}
 
 \section{Introduction}
 In this chapter, we explore the workflow involved in detecting a logo on different images captured using various devices. We begin by discussing the necessary steps required before applying contour detection to the images, including brightness and contrast adjustment, reflection removal, and grayscaling. We then examine the results of applying these techniques on three different images captured using a high-end phone camera, an OV2640 camera module, and an ESP32-CAM, respectively. Through our experiments, we observe the impact of image capture devices on image quality and demonstrate the effectiveness of image processing techniques in enhancing image quality for logo detection.
 \section{Specification of requirements}
-In this section, we introduce the different actors as well as the functional and non-functional requirements.
-\subsection{actors identification }
+In this section, we introduce the functional and non-functional requirements.
 \subsection{Description of functional requirements}
 \begin{itemize}
-\item The ESP32-CAM board should be able to capture a live stream of pictures or videos and make them available through its built-in server.
+\item The ESP32-CAM board should be able to capture a live  video and make it available through its built-in server.
 \item The PC should be able to connect to the server on the ESP32-CAM board and retrieve the images or videos.
 \item The PC should be able to process the images to determine if a specific logo is present or not.
 \item The PC should be able to provide some form of feedback or output indicating whether the logo is present and if it is flipped or not.
@@ -23,7 +22,6 @@ The requirements do not stop at the functional level but tend towards requiremen
 \begin{itemize}
 \item \textbf{Reliability:} The system should be able to consistently capture and process images accurately.
 \item \textbf{Performance:} The system should be able to process images quickly and without noticeable lag or delay.
-\item \textbf{Scalability:} The system should be able to handle multiple simultaneous connections and requests from clients without compromising its performance.
 \item \textbf{Maintainability:} The system should be easy to maintain and update, with clear and well-documented code and configuration.
 \end{itemize}
 
@@ -90,7 +88,7 @@ The requirements do not stop at the functional level but tend towards requiremen
 
 \section{Project component}
 \subsection{Hardware and Software environment}
-For a comprehensive understanding of the hardware and software environment components used in this study, I recommend referring to the annex chapter \ref{Annex} of this report. The annex contains detailed information on the system specifications and configurations, including hardware components such as ESP32-cam, as well as the software components such as  application programs. By referring to the annex, you can gain a deeper insight into the technical details of the system, which can be helpful in evaluating the validity and reliability of the study results.
+For a comprehensive understanding of the hardware and software environment components used in this study, I recommend referring to the annex chapter  of this report. The annex contains detailed information on the system specifications and configurations, including hardware components such as ESP32-cam, as well as the software components such as  application programs. By referring to the annex, you can gain a deeper insight into the technical details of the system, which can be helpful in evaluating the validity and reliability of the study results.
 
 
 \section{Workflow}
@@ -159,9 +157,9 @@ where: \\
 \item $\text{input2\_Pixel} = \text{second source array}$
 \item $\gamma = \text{optional scalar value added to every output pixel value}$
 \end{itemize}
-\subsection{reflection}
+\subsection{reflection on the Brightness and contrast adjustment process}
 During my image processing experiments, I decided to test the effects of reducing brightness and adding contrast to images captured using different devices. To do this, I selected three images: the first was taken from a high-end 32 megapixel phone camera and it didn't have any problems with overexposure or loss of detail. The second image was a printed copy of the same photo, but this time using an ESP32-CAM as the capture device. Unfortunately, even with careful brightness reduction, a ray of sunlight was still visible in the image, and the overall quality was noticeably poorer than the first image. Finally, I used the ESP32-CAM to capture an image of the actual product in question, and again I observed a reduction in image quality compared to the high-end phone camera image. Even after applying the same brightness reduction and contrast enhancement techniques used on the other images, there was still visible noise and loss of detail, as well as a ray of sunlight that remained in the image. It seems that moving from a high-quality camera to an ESP32-CAM can have a significant impact on image quality, even with careful image processing techniques.
-\subsection{grayscaling}
+\subsection{Grayscaling}
 
 \FloatBarrier
 \begin{figure}[h]
@@ -219,7 +217,7 @@ Where:
 \item $B$: represents the blue values of a pixel in the BGR image.
 \end{itemize}
 
-\subsection{reflection}
+\subsection{Reflection on the grayscaling process}
 As part of my image processing experiments, I decided to apply grayscaling to the images as a preprocessing step before using contour detection to locate the logos. While this technique worked well for the first image, which was taken using a 32 megapixel phone camera and did not have any significant issues, it actually made the problems with the second and third images worse. Despite reducing the brightness and increasing the contrast, the ray of sunlight was still present in the images, and the grayscaling process made the problem more pronounced.
 \subsection{Image thresholding}
 
@@ -280,7 +278,7 @@ maxVal &\text{if } src(x,y) > T \\
 \item $src(x,y)$: the input image pixel value at position $(x,y)$
 \item $T$: the threshold value 
 \end{itemize}
-\subsection{reflection}
+\subsection{Reflection on the image thresholding process}
 During the thresholding step, we didn't encounter any issues with the first image as the logo was clearly white and the background was black. However, the last two images posed a challenge as there was additional white noise caused by the light source, making it difficult to distinguish the logo from the noise.
 \subsection{Contour detection}
 In the contour detection step, we used a computer vision algorithm to identify and extract the logo from the images. While the algorithm worked perfectly fine for the first image captured from the 32 megapixel phone camera, it struggled to accurately detect the logo in the last two images taken with the ESP32 cam. The presence of the white noise in the images due to the sunlight made it difficult for the algorithm to distinguish between the logo and the background and oither wihite shapes, resulting in inaccurate or incomplete detection
@@ -325,7 +323,13 @@ To compute the distance $d(s, D)$ between a point $s$ and a line $D$, we use the
 Here, $s_1$ and $s_2$ represent the two endpoints of the line $D$.
 \vspace{1em}
 
+\section{Reflection on the contour detection process}
+We achieved successful results when applying contour detection to the phone image. The contour detection algorithm accurately detected every part of the logo, providing a precise boundary around it. This success can be attributed to several factors, such as the high resolution and clarity of the image, optimal lighting conditions, and well-defined edges of the logo. Overall, contour detection performed exceptionally well on the phone image.
 
+In contrast to the phone image, we encountered challenges when applying contour detection to the printed image. The algorithm struggled to accurately detect the logo boundaries and produced several false positive detections. This difficulty can be attributed to various factors, such as variations in the printing quality, distortions introduced during the printing process, and noise present in the image. These factors led to incomplete and inaccurate contour detection, resulting in the inclusion of unwanted objects or missing parts of the logo.
+
+
+Similar to the printed image, the contour detection algorithm faced challenges when applied to the image of the actual product.
 \section{Conclusion}
 In conclusion, the second chapter of our project focused on image processing techniques to extract the logo from images captured using the ESP32 cam. While we were able to successfully apply various techniques such as grayscaling, thresholding, and contour detection to extract the logo from the images, we faced significant challenges due to the presence of white noise in the images. Despite our best efforts, we were unable to achieve accurate results for all images. However, we learned valuable lessons and identified the limitations of traditional image processing techniques in solving this problem.
 
