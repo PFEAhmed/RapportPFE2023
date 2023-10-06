@@ -1,0 +1,219 @@
+%\documentclass{report}
+%\input{includePackagesChaps.tex}
+%\begin{document}
+
+
+
+\chapter{Stabilizing the System}
+\section{Introduction}
+In this chapter, we made several significant changes to our project that have improved its functionality and usability. First, we decided to switch from using a traditional router to using a Raspberry Pi as an access point. We also made the decision to give our ESP32-CAM server a static IP address.
+
+In addition, we identified an issue with the position of the logo and the font. To address this, we used image processing with the addition of a new class to the YOLOV5s to help us accurately identify and classify these types of objects.
+
+Furthermore, I am excited to announce that I automated the main script for inference and I fixed the raspberry pi's temperature issue.
+
+\section{Specification of requirements}
+In this section, we introduce the different actors as well as the functional and non-functional requirements.
+\subsection{Description of functional requirements}
+\begin{itemize}
+\item The system should be able to capture a live stream of pictures or videos and make them available through its built-in server.
+\item The system should be able to connect to the server on the ESP32-CAM board and retrieve the images or videos.
+\item The system should be able to process the images to determine if a specific logo is present or not.
+\item The system should be able to process the images to determine if a specific logo is flipped on the x axis.
+\item The system should be able to process the images to determine if a specific logo is in the first or the second half of the product.
+\item The system should be able to process the images to determine if a specific the font of the logo have a problem.
+\item The system should be able to process the images to determine if a specific the logo is under the normal postion.
+\item The system should be able to provide some form of feedback or output to the automaton indicating the state of the logo.
+
+\end{itemize}
+\subsection{Description of non-functional requirements}
+The requirements do not stop at the functional level but tend towards requirements that contribute to better quality of the application. The most important ones are:
+\begin{itemize}
+\item \textbf{Reliability:} The system should be able to consistently capture and process images accurately..
+\item \textbf{Performance:} The system should be able to process images quickly and without noticeable lag or delay.
+\item \textbf{Maintainability:} The code should be easy to maintain and update, with clear and well-documented code and configuration.
+\end{itemize}
+
+\section{SysMl}
+
+\FloatBarrier
+\begin{figure}[h]
+
+         \centering
+        \includegraphics[width=1\textwidth]{UseCase Diagram3}
+   
+        \caption{Use case diagram version 2}
+        \label{Use case diagram version 2}
+
+    \end{figure}
+
+
+\FloatBarrier
+\FloatBarrier
+\begin{figure}[h]
+\FloatBarrier
+         \centering
+        \includegraphics[width=1\textwidth]{Activity Diagram3}
+   
+        \caption{Activity diagram version 2}
+        \label{Activity diagram version 2}
+\FloatBarrier
+    \end{figure}
+
+
+\FloatBarrier
+
+\FloatBarrier
+\begin{figure}[h]
+\FloatBarrier
+         \centering
+        \includegraphics[width=16cm, height=10cm]{Requirement Diagram2}
+   
+        \caption{Requirement diagram version 2}
+        \label{Requirement diagram version 2}
+\FloatBarrier
+    \end{figure}
+
+
+\FloatBarrier
+\FloatBarrier
+\begin{figure}[h]
+\FloatBarrier
+         \centering
+        \includegraphics[width=1\textwidth]{Block Definition Diagram3}
+   
+        \caption{Block Definition Diagram version 2}
+        \label{Block Definition Diagram version 2}
+\FloatBarrier
+    \end{figure}
+
+
+\FloatBarrier
+\section{Workflow}
+\subsection{Network improvements}
+\subsubsection{Turning the raspberry pi into an access}
+There are several reasons I turned the Raspberry Pi into an access point rather than relying on a normal router. First, Flexibility: By setting up a Raspberry Pi as an access point, you have more control over your network and can customize it to meet your specific needs. Second, Cost: Using a Raspberry Pi as an access point can be cheaper than buying a dedicated router, especially if you already have a spare Raspberry Pi lying around.Third,Portability: A Raspberry Pi is small and portable, making it easy to set up an access point on the go. This can be useful if you need to quickly set up a network in a remote location, such as a camping trip or a field research project.Finally, Integration: If I'am already using a Raspberry Pi for other purposes, so I can easily integrate the access point functionality into your existing setup.\cite{AG19}
+\subsubsection{Giving static address to ESP32-CAM}
+There are several advantages of assigning a static IP address to an ESP32-CAM device compared to using a dynamic IP address obtained from a DHCP server. Stability is one of the key advantages. With a static IP address, the ESP32-CAM device will always have the same IP address, ensuring stability in the network connection. In contrast, a dynamic IP address may change periodically, causing connectivity issues if the device's IP address changes without the network administrator's knowledge.\cite{HW22}
+
+Another advantage is easier network access. By assigning a static IP address, it becomes easier to access the ESP32-CAM device remotely. Since the IP address remains constant, there is no need to check the DHCP server for the device's current IP address. This can be especially beneficial in situations where frequent access to the device is required.\cite{HW22}
+
+It is essential for the ESP32-CAM device to have a static IP address. This is because the Raspberry Pi needs to connect to the ESP32-CAM's web server to retrieve images. By assigning a static IP address to the ESP32-CAM, such as 10.42.0.58, the Raspberry Pi can reliably establish a connection with the ESP32-CAM's web server without having to constantly check for the device's IP address.\cite{HW22}
+
+%To configure the ESP32-CAM with a static IP address, the following code snippet can be used:
+%\FloatBarrier
+%\begin{lstlisting}[language=C]
+%// Set your Static IP address
+%IPAddress local_IP(10, 42, 0, 58);
+%// Set your Gateway IP address
+%IPAddress gateway(10, 42, 0, 1);
+%IPAddress subnet(255, 255, 255, 0);
+%IPAddress primaryDNS(8, 8, 8, 8); //optional
+%IPAddress secondaryDNS(8, 8, 4, 4); //optional
+
+%if (!WiFi.config(local_IP, gateway, subnet, primaryDNS, secondaryDNS)) {
+  %  Serial.println("STA Failed to configure");
+%}
+
+
+%\end{lstlisting}
+By including this in my esp32-cam code , I can ensure that the it will always uses the specified static IP address when connecting to the network. This allows the Raspberry Pi to easily retrieve images from the ESP32-CAM's web server by accessing the fixed IP address (10.42.0.58 in this case). This configuration provides stability and reliability to the image retrieval process, enabling seamless communication between the Raspberry Pi and the ESP32-CAM.
+\subsection{Software improvement}
+\subsubsection{Automating the main script for inference}
+Once we installed our product in the factory, we noticed that the main script inside it required human intervention to work properly. This was problematic because it meant that an operator had to be present to initiate the script every time the system was started up. We knew that this was not an efficient or sustainable solution, so we began exploring ways to automate the script.
+
+After some research and testing, we were able to configure the script to run automatically at the start of the Raspberry Pi. This allowed the system to operate without any human intervention, reducing the need for manual input and increasing the overall efficiency of the system. With the script now automated, the system could start up and run smoothly without any manual intervention, freeing up our operators to focus on other tasks.
+
+The benefits of automating a script are numerous. Automating a script can reduce the need for manual input, saving time and increasing efficiency. In addition, automating a script can reduce the potential for human error, ensuring that the system operates reliably and accurately. Furthermore, automating a script can help to reduce costs associated with hiring additional staff or training existing staff on manual processes.
+
+Overall, the automation of our script was a significant improvement to our system, and we are confident that it will continue to improve the efficiency and reliability of our product moving forward. By automating this process, we have created a more sustainable and efficient system that will benefit both our team and our end-users.
+\subsubsection{Detection improvements}
+
+\FloatBarrier
+
+\begin{figure}[htbp]
+    \centering
+    
+    \begin{minipage}{0.4\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{logodown}
+        \caption{Logo down from its normal position}
+        \label{fig:image1}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.4\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{font}
+        \caption{messed-up fonts in the logo}
+        \label{fig:image2}
+    \end{minipage}
+        
+\end{figure}
+\FloatBarrier
+A new issue has emerged in logo detection where logos can appear in abnormal positions in figure \ref{fig:image1} or with messed-up fonts  in figure \ref{fig:image2}.To address these challenges, a proactive solution was implemented by adding an additional class called "part" to the dataset and retraining the model.
+\FloatBarrier
+
+\begin{figure}[htbp]
+    \centering
+    
+    \begin{minipage}{1\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{partanotate}
+        \caption{part class's annotation}
+        \label{fig:image3}
+    \end{minipage}
+\end{figure}
+I chose to incorporate the "part" class into my dataset because I faced a unique challenge where I did not have physical access to the actual product. Instead, the only resources provided to me were photographs of the product. This constraint prevented me from capturing images of the physical product from different angles or under various conditions.
+
+In this scenario, I decided to add the label "part" in the available photographs of the normal class since it represented as  portions or components of the product  in the figure \ref{fig:image3} . Although they did not encompass the complete product, they were the closest visual representation I had access to. By labeling these images as the "part" class, I intended to train the model to recognize and detect that specific component within the product logo.
+
+While this approach may not have provided direct access to the physical product, it allowed me to leverage the available photographs to train the model effectively. By incorporating the "part" class, I could capture the visual characteristics of the actual logo present in the provided images. 
+\FloatBarrier
+
+\begin{figure}[htbp]
+    \centering
+    
+    \begin{minipage}{1\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{font1}
+        \caption{Object detection of a mess-up font in the logo}
+        \label{fig:image4}
+    \end{minipage}
+\end{figure}
+\FloatBarrier 
+ First, I calculated the height of the bounding boxes for the "normal" and "part" classes in figure \ref{fig:image4}. Then, I determined the ratio by dividing the height of the "part" bounding box by the height of the "normal" bounding box. After conducting extensive experiments, I established a threshold of 0.51 as the ideal ratio. If the calculated ratio (hPart / hNormal) was greater than 0.51, it indicated that the logo's font was distorted. I noticed that the "normal" logo generally had a smaller height compared to the logo with the distorted font.
+\FloatBarrier
+\begin{figure}[htbp]
+    \centering
+    
+    \begin{minipage}{1\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{position1}
+        \caption{Object detection on a logo with a position problem}
+        \label{fig:image5}
+    \end{minipage}
+\end{figure}
+\FloatBarrier
+For the second problem, I utilized the y coordinates obtained from each bounding box  in figure \ref{fig:image5}. I developed this formula:
+\begin{equation}
+ratio\_position = (y1 - ny1) * 100 // (ny2 - ny1)
+\end{equation}
+
+ where y1 represents the y-coordinate minimum of the "part" bounding box, ny1 represents the minimum y-coordinate of the "normal" bounding box, and ny2 represents the maximum y-coordinate of the "normal" bounding box. Subsequently, I set a threshold of 40 based on numerous experiments. If the calculated ratio\_position was greater than 40, it indicated that the logo was positioned below the normal location.
+
+These approaches helped me address the challenges related to the logo's position and font during the object detection task.
+\subsection{Fixing the temperature issue}
+After installing the first version of our product in the factory, we noticed that the temperature of the Raspberry Pi was rising significantly. This was likely due to the hot environment and the fact that the Raspberry Pi was running YOLOv5, which requires a significant amount of processing power. We knew that this issue could impact the reliability and longevity of our product, so we immediately began exploring solutions.
+
+After considering several options, we decided to install a fan to cool the Raspberry Pi. This solution proved to be effective in reducing the temperature of the Raspberry Pi and maintaining stable performance. By keeping the Raspberry Pi cool, we were able to prevent it from overheating and potentially causing damage to the system. Additionally, we found that cooling the Raspberry Pi improved the overall performance of our system, allowing it to run more smoothly and efficiently.
+
+In general, the benefits of cooling a Raspberry Pi are numerous. Cooling a Raspberry Pi can improve its longevity, reduce the risk of damage, and ensure that it runs smoothly and efficiently. Overheating can cause a Raspberry Pi to crash, freeze, or even become permanently damaged. By keeping the Raspberry Pi cool, we can prevent these issues and ensure that our product is reliable and durable. Furthermore, cooling a Raspberry Pi can help to extend its lifespan, which can ultimately save time and money in the long run.
+\section{Conclusion} 
+In conclusion, the meticulous and comprehensive modifications implemented in this chapter have astoundingly transformed and amplified the functionality and usability of our project, propelling it to unparalleled levels of excellence.
+
+%\input{biblio.tex}
+
+
+
+
+%\end{document}

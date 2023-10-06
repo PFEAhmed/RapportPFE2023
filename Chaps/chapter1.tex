@@ -1,0 +1,208 @@
+%\documentclass{report}
+%\input{includePackages.tex}
+%\begin{document}
+\chapter{Project Framework and Methodology}
+\section{Introduction}
+The first chapter of this report aims to provide an overview of the host company, present a case study highlighting the problem to be addressed, and introduce the modeling language used for the project. This chapter sets the stage for the subsequent sections by establishing the context, significance, and scope of the actions undertaken in the next chapters.
+ %Presentation of the  enterprise
+\section{Presentation of the  enterprise}
+Tesca Group is a family-run company with a background in textiles that has successfully ventured into the automotive industry, specifically automotive seating. Emulating the approach of a French automotive manufacturing house, Tesca Group meticulously crafts each piece, from its atelier to its global production sites\cite{T23}. The company strives to embody the same creative audacity and prides itself on being a partner to major automotive manufacturers like : 
+
+
+
+\begin{figure}[htbp]
+\centering
+\begin{subfigure}{0.16\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{ALPINE}
+\end{subfigure}%
+\begin{subfigure}{0.16\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{AUDI}
+\end{subfigure}%
+\begin{subfigure}{0.16\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{bentley-1}
+\end{subfigure}%
+\begin{subfigure}{0.16\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{BMW-1}
+\end{subfigure}%
+\begin{subfigure}{0.16\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{NISSAN}
+\end{subfigure}%
+\begin{subfigure}{0.16\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{CITROEN}
+\end{subfigure}
+
+\vspace{10pt} % adjust the vertical spacing between rows
+
+\begin{subfigure}{0.16\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{CUPRA-1}
+\end{subfigure}%
+\begin{subfigure}{0.16\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{DACIA}
+\end{subfigure}%
+\begin{subfigure}{0.16\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{DS}
+\end{subfigure}%
+\begin{subfigure}{0.16\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{FAW}
+\end{subfigure}%
+\begin{subfigure}{0.16\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{FORD}
+\end{subfigure}%
+\begin{subfigure}{0.16\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{HYUNDAI}
+\end{subfigure}
+
+\caption{Tesca's partners}
+\end{figure}
+
+
+
+
+
+With a clientele consisting of demanding visionaries who shape the future of mobility, Tesca Group positions itself as a reliable and flexible partner, accompanying its clients in their pursuit of innovation and competitiveness. The company believes that adopting a long-term and eco-friendly vision is crucial for sustainable growth, constantly pushing for excellence rather than settling for mediocrity.\cite{T23}
+
+Sustainability is a concrete and integral part of Tesca Group's approach. The company is committed to sustainable development and actively incorporates environmental and social values into its products, services, and activities within the automotive industry. Since 2004, Tesca Group has been dedicated to controlling its ecological footprint, and the executive management maintains and expands upon these efforts. The company adheres to the values and principles of the Global Compact through its Ethics Charter, with the objective of obtaining ISO 14001 certification for all its sites.\cite{T23}
+
+Tesca Group's environmental policy revolves around five major directions: behaving in an environmentally responsible manner, optimizing and controlling industrial waste, optimizing energy consumption and natural resources, participating in the reduction of the ecological footprint throughout the design and production processes, and ensuring compliance with environmental regulations and requirements.\cite{T23}
+
+Innovation is a driving force within Tesca Group, with a constant emphasis on generating new ideas and executing them effectively. The company's research programs focus on key themes in the automotive industry, such as weight reduction, optimized part design, and ecological footprint expertise, while prioritizing user comfort, functionality, and safety. Tesca Group holds numerous patents in the conception, design, and manufacturing of automotive parts and seat components, including headrests, armrests, upholstery, padding, and "smart textiles."\cite{T23}
+
+Industrial excellence is a cornerstone of Tesca Group's strategy, whether through its local production sites or research centers. The company strives to provide reliable processes that meet the evolving market expectations worldwide. Tesca Group empowers its teams through a culture of continuous improvement, with competitiveness, efficiency, and exceptional service forming the foundation of its industrial success. SPRINT (Tesca's INdustrial Production System) is employed to engage collaborators at all levels, aiming to standardize procedures and ensure perpetual progress in industrial performance. Shared values among Tesca Group employees include excellence, self-discipline, commitment, autonomy, and pragmatism.\cite{T23}
+
+Tesca Group's Quality policy aligns with five major directions: meeting commitments to conformity, cost, and deadlines; aligning industrial and purchasing performance with the highest quality criteria; standardizing existing processes to offer innovative products; prioritizing process control and prevention; and continuously enhancing the skills of its teams.\cite{T23}
+
+In terms of its history, Tesca Group has a notable timeline of achievements. Starting in 1960 with the provision of Citroën 2CV roofs, the company went on to pioneer and apply the Foam In Place technology in 1978. In 1983, Tesca Group established its Design Studio in Paris, followed by the creation of the CERA research and development center in Reims in 1993. By the year 2000, the company had expanded its production capabilities worldwide. In 2016, Tesca Group underwent a significant transformation, becoming Trèves TSC.\cite{T23}
+
+Overall, Tesca Group has established itself as a reputable partner to major automotive manufacturers, driven by a commitment to sustainability, innovation, industrial excellence, and quality. Through its diverse range of products and services, the company aims to shape the future\cite{T23}
+%\subsection{description of the  enterprise }
+%\subsection{description of the  enterprise's services}
+%\subsection{administrative organization chart of the enterprise}
+\vspace{1em}
+ %Presentation of the  enterprise
+\section{Case study}
+
+\subsection{description of the existing system }
+\FloatBarrier
+\begin{figure}[h]
+
+         \centering
+        \includegraphics[width=0.8\textwidth]{ifm1}
+   
+        \caption{IFM O2D220}
+        \label{fig:IFM O2D220}
+\FloatBarrier
+    \end{figure}
+
+\FloatBarrier
+Tesca is a factory that utilizes an object recognition sensor called IFM O2D220 to detect potential defects in logos present on its products. The IFM O2D220 employs two types of sensors: the Contour Sensor and the Pixel Counter.
+
+The Contour Sensor is designed to quickly analyze and compare the defined shape of an object with similar objects. It is particularly useful when the shape of the inspected objects is repetitive. The sensor uses incident light or backlight to detect the contours of an object and then compares them with contours from reference images. Based on the level of conformity, the sensor generates an output indicating the presence of a model and, if applicable, identifies the specific model found.\cite{Tnd}
+
+The Pixel Counter sensor analyzes the area of an object by counting the pixels. This sensor is best suited for inspecting objects that vary in terms of shape, size, or shade. It also utilizes incident light or backlight to detect object contours. By comparing the pixel count with predetermined thresholds, the sensor determines the characteristics and features of the object.\cite{Tnd}
+
+To elaborate further, let's examine a couple of examples of the ifm object recognition sensor in action:
+
+\FloatBarrier
+\begin{figure}[h]
+
+         \centering
+        \includegraphics[width=0.8\textwidth]{exp2}
+   
+        \caption{Identify missing piece in O-ring assembly with IFM O2D220}
+        \label{fig:exp1}
+\FloatBarrier
+    \end{figure}
+
+\FloatBarrier
+Identify missing piece in O-ring assembly :  as you can see in figure \ref{fig:exp1}, identifying that a piece is missingin an O-ring is imperative. The Pixel Counter is programmed to verify that the O-ring is complete and that no piece is missing regardless of the size and location of the missing piece. \cite{Tnd}
+\FloatBarrier
+\begin{figure}[h]
+
+         \centering
+        \includegraphics[width=0.8\textwidth]{exp3}
+   
+        \caption{Identify cap on top of spray can with IFM O2D220}
+        \label{fig:exp2}
+\FloatBarrier
+    \end{figure}
+
+\FloatBarrier
+Identify cap on top of spray can :  you can see in figure \ref{fig:exp2}, The cap can be missing or improperly installed. By learning the outline of the top of the cap and the canister, the Contour Sensor allows detection of missing or incorrectly.\cite{Tnd}
+installed caps.
+\subsection{criticism of the existing system}
+\FloatBarrier
+\begin{figure}[h]
+
+         \centering
+        \includegraphics[width=0.8\textwidth]{place holder}
+   
+        \caption{Product's place holder}
+        \label{fig:place holder}
+\FloatBarrier
+    \end{figure}
+
+\FloatBarrier
+
+
+In the factory's workflow, workers are responsible for placing the individual pieces of the product into designated placeholders along the assembly line seen in figure \ref{fig:place holder} . Once the piece is securely positioned, the system relies on the ifm object recognition sensor to assess its quality.
+The ifm sensor analyzes the piece, evaluating its characteristics and comparing them to predetermined quality criteria. If the piece meets the required standards and is determined to be good, the system triggers an automated mechanism associated with the placeholder. As a result, the placeholder smoothly lowers its position, indicating that the piece has been approved and can proceed to the next stage of production. the problem here is that When selecting the operating distance it has to be taken into account that contour detection becomes less reliable with decreasing size of the objects. The objects to
+be detected should cover at least 5\% of the field of view
+The requirement for objects to cover a certain percentage of the field of view indicates that the existing system may struggle to detect smaller objects reliably. This can result in potential issues such as false positives or missed detections, leading to a decrease in overall efficiency and quality control.
+
+Another issue that may arise with product placement is that this soltion is based on preconfigured rules. In the given example, if we focus on Figure \ref{fig:exp2}, it is apparent that if the normal can were to be placesd slitly above  , it would mistakenly be detected as a defective piece because the the putline of the cap will be above the preconfigured outline.
+
+The reliance on fixed rules poses a challenge when dealing with variations in product placement that fall within acceptable tolerances. In cases where slight deviations occur, such as minor misalignments or positioning errors, the system may incorrectly classify the product as defective, leading to unnecessary interruptions in the production process.
+
+As a result, this limitation can lead to false detection of defects and potentially disrupt the production line. It highlights the importance of considering alternative or supplementary methods for accurately assessing the presence of the cap.
+
+\subsection{Solution}
+To address the limitations and challenges associated with the existing contour detection system, I propose an alternative solution that leverages the power of the YOLOv5 object detection.
+By integrating a system based on YOLOv5, we can overcome the drawbacks of the current approach and enhance our ability to detect defective logos on the production line. The improved accuracy of YOLOv5 ensures more precise identification and localization of logos, reducing the chances of false positives or missed detections. This is especially valuable when dealing with logos of varying sizes, shapes, and orientations.
+\vspace{1em}
+
+\subsection{Modeling languages : SysMl}
+\textbf{SysMl},  or Systems Modeling Language, is a graphical language used by MBSE (Model-Based Systems Engineering) practitioners to create system models and communicate ideas about system designs to stakeholders. It is a language that has a grammar and vocabulary consisting of graphical notations that have specific meanings. The purpose of SysML is to visualize and communicate a system's design among stakeholders.\cite{LD13}
+
+The grammar and notations of SysML are defined in a standards specification published by the Object Management Group, which is a consortium of computer industry companies, government agencies, and academic institutions. SysML is an extension of a subset of the Unified Modeling Language (UML), and its complete definition requires referring to parts of the UML specification document as well.\cite{LD13}
+We can name a few types of SysMl diagrams:
+\begin{itemize}
+\item Behavior diagrams\cite{LD13}
+\begin{itemize}
+\item Activity diagram
+\item State machine diagram
+\item Sequence diagram
+\item Use case diagram
+\item Communication diagram
+\end{itemize}
+\item Structure diagrams\cite{LD13}
+\begin{itemize}
+\item Block definition diagram
+\item Internal block diagram
+\item Parametric diagram
+\item Package diagram
+\item Composite structure diagram
+\end{itemize}
+\item Requirement diagram\cite{LD13}
+\end{itemize}
+\vspace{1em}
+
+
+\section{Conclusion}
+Overall, chapter 1 has provided the necessary foundation for the subsequent chapters, enabling a comprehensive exploration of the problem and the development of an effective solution. By understanding the host company, the specific problem through the case study, and the modeling language employed, you the  reader will be  equipped with the context and knowledge required to delve deeper into the next chapters presented in this report.
+
+
+
+
+%\end{document}

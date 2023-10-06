@@ -1,0 +1,343 @@
+%\documentclass{report}
+%\input{includePackagesChaps.tex}
+%\begin{document}
+
+
+
+\chapter{Logo Detection with Image Processing}
+
+\section{Introduction}
+In this chapter, we explore the workflow involved in detecting a logo on different images captured using various devices. We begin by discussing the necessary steps required before applying contour detection to the images, including brightness and contrast adjustment, reflection removal, and grayscaling. We then examine the results of applying these techniques on three different images captured using a high-end phone camera, an OV2640 camera module, and an ESP32-CAM, respectively. Through our experiments, we observe the impact of image capture devices on image quality and demonstrate the effectiveness of image processing techniques in enhancing image quality for logo detection.
+\section{Specification of requirements}
+In this section, we introduce the functional and non-functional requirements.
+\subsection{Description of functional requirements}
+\begin{itemize}
+\item The ESP32-CAM board should be able to capture a live  video and make it available through its built-in server.
+\item The PC should be able to connect to the server on the ESP32-CAM board and retrieve the images or videos.
+\item The PC should be able to process the images to determine if a specific logo is present or not.
+\item The PC should be able to provide some form of feedback or output indicating whether the logo is present and if it is flipped or not.
+\end{itemize}
+\subsection{Description of non-functional requirements}
+The requirements do not stop at the functional level but tend towards requirements that contribute to better quality of the application. The most important ones are:
+\begin{itemize}
+\item \textbf{Reliability:} The system should be able to consistently capture and process images accurately.
+\item \textbf{Performance:} The system should be able to process images quickly and without noticeable lag or delay.
+\item \textbf{Maintainability:} The system should be easy to maintain and update, with clear and well-documented code and configuration.
+\end{itemize}
+
+\section{Modeling languages diagrams}
+\subsection{SysMl}
+
+\FloatBarrier
+\begin{figure}[h]
+\FloatBarrier
+         \centering
+        \includegraphics[width=1\textwidth]{UseCase Diagram1}
+   
+        \caption{Use case diagram version 0}
+        \label{Use case diagram version 0}
+\FloatBarrier
+    \end{figure}
+
+
+\FloatBarrier
+
+\FloatBarrier
+\begin{figure}[h]
+\FloatBarrier
+         \centering
+        \includegraphics[width=1\textwidth]{Activity Diagram1}
+   
+        \caption{Activity diagram version 0}
+        \label{Activity diagram version 0}
+\FloatBarrier
+    \end{figure}
+
+
+\FloatBarrier
+
+\FloatBarrier
+\begin{figure}[h]
+\FloatBarrier
+         \centering
+        \includegraphics[width=16cm, height=10cm]{RequirementDiagram1}
+   
+        \caption{Requirement diagram version 0}
+        \label{Requirement diagram version 0}
+\FloatBarrier
+    \end{figure}
+
+
+\FloatBarrier
+\FloatBarrier
+\begin{figure}[h]
+\FloatBarrier
+         \centering
+        \includegraphics[width=1\textwidth]{Block Definition Diagram1}
+   
+        \caption{Block Definition Diagram version 0}
+        \label{Block Definition Diagram version 0}
+\FloatBarrier
+    \end{figure}
+
+
+\FloatBarrier
+
+
+
+
+\section{Project component}
+\subsection{Hardware and Software environment}
+For a comprehensive understanding of the hardware and software environment components used in this study, I recommend referring to the annex chapter  of this report. The annex contains detailed information on the system specifications and configurations, including hardware components such as ESP32-cam, as well as the software components such as  application programs. By referring to the annex, you can gain a deeper insight into the technical details of the system, which can be helpful in evaluating the validity and reliability of the study results.
+
+
+\section{Workflow}
+We tried the approach of using contour detection to detect the logo on three different images. The first image was taken from a phone's 32mp camera, the second image was of the printed image of the phone's 32mp camera, captured using an OV2640 camera module, and the third image was of the actual physical product with an OV2640 camera module. However, before applying contour detection to these images, there were other necessary steps that needed to be taken
+\subsection{Brightness and contrast adjustment}
+
+\FloatBarrier
+\begin{figure}[h]
+\FloatBarrier
+         \centering
+        \includegraphics[width=0.6\textwidth]{image_comparison}
+   
+        \caption{Phone's images : normal to darker}
+        \label{fig:Phone's images : normal to darker}
+\FloatBarrier
+    \end{figure}
+
+
+\FloatBarrier
+\FloatBarrier
+\begin{figure}[h]
+\FloatBarrier
+         \centering
+        \includegraphics[width=0.6\textwidth]{image_comparison_esp_printedImage_lighredction}
+   
+        \caption{esp32-cam on printed images : normal to darker}
+        \label{fig:Phone's images : normal to darker}
+\FloatBarrier
+    \end{figure}
+
+
+\FloatBarrier
+\FloatBarrier
+\begin{figure}[h]
+\FloatBarrier
+         \centering
+        \includegraphics[width=0.6\textwidth]{image_comparison_esp_actualImage_dark}
+   
+        \caption{esp32-cam on the actual product : normal to darker}
+        \label{fig:Phone's images : normal to darker}
+\FloatBarrier
+    \end{figure}
+
+
+\FloatBarrier
+\begin{lstlisting}[language=Python]
+import cv2 as cv
+import numpy as np
+
+alpha = 0.4
+beta = -10
+result = cv.addWeighted(frame, alpha, np.zeros(frame.shape, frame.dtype), 0, beta)
+\end{lstlisting}
+
+
+The cv.addWeighted() function blends two input images by taking their pixel values and calculating a weighted sum for each corresponding pixel \cite{WG10} using this equation:\\
+\begin{equation}
+output\_Pixel = \alpha * input1\_Pixel +\beta * input2\_pixel + \gamma \cite{WG10} 
+\end{equation}
+where: \\
+\begin{itemize}
+\item $\text{output\_Pixel} = \text{output pixel value}$
+\item $\alpha = \text{weight given to the first input image (input1\_pixel)}$
+\item $\text{input1\_Pixel} = \text{first source array}$
+\item $\beta = \text{weight given to the second input image (input2\_pixel)}$
+\item $\text{input2\_Pixel} = \text{second source array}$
+\item $\gamma = \text{optional scalar value added to every output pixel value}$
+\end{itemize}
+\subsection{reflection on the Brightness and contrast adjustment process}
+During my image processing experiments, I decided to test the effects of reducing brightness and adding contrast to images captured using different devices. To do this, I selected three images: the first was taken from a high-end 32 megapixel phone camera and it didn't have any problems with overexposure or loss of detail. The second image was a printed copy of the same photo, but this time using an ESP32-CAM as the capture device. Unfortunately, even with careful brightness reduction, a ray of sunlight was still visible in the image, and the overall quality was noticeably poorer than the first image. Finally, I used the ESP32-CAM to capture an image of the actual product in question, and again I observed a reduction in image quality compared to the high-end phone camera image. Even after applying the same brightness reduction and contrast enhancement techniques used on the other images, there was still visible noise and loss of detail, as well as a ray of sunlight that remained in the image. It seems that moving from a high-quality camera to an ESP32-CAM can have a significant impact on image quality, even with careful image processing techniques.
+\subsection{Grayscaling}
+
+\FloatBarrier
+\begin{figure}[h]
+\FloatBarrier
+         \centering
+        \includegraphics[width=0.6\textwidth]{gray_comparison}
+   
+        \caption{Phone's images :darker to gray}
+        \label{fig:Phone's images : darker to gray}
+\FloatBarrier
+    \end{figure}
+
+
+\FloatBarrier
+\FloatBarrier
+\begin{figure}[h]
+\FloatBarrier
+         \centering
+        \includegraphics[width=0.6\textwidth]{image_comparison_esp_printedImage_gray}
+   
+        \caption{esp32-cam on printed images : darker to gray}
+        \label{fig:esp32-cam on printed images :  darker to gray}
+\FloatBarrier
+    \end{figure}
+
+
+\FloatBarrier
+\FloatBarrier
+\begin{figure}[h]
+\FloatBarrier
+         \centering
+        \includegraphics[width=0.6\textwidth]{image_comparison_esp_actualImage_gray}
+   
+        \caption{esp32-cam on the actual product : darker to gray}
+        \label{fig:Phone's images :  darker to gray}
+\FloatBarrier
+    \end{figure}
+
+
+\FloatBarrier 
+\begin{lstlisting}[language=Python]
+ gray = cv.cvtColor(frame, cv.COLOR_BGR2GRAY)
+\end{lstlisting}
+The cv.cvtColor It takes as input the values of the red, green, and blue color channels of a pixel (R, G, B) and calculates a weighted average of these values to produce a single grayscale value using this equation:\cite{WG10}
+\begin{equation}
+result = 0.299 R + 0.587 G + 0.114 B \cite{WG10}
+\end{equation}
+
+Where:
+
+\begin{itemize}
+\item result: represents the grayscale value of a pixel in the output image.
+\item $R$: represents the red values of a pixel in the BGR image.
+\item $G$: represents the green values of a pixel in the BGR image.
+\item $B$: represents the blue values of a pixel in the BGR image.
+\end{itemize}
+
+\subsection{Reflection on the grayscaling process}
+As part of my image processing experiments, I decided to apply grayscaling to the images as a preprocessing step before using contour detection to locate the logos. While this technique worked well for the first image, which was taken using a 32 megapixel phone camera and did not have any significant issues, it actually made the problems with the second and third images worse. Despite reducing the brightness and increasing the contrast, the ray of sunlight was still present in the images, and the grayscaling process made the problem more pronounced.
+\subsection{Image thresholding}
+
+\FloatBarrier
+\begin{figure}[h]
+\FloatBarrier
+         \centering
+        \includegraphics[width=0.6\textwidth]{binary_comparison}
+   
+        \caption{Phone's images :Gray to binary}
+        \label{fig:Phone's images : Gray to binary}
+\FloatBarrier
+    \end{figure}
+
+
+\FloatBarrier
+\FloatBarrier
+\begin{figure}[h]
+\FloatBarrier
+         \centering
+        \includegraphics[width=0.6\textwidth]{image_comparison_esp_printedImage_binary}
+   
+        \caption{esp32-cam on printed images : Gray to binary}
+        \label{fig:Phone's images : Gray to binary}
+\FloatBarrier
+    \end{figure}
+
+
+\FloatBarrier
+\FloatBarrier
+\begin{figure}[h]
+\FloatBarrier
+         \centering
+        \includegraphics[width=0.6\textwidth]{image_comparison_esp_actualImage_binary}
+   
+        \caption{esp32-cam on the actual product :Gray to binary}
+        \label{fig:Phone's images :  Gray to binary}
+\FloatBarrier
+    \end{figure}
+
+
+\FloatBarrier 
+\begin{lstlisting}[language=Python]
+ ret, thresh = cv.threshold(adjusted, 70, 255, 0)
+\end{lstlisting}
+ cv.threshold is used to threshold an image. It takes a gray image and applies a threshold to it \cite{WG10} using this equation:
+
+\begin{equation}
+dst(x,y) = \begin{cases}
+maxVal &\text{if } src(x,y) > T \\
+0 &\text{otherwise}
+\end{cases}
+\cite{WG10}
+\end{equation}
+\begin{itemize}
+\item $dst(x,y)$: the output image pixel value at position $(x,y)$ after thresholding
+\item $maxval$: the maximum pixel value 
+\item $src(x,y)$: the input image pixel value at position $(x,y)$
+\item $T$: the threshold value 
+\end{itemize}
+\subsection{Reflection on the image thresholding process}
+During the thresholding step, we didn't encounter any issues with the first image as the logo was clearly white and the background was black. However, the last two images posed a challenge as there was additional white noise caused by the light source, making it difficult to distinguish the logo from the noise.
+\subsection{Contour detection}
+In the contour detection step, we used a computer vision algorithm to identify and extract the logo from the images. While the algorithm worked perfectly fine for the first image captured from the 32 megapixel phone camera, it struggled to accurately detect the logo in the last two images taken with the ESP32 cam. The presence of the white noise in the images due to the sunlight made it difficult for the algorithm to distinguish between the logo and the background and oither wihite shapes, resulting in inaccurate or incomplete detection
+\FloatBarrier
+\begin{figure}[h]
+
+         \centering
+        \includegraphics[width=0.8\textwidth]{prediction_comparison}
+   
+        \caption{prediction results}
+        \label{fig:prediction results}
+\FloatBarrier
+    \end{figure}
+\FloatBarrier
+
+\FloatBarrier
+\begin{lstlisting}[language=Python]
+    contours, hierarchy = cv.findContours(thresh, cv.RETR_EXTERNAL, cv.CHAIN_APPROX_SIMPLE)
+
+\end{lstlisting}
+\FloatBarrier
+
+
+
+The \texttt{cv.findContours()} function in OpenCV is used to detect contours in a binary image. In our case, it uses the contour approximation method \texttt{CHAIN\_APPROX\_SIMPLE} \cite{CD21}, which is based on the Douglas-Peucker algorithm for curve simplification. This algorithm works as follows:
+we begin with a set of $n$ points $S = \{s_1, s_2, ..., s_n\}$ that represent a curve in two-dimensional space. We also have a tolerance value $\epsilon$. The algorithm proceeds as follows:
+
+\begin{enumerate}
+\item  We calculate the line D that connects the first and last points in S.
+\item  We calculate the distance d(s, D) between each point s in S and the line D.
+\item We then find the point smax in S that has the maximum distance d(smax, D).
+\item If d(smax, D) is greater than $\epsilon$, we split the curve into two sub-curves at point smax, and we apply steps 1 to 3 recursively to each sub-curve.
+\item Otherwise, we return the set of points {s1, sn, smax}.
+\end{enumerate}
+
+To compute the distance $d(s, D)$ between a point $s$ and a line $D$, we use the following formula:
+
+\begin{equation*}
+    d(s, D) = \frac{|(s - s_1) \times (s_2 - p_1)|}{|s_2 - s_1|}
+\end{equation*}
+
+Here, $s_1$ and $s_2$ represent the two endpoints of the line $D$.
+\vspace{1em}
+
+\section{Reflection on the contour detection process}
+We achieved successful results when applying contour detection to the phone image. The contour detection algorithm accurately detected every part of the logo, providing a precise boundary around it. This success can be attributed to several factors, such as the high resolution and clarity of the image, optimal lighting conditions, and well-defined edges of the logo. Overall, contour detection performed exceptionally well on the phone image.
+
+In contrast to the phone image, we encountered challenges when applying contour detection to the printed image. The algorithm struggled to accurately detect the logo boundaries and produced several false positive detections. This difficulty can be attributed to various factors, such as variations in the printing quality, distortions introduced during the printing process, and noise present in the image. These factors led to incomplete and inaccurate contour detection, resulting in the inclusion of unwanted objects or missing parts of the logo.
+
+
+Similar to the printed image, the contour detection algorithm faced challenges when applied to the image of the actual product.
+\section{Conclusion}
+In conclusion, the second chapter of our project focused on image processing techniques to extract the logo from images captured using the ESP32 cam. While we were able to successfully apply various techniques such as grayscaling, thresholding, and contour detection to extract the logo from the images, we faced significant challenges due to the presence of white noise in the images. Despite our best efforts, we were unable to achieve accurate results for all images. However, we learned valuable lessons and identified the limitations of traditional image processing techniques in solving this problem.
+
+Moving forward, we plan to incorporate deep learning techniques in our next phase to improve the accuracy and efficiency of the logo detection system. Specifically, we will train a neural network to identify the logo in the images captured using the ESP32 cam, and we believe that this approach will provide better results than traditional image processing techniques. While this phase of our project did not produce the desired outcome, we remain optimistic and committed to finding a solution to this problem through continued experimentation and innovation.
+\newpage
+
+%\input{biblio.tex}
+
+
+
+%\end{document}
